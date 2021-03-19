@@ -1,0 +1,16 @@
+.user {
+  display: flex;
+  padding: 20px 10px;
+}
+
+.user__avatar img {
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user__description {
+  margin-left: 20px;
+}

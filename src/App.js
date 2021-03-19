@@ -1,16 +1,20 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header';
-import Navbar from './components/Navbar';
-import Profile from './components/Profile';
+import Dialog from './components/Dialog/Dialog';
+import Header from './components/Header/Header';
+import Navbar from './components/Navbar/Navbar';
+import Profile from './components/Profile/Profile';
 
 
 function App() {
   return (
-    <div className='app-wrapper'>
+    <div className='content'>
       <Header />  
       <Navbar />
-      <Profile />
+      <div className='content__wrapper'>
+        {/* <Profile /> */}
+        <Dialog />
+      </div>
     </div>
   );
 }
