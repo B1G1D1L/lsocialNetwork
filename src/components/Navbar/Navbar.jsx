@@ -4,11 +4,11 @@ import s from './Navbar.module.css';
 const Navbar  = () => {
   return (
     <nav className={s.nav}>
-      <a href='#4'>Profile</a>
-      <a href='#4'>Message</a>
-      <a href='#4'>News</a>
-      <a href='#4'>Music</a>
-      <a href='#4'>Setting</a>
+      <a href='/profile'>Profile</a>
+      <a href='/message'>Message</a>
+      <a href='/news'>News</a>
+      <a href='/music'>Music</a>
+      <a href='/setting'>Setting</a>
     </nav>
   )
 }
