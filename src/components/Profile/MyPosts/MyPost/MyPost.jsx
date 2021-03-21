@@ -1,10 +1,10 @@
 import React from 'react';
-import s from './Profile.module.css';
+import s from './MyPost.module.css';
 
-const Profile = () => {
+const MyPost = (props) => {
   return (
-    <div>lol</div>
+    <div className={s.name}>{props.message}</div>
   )
 }
 
-export default Profile;
+export default MyPost;
