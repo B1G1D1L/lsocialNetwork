@@ -22,7 +22,7 @@ function App(props) {
         <div className='content__wrapper'>
           <Route path='/profile' render={ () => <Profile posts={props.state} /> } />
           <Route path='/message' render={ () => <Dialog 
-              dialogData={props.state.messagePage} /> } />
+              messagePage={props.state.messagePage} /> } />
           <Route path='/news' render={ () => <News /> } />
           <Route path='/music' render={ () => <Music /> } />
           <Route path='/setting' render={ () => <Setting /> } />
