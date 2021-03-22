@@ -9,6 +9,7 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
+import Friends from './components/Friends/Friends';
 
 
 function App(props) {
@@ -17,13 +18,15 @@ function App(props) {
     <BrowserRouter>
       <div className='content'>
         <Header />
-        <Navbar />
+        <Navbar friends={props.state.friends}/>
         <div className='content__wrapper'>
-          <Route path='/profile' render={ () => <Profile posts={props.posts} /> } />
-          <Route path='/message' render={ () => <Dialog dialogData={props.dialogData} messageData={props.messageData}/> } />
+          <Route path='/profile' render={ () => <Profile posts={props.state} /> } />
+          <Route path='/message' render={ () => <Dialog 
+              dialogData={props.state.messagePage} /> } />
           <Route path='/news' render={ () => <News /> } />
           <Route path='/music' render={ () => <Music /> } />
           <Route path='/setting' render={ () => <Setting /> } />
+          <Route path='/friends' render={ () => <Friends /> }/>
         </div>
       </div>
     </BrowserRouter>
