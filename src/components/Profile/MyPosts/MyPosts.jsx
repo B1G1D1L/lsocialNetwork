@@ -8,9 +8,9 @@ const MyPosts = (props) => {
 
   let newPostElement = React.createRef();
 
-  let addPost = () => {
+  let addPosts = () => {
     let text = newPostElement.current.value;
-    alert(text)
+    props.addPost(text);
   };  
 
   return (
@@ -18,7 +18,7 @@ const MyPosts = (props) => {
       <div className={s.posts}>
         <img className={s.posts__avatar} src="https://cdn.wallpapersafari.com/90/43/2gzPci.jpg" alt="Avatar" />
         <textarea ref={newPostElement} name="post" id="inputPost" cols="30" rows="4" placeholder="Напишите свой пост"></textarea>
-        <input onClick={addPost} className={s.posts__btn} type='button' value='Опубликовать'></input>
+        <input onClick={addPosts} className={s.posts__btn} type='button' value='Опубликовать'></input>
       </div>
       
       {postElement}

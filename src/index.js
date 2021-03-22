@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import state from './Redax/State';
+import state, { addPost } from './Redax/State';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App state={state} />
+    <App state={state} addPost={addPost} />
   </React.StrictMode>,
   document.getElementById('root')
 );

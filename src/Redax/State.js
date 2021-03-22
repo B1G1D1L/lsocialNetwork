@@ -80,6 +80,16 @@ let state = {
       urlAvatar: 'https://million-wallpapers.ru/wallpapers/5/51/505015039754505/avatar.jpg',
     },
   ],
-}
+};
+
+export const addPost = text => {
+  let post = {
+    id: 4,
+    message: text,
+  };
+
+  state.profilePage.posts.push(post);
+}; 
+
 
 export default state;

@@ -20,7 +20,7 @@ function App(props) {
         <Header />
         <Navbar friends={props.state.friends}/>
         <div className='content__wrapper'>
-          <Route path='/profile' render={ () => <Profile posts={props.state} /> } />
+          <Route path='/profile' render={ () => <Profile posts={props.state} addPost={props.addPost} /> } />
           <Route path='/message' render={ () => <Dialog 
               messagePage={props.state.messagePage} /> } />
           <Route path='/news' render={ () => <News /> } />
