@@ -1,9 +1,22 @@
+import rerenderEntireTree from "../render";
+
 let state = {
   profilePage: {
     posts: [
-      {id: 1, message: 'как дела'},
-      {id: 2, message: 'Я русский'},
+      {
+        id: 1, 
+        message: 'как дела', 
+        name: 'Ilta',
+        urlAvatar: 'https://c.wallhere.com/photos/1e/7d/1600x1200_px_action_adventure_alien_Aliens_Avatar_fantasy_fi-1635355.jpg!d'
+      },
+      {
+        id: 2, 
+        message: 'Я русский', 
+        name: 'Ilta',
+        urlAvatar: 'https://img3.goodfon.ru/wallpaper/nbig/4/99/neytiri-avatar.jpg'
+      },
     ],
+    newPostText: '',
   },
 
   messagePage: {
@@ -20,6 +33,7 @@ let state = {
       {id: 2, message: 'Жопа полная'},
     ],
 
+    newMessageText: '',
   },
 
   friends: [
@@ -53,7 +67,7 @@ let state = {
       surname: 'kozel',
       age: 51,
       sity: 'Moscow',
-      urlAvatar: 'https://million-wallpapers.ru/wallpapers/5/51/505015039754505/avatar.jpg',
+      urlAvatar: 'https://i.artfile.ru/1772x1182_621388_[www.ArtFile.ru].jpg',
     },
     {
       id: 5,
@@ -61,7 +75,7 @@ let state = {
       surname: 'kozel',
       age: 51,
       sity: 'Moscow',
-      urlAvatar: 'https://million-wallpapers.ru/wallpapers/5/51/505015039754505/avatar.jpg',
+      urlAvatar: 'https://i.ytimg.com/vi/CHNZGlNMcfA/maxresdefault.jpg',
     },
     {
       id: 6,
@@ -69,7 +83,7 @@ let state = {
       surname: 'kozel',
       age: 51,
       sity: 'Moscow',
-      urlAvatar: 'https://million-wallpapers.ru/wallpapers/5/51/505015039754505/avatar.jpg',
+      urlAvatar: 'https://avatars.mds.yandex.net/get-zen_doc/2420191/pub_5ed52bb28e01ac7640649d2c_5ed52d618a58f81e15b685d2/scale_1200',
     },
     {
       id: 7,
@@ -77,9 +91,43 @@ let state = {
       surname: 'kozel',
       age: 51,
       sity: 'Moscow',
-      urlAvatar: 'https://million-wallpapers.ru/wallpapers/5/51/505015039754505/avatar.jpg',
+      urlAvatar: 'https://artfiles.alphacoders.com/972/97278.jpg',
     },
   ],
-}
+};
+
+export const addPost = () => {
+  let post = {
+    id: 4,
+    name: ' ',
+    message: state.profilePage.newPostText,
+  };
+
+  state.profilePage.posts.push(post);
+  state.profilePage.newPostText = '';
+  rerenderEntireTree();
+}; 
+
+export const updateTextPost = (text) => {
+  state.profilePage.newPostText = text;
+  rerenderEntireTree();
+};
+
+export const addMessage = () => {
+  let message = {
+    id: 4,
+    message: state.messagePage.newMessageText,
+  };
+
+  state.messagePage.messageData.push(message);
+  state.messagePage.newMessageText = '';
+  rerenderEntireTree();
+};
+
+export const updateTextMessage = (text) => {
+  state.messagePage.newMessageText = text;
+  rerenderEntireTree()
+};
+
 
 export default state;

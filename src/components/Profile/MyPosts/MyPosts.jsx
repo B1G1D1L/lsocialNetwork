@@ -3,22 +3,31 @@ import s from './MyPosts.module.css';
 import MyPost from './MyPost/MyPost'
 
 const MyPosts = (props) => {
-
-  const postElement = props.posts.map( post => <MyPost key={post.id} message={post.message} /> );
+  const postElement = props.posts.map( post => <MyPost key={post.id} message={post} /> );
 
   let newPostElement = React.createRef();
 
-  let addPost = () => {
+  // let addPost = () => {
+  //   props.addPost();
+  // };  
+
+  let newPostText = () => {
     let text = newPostElement.current.value;
-    alert(text)
-  };  
+    props.updateTextPost(text);
+  };
 
   return (
     <div>
       <div className={s.posts}>
-        <img className={s.posts__avatar} src="https://cdn.wallpapersafari.com/90/43/2gzPci.jpg" alt="Avatar" />
-        <textarea ref={newPostElement} name="post" id="inputPost" cols="30" rows="4" placeholder="Напишите свой пост"></textarea>
-        <input onClick={addPost} className={s.posts__btn} type='button' value='Опубликовать'></input>
+        <textarea onChange={newPostText} ref={newPostElement}
+                  id="inputPost"
+                  name="post"
+                  cols="30"
+                  rows="4"
+                  placeholder="Напишите свой пост"
+                  value={props.newPostText} />
+
+        <input onClick={props.addPost} className={s.posts__btn} type='button' value='Опубликовать'></input>
       </div>
       
       {postElement}

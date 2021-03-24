@@ -6,10 +6,10 @@ const Message = props => {
 
   let newMessageElement = React.createRef();
 
-  let addMessage = () => {
+  const updateTextMessage = () => {
     let text = newMessageElement.current.value;
-    alert(text)
-  }
+    props.updateTextMessage(text);
+  };
   
   return (
     <div className={s.message}>
@@ -17,8 +17,14 @@ const Message = props => {
         {messageElement}
       </div>
       <div className={s.messageInput}>
-        <textarea ref={newMessageElement} placeholder='Введите сообщения' cols="50" rows="5"></textarea>
-        <button onClick={addMessage} type='button'>Отправить</button>
+        <textarea
+          onChange={updateTextMessage}
+          ref={newMessageElement}
+          value={props.newMessageText}
+          placeholder='Введите сообщения'
+          cols="50"
+          rows="5" />
+        <button onClick={props.addMessage} type='button'>Отправить</button>
       </div>
     </div>
   );
