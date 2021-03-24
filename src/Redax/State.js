@@ -1,4 +1,6 @@
-import rerenderEntireTree from "../render";
+let rerenderEntireTree = () => {
+  console.log('lol');
+};
 
 let state = {
   profilePage: {
@@ -127,6 +129,10 @@ export const addMessage = () => {
 export const updateTextMessage = (text) => {
   state.messagePage.newMessageText = text;
   rerenderEntireTree()
+};
+
+export const subscribe = observer => {
+  rerenderEntireTree = observer;
 };
 
 
