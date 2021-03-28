@@ -16,20 +16,20 @@ function App(props) {
   return (
     <BrowserRouter>
       <div className='content'>
+
         <Header />
         <Navbar friends={props.state.friends}/>
-        <div className='content__wrapper'>
 
+        <div className='content__wrapper'>
           <Route path='/profile' render={ () => <Profile 
-            posts={props.state.profilePage.posts} 
-            updateTextPost={props.updateTextPost}
-            newPostText={props.state.profilePage.newPostText}
-            addPost={props.addPost} /> } />
+            posts={props.state.profilePage} 
+            updateTextPost={props.store.updateTextPost.bind(props)}
+            addPost={props.store.addPost.bind(props)} /> } />
 
           <Route path='/message' render={ () => <Dialog 
               messagePage={props.state.messagePage} 
-              addMessage={props.addMessage}
-              updateTextMessage={props.updateTextMessage}
+              addMessage={props.store.addMessage.bind(props)}
+              updateTextMessage={props.store.updateTextMessage.bind(props)}
               newMessageText={props.state.messagePage.newMessageText} /> } />
 
           <Route path='/news' render={ () => <News /> } />
@@ -37,6 +37,7 @@ function App(props) {
           <Route path='/setting' render={ () => <Setting /> } />
           <Route path='/friends' render={ () => <Friends /> }/>
         </div>
+
       </div>
     </BrowserRouter>
   );
