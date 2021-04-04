@@ -99,9 +99,11 @@ let store = {
   getState () {
     return this._state;
   },
-
   rerenderEntireTree () {
     console.log('lol');
+  },
+  subscribe (observer) {
+    this.rerenderEntireTree = observer;
   },
 
   addPost () {
@@ -115,17 +117,14 @@ let store = {
     this.state.profilePage.newPostText = '';
     this.store.rerenderEntireTree(this._state);
   },
-
   updateTextPost (text) {
     this.state.profilePage.newPostText = text;
     this.store.rerenderEntireTree();
   },
-
   updateTextMessage (text) {
     this.state.messagePage.newMessageText = text;
     this.store.rerenderEntireTree();
   },
-
   addMessage () {
     let message = {
       id: 4,
@@ -137,9 +136,7 @@ let store = {
     this.store.rerenderEntireTree();
   },
 
-  subscribe (observer) {
-    this.rerenderEntireTree = observer;
-  },
+  
 
 };
 
