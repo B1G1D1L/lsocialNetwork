@@ -136,7 +136,30 @@ let store = {
     this.store.rerenderEntireTree();
   },
 
-  
+  dispatch (action) {
+    debugger
+    switch(action.type) {
+      case 'ADD-POST' : 
+        let post = {
+          id: 4,
+          name: ' ',
+          message: this.state.profilePage.newPostText,
+        };
+        this.state.profilePage.posts.push(post);
+        this.state.profilePage.newPostText = '';
+        this.store.rerenderEntireTree(this._state);
+        break;
+      
+      case 'UPDATE-NEW-POST-TEXT':
+        this.state.profilePage.newPostText = action.text;
+        this.store.rerenderEntireTree();
+    } 
+
+  },
+
+
+
+
 
 };
 
