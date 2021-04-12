@@ -12,8 +12,7 @@ const Profile = (props) => {
         urlAvatar='https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg'/>
       
       <MyPosts posts={props.posts}
-              addPost={props.addPost}
-              updateTextPost={props.updateTextPost} />
+              dispatch={props.dispatch} />
     </div>
   )
 }

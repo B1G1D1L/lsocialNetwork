@@ -1,4 +1,5 @@
 import React from 'react';
+import { addMessageCreator, updateNewTextMessageCreator } from '../../../Redax/State';
 import s from './../Dialog.module.css';
 
 const Message = props => {
@@ -8,8 +9,10 @@ const Message = props => {
 
   const updateTextMessage = () => {
     let text = newMessageElement.current.value;
-    props.updateTextMessage(text);
+    props.dispatch(updateNewTextMessageCreator(text));
   };
+
+  const addNewMessage = () => props.dispatch(addMessageCreator());
   
   return (
     <div className={s.message}>
@@ -24,7 +27,7 @@ const Message = props => {
           placeholder='Введите сообщения'
           cols="50"
           rows="5" />
-        <button onClick={props.addMessage} type='button'>Отправить</button>
+        <button onClick={addNewMessage} type='button'>Отправить</button>
       </div>
     </div>
   );

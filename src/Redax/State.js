@@ -1,5 +1,11 @@
-let store = {
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
+const ADD_MESSAGE = 'ADD-NEW-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
+
+let store = {
   _state: {
     profilePage: {
       posts: [
@@ -105,41 +111,11 @@ let store = {
   subscribe (observer) {
     this.rerenderEntireTree = observer;
   },
-
-  addPost () {
-    let post = {
-      id: 4,
-      name: ' ',
-      message: this.state.profilePage.newPostText,
-    };
   
-    this.state.profilePage.posts.push(post);
-    this.state.profilePage.newPostText = '';
-    this.store.rerenderEntireTree(this._state);
-  },
-  updateTextPost (text) {
-    this.state.profilePage.newPostText = text;
-    this.store.rerenderEntireTree();
-  },
-  updateTextMessage (text) {
-    this.state.messagePage.newMessageText = text;
-    this.store.rerenderEntireTree();
-  },
-  addMessage () {
-    let message = {
-      id: 4,
-      message: this.state.messagePage.newMessageText,
-    };
-  
-    this.state.messagePage.messageData.push(message);
-    this.state.messagePage.newMessageText = '';
-    this.store.rerenderEntireTree();
-  },
 
   dispatch (action) {
-    debugger
     switch(action.type) {
-      case 'ADD-POST' : 
+      case ADD_POST : 
         let post = {
           id: 4,
           name: ' ',
@@ -150,18 +126,34 @@ let store = {
         this.store.rerenderEntireTree(this._state);
         break;
       
-      case 'UPDATE-NEW-POST-TEXT':
+      case UPDATE_NEW_POST_TEXT:
         this.state.profilePage.newPostText = action.text;
         this.store.rerenderEntireTree();
+        break;
+
+      case ADD_MESSAGE: 
+        let message = {id: 7, message: this.state.messagePage.newMessageText};
+        this.state.messagePage.messageData.push(message);
+        this.state.messagePage.newMessageText = '';
+        this.store.rerenderEntireTree(); 
+        break;
+
+      case UPDATE_NEW_MESSAGE_TEXT:
+        this.state.messagePage.newMessageText = action.text;
+        this.store.rerenderEntireTree();
+        break;
     } 
 
   },
-
-
-
-
-
 };
+
+export const addPostActionCreator = () => ({ type: ADD_POST })
+
+export const updateNewTextActionCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, text: text });
+
+export const addMessageCreator = () => ({ type: ADD_MESSAGE });
+
+export const updateNewTextMessageCreator = (text) => ({ type: UPDATE_NEW_MESSAGE_TEXT, text: text });
 
 export default store;
 window.store = store;

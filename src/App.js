@@ -23,19 +23,16 @@ function App(props) {
         <div className='content__wrapper'>
           <Route path='/profile' render={ () => <Profile 
             posts={props.state.profilePage} 
-            updateTextPost={props.store.updateTextPost.bind(props)}
-            addPost={props.store.addPost.bind(props)} /> } />
+            dispatch={props.store.dispatch.bind(props)} />}/>
 
           <Route path='/message' render={ () => <Dialog 
-              messagePage={props.state.messagePage} 
-              addMessage={props.store.addMessage.bind(props)}
-              updateTextMessage={props.store.updateTextMessage.bind(props)}
-              newMessageText={props.state.messagePage.newMessageText} /> } />
+              messagePage={props.state.messagePage}
+              dispatch = {props.store.dispatch.bind(props)}  />}/>
 
-          <Route path='/news' render={ () => <News /> } />
-          <Route path='/music' render={ () => <Music /> } />
-          <Route path='/setting' render={ () => <Setting /> } />
-          <Route path='/friends' render={ () => <Friends /> }/>
+          <Route path='/news' render={ () => <News />}/>
+          <Route path='/music' render={ () => <Music />}/>
+          <Route path='/setting' render={ () => <Setting />}/>
+          <Route path='/friends' render={ () => <Friends />}/>
         </div>
 
       </div>
