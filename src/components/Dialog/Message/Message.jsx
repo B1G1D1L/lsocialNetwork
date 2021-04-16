@@ -1,5 +1,5 @@
 import React from 'react';
-import { addMessageCreator, updateNewTextMessageCreator } from '../../../Redax/State';
+import { addMessageCreator, updateNewTextMessageCreator } from '../../../Redax/message-reducer';
 import s from './../Dialog.module.css';
 
 const Message = props => {

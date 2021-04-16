@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import s from './../Navbar.module.css';
 
 const FriendsNav = (props) => {
-  
   let friends = props.friends.map((friend, index) => {
     if (index < 6) {
       return <img key={friend.id} src={friend.urlAvatar} alt={friend.name} />

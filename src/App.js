@@ -23,11 +23,11 @@ function App(props) {
         <div className='content__wrapper'>
           <Route path='/profile' render={ () => <Profile 
             posts={props.state.profilePage} 
-            dispatch={props.store.dispatch.bind(props)} />}/>
+            dispatch={props.dispatch} />}/>
 
           <Route path='/message' render={ () => <Dialog 
               messagePage={props.state.messagePage}
-              dispatch = {props.store.dispatch.bind(props)}  />}/>
+              dispatch = {props.dispatch}  />}/>
 
           <Route path='/news' render={ () => <News />}/>
           <Route path='/music' render={ () => <Music />}/>

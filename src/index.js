@@ -2,17 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import store from './Redax/State';
+import store from './Redax/redax-store';
 
-let rerenderEntireTree = () => {
+let rerenderEntireTree = (state) => {
   ReactDOM.render(
     <React.StrictMode>
-      <App state={store.getState()} store={store} />
+      <App state={state} dispatch = {store.dispatch.bind(store)} />
     </React.StrictMode>,
     document.getElementById('root')
   );
 }
 
-
-rerenderEntireTree();
-store.subscribe(rerenderEntireTree);
+rerenderEntireTree(store.getState());
+store.subscribe( () => {
+  let state = store.getState();
+  rerenderEntireTree(state);
+} );

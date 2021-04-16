@@ -4,7 +4,6 @@ import FriendsNav from './FriendsNav/FriendsNav';
 import Navigation from './Navigation/Navigation';
 
 const Navbar = (props) => {
-
   return (
     <div className={s.aside}>
       <Navigation />
