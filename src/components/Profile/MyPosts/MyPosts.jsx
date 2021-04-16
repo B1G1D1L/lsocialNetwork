@@ -4,6 +4,7 @@ import MyPost from './MyPost/MyPost'
 import { addPostActionCreator, updateNewTextActionCreator } from '../../../Redax/State';
 
 const MyPosts = (props) => {
+
   const postElement = props.posts.posts.map( post => <MyPost key={post.id} message={post} /> );
 
   let newPostElement = React.createRef(); 

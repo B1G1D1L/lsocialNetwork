@@ -1,3 +1,6 @@
+import messageReduce from "./message-reducer";
+import profileReduce from "./profile-reducer";
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
@@ -111,39 +114,12 @@ let store = {
   subscribe (observer) {
     this.rerenderEntireTree = observer;
   },
-  
-
   dispatch (action) {
-    switch(action.type) {
-      case ADD_POST : 
-        let post = {
-          id: 4,
-          name: ' ',
-          message: this.state.profilePage.newPostText,
-        };
-        this.state.profilePage.posts.push(post);
-        this.state.profilePage.newPostText = '';
-        this.store.rerenderEntireTree(this._state);
-        break;
-      
-      case UPDATE_NEW_POST_TEXT:
-        this.state.profilePage.newPostText = action.text;
-        this.store.rerenderEntireTree();
-        break;
 
-      case ADD_MESSAGE: 
-        let message = {id: 7, message: this.state.messagePage.newMessageText};
-        this.state.messagePage.messageData.push(message);
-        this.state.messagePage.newMessageText = '';
-        this.store.rerenderEntireTree(); 
-        break;
+    this.state.profilePage = profileReduce(this.state.profilePage, action);
+    this.state.messagePage = messageReduce(this.state.messagePage, action);
 
-      case UPDATE_NEW_MESSAGE_TEXT:
-        this.state.messagePage.newMessageText = action.text;
-        this.store.rerenderEntireTree();
-        break;
-    } 
-
+    this.store.rerenderEntireTree(this._state);
   },
 };
 
