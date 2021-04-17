@@ -25,9 +25,11 @@ const messageReduce = (state = initialState, action) => {
       let message = {id: 7, message: state.newMessageText};
       state.messageData.push(message);
       state.newMessageText = '';
+      return state;
 
     case UPDATE_NEW_MESSAGE_TEXT: 
       state.newMessageText = action.text;
+      return state;
 
     default: 
       return state;

@@ -1,20 +1,20 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import MyPost from './MyPost/MyPost'
-import { addPostActionCreator, updateNewTextActionCreator } from '../../../Redax/profile-reducer';
 
 const MyPosts = (props) => {
-
-  const postElement = props.posts.posts.map( post => <MyPost key={post.id} message={post} /> );
+  const postElement = 
+    props.posts.map( post => <MyPost key={props.posts.indexOf(post)} message={post} /> );
 
   let newPostElement = React.createRef(); 
 
-  const addPost = () => {
-    props.dispatch(addPostActionCreator());
+  const onAddPost = () => {
+    props.addPost();
   };
+
   const onPostChange = () => {
     const text = newPostElement.current.value;
-    props.dispatch(updateNewTextActionCreator(text))
+    props.unpadeNewPostText(text);
   }
 
   return (
@@ -26,9 +26,9 @@ const MyPosts = (props) => {
           cols="30"
           rows="4"
           placeholder="Напишите свой пост"
-          value={props.posts.newPostText} />
+          value={props.newPostText} />
 
-        <input onClick={addPost} className={s.posts__btn} type='button' value='Опубликовать'></input>
+        <input onClick={onAddPost} className={s.posts__btn} type='button' value='Опубликовать'></input>
       </div>
       
       {postElement}
