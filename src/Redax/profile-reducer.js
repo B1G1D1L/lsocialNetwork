@@ -30,15 +30,17 @@ const profileReduce = (state = initialState, action) => {
       };
       state.posts.push(post);
       state.newPostText = '';
+      return state;
     
     case UPDATE_NEW_POST_TEXT: 
       state.newPostText = action.text;
-
+      return state;
+      
     default: return state;
   }
 };
 
-export const addPostActionCreator = () => ({ type: ADD_POST })
+export const addPostActionCreator = () => ({ type: ADD_POST });
 export const updateNewTextActionCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, text: text });
 
 
