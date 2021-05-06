@@ -12,19 +12,17 @@ import Friends from './components/Friends/Friends';
 import DialogContainer from './components/Dialog/DialogContainer';
 
 
-function App(props) {
+function App (props) {
   return (
     <BrowserRouter>
       <div className='content'>
 
         <Header />
-        <Navbar friends={props.state.friends}/>
+        <Navbar />
 
         <div className='content__wrapper'>
-          <Route path='/profile' render={ () => <Profile store = {props.store} />}/>
-
-          <Route path='/message' render={ () => <DialogContainer store = {props.store} />}/>
-
+          <Route path='/profile' render={ () => <Profile />}/>
+          <Route path='/message' render={ () => <DialogContainer />}/>
           <Route path='/news' render={ () => <News />}/>
           <Route path='/music' render={ () => <Music />}/>
           <Route path='/setting' render={ () => <Setting />}/>

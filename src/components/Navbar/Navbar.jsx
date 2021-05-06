@@ -7,7 +7,7 @@ const Navbar = (props) => {
   return (
     <div className={s.aside}>
       <Navigation />
-      <FriendsNav friends={props.friends}/>
+      <FriendsNav />
       
     </div>
   )

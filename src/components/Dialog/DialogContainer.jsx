@@ -1,24 +1,35 @@
 import React from 'react';
 import { addMessageCreator, updateNewTextMessageCreator } from '../../Redax/message-reducer';
+import StoreContext from '../../StoreContext';
 import Dialog from './Dialog';
 
 
 const DialogContainer = (props) => {
-  let state = props.store.getState();
+  return (
+    <StoreContext.Consumer>
+      {(store) => {
 
-  const addMessage = () => {
-    props.store.dispatch(addMessageCreator());
-  };
+        let state = store.getState();
 
-  const updateNewTextMessage = (text) => {
-    props.store.dispatch(updateNewTextMessageCreator(text))
-  };
+        const addMessage = () => {
+          store.dispatch(addMessageCreator());
+        };
 
-  return <Dialog dialogData = {state.messagePage.dialogData}
-    messageData = {state.messagePage.messageData}
-    newMessageText = {state.messagePage.newMessageText}
-    addMessage = {addMessage}
-    updateNewTextMessage = {updateNewTextMessage} />
+        const updateNewTextMessage = (text) => {
+          store.dispatch(updateNewTextMessageCreator(text))
+        };
+
+        return (
+          <Dialog dialogData={state.messagePage.dialogData}
+            messageData={state.messagePage.messageData}
+            newMessageText={state.messagePage.newMessageText}
+            addMessage={addMessage}
+            updateNewTextMessage={updateNewTextMessage} />
+        )
+      }
+      }
+    </StoreContext.Consumer>
+  )
 }
 
 export default DialogContainer;
