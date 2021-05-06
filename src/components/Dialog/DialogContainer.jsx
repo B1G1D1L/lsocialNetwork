@@ -5,16 +5,6 @@ import Dialog from './Dialog';
 
 
 const DialogContainer = (props) => {
-  // let state = props.store.getState();
-
-  // const addMessage = () => {
-  //   props.store.dispatch(addMessageCreator());
-  // };
-
-  // const updateNewTextMessage = (text) => {
-  //   props.store.dispatch(updateNewTextMessageCreator(text))
-  // };
-
   return (
     <StoreContext.Consumer>
       {(store) => {
