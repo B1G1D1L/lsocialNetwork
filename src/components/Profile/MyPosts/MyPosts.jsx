@@ -4,7 +4,8 @@ import MyPost from './MyPost/MyPost'
 
 const MyPosts = (props) => {
   const postElement = 
-    props.posts.map( post => <MyPost key={props.posts.indexOf(post)} message={post} /> );
+    props.profilePage.posts
+      .map( post => <MyPost key={props.profilePage.posts.indexOf(post)} message={post} /> );
 
   let newPostElement = React.createRef(); 
 
@@ -26,7 +27,7 @@ const MyPosts = (props) => {
           cols="30"
           rows="4"
           placeholder="Напишите свой пост"
-          value={props.newPostText} />
+          value={props.profilePage.newPostText} />
 
         <input onClick={onAddPost} className={s.posts__btn} type='button' value='Опубликовать'></input>
       </div>

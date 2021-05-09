@@ -3,7 +3,8 @@ import s from './../Dialog.module.css';
 
 const Message = (props) => {
   let messageElement = 
-    props.messageData.map(m => <p key ={props.messageData.indexOf(m)}>{m.message}</p>);
+    props.dialogPage.messageData
+      .map(m => <p key ={props.dialogPage.messageData.indexOf(m)}>{m.message}</p>);
 
   let newMessageElement = React.createRef();
 
@@ -27,7 +28,7 @@ const Message = (props) => {
         <textarea
           onChange={onChange}
           ref={newMessageElement}
-          value={props.newMessageText}
+          value={props.dialogPage.newMessageText}
           placeholder='Введите сообщения'
           cols="50"
           rows="5" />

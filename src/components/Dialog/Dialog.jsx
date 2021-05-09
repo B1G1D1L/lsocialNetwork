@@ -6,10 +6,8 @@ import Message from './Message/Message';
 const Dialog = (props) => {
   return (
     <div className={s.dialogs}>
-      <DialogItem dialogData={props.dialogData} />
-      <Message messageData={props.messageData}
-        dispatch={props.dispatch}
-        newMessageText = {props.newMessageText}
+      <DialogItem dialogData={props.dialogPage.dialogData} />
+      <Message dialogPage={props.dialogPage}
         addMessage = {props.addMessage}
         updateNewTextMessage = {props.updateNewTextMessage} />
     </div>
