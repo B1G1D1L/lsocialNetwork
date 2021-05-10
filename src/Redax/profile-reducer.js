@@ -22,20 +22,25 @@ let initialState = {
 const profileReduce = (state = initialState, action) => { 
 
   switch(action.type) {
-    case ADD_POST:
-      let post = {
+    case ADD_POST: {
+      let newPost = {
         id: 4,
         name: ' ',
         message: state.newPostText,
       };
-      state.posts.push(post);
-      state.newPostText = '';
-      return state;
-    
-    case UPDATE_NEW_POST_TEXT: 
-      state.newPostText = action.text;
-      return state;
-      
+      return {
+        ...state,
+        posts: [...state.posts, newPost],
+        newPostText: ''
+      };
+    }
+    case UPDATE_NEW_POST_TEXT: {
+      return {
+        ...state,
+        newPostText: action.text
+      }; 
+    }
+
     default: return state;
   }
 };
