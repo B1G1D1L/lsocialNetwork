@@ -10,6 +10,7 @@ const Navigation = (props) => {
       <NavLink activeClassName={s.active} to='/news'>News</NavLink>
       <NavLink activeClassName={s.active} to='/music'>Music</NavLink>
       <NavLink activeClassName={s.active} to='/setting'>Setting</NavLink>
+      <NavLink activeClassName={s.active} to='/users'>Users</NavLink>
     </nav>
   )
 }

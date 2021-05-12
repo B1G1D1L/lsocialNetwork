@@ -8,7 +8,6 @@ const Navbar = (props) => {
     <div className={s.aside}>
       <Navigation />
       <FriendsNav />
-      
     </div>
   )
 }

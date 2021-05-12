@@ -1,12 +1,12 @@
 import { combineReducers, createStore } from "redux";
-import friendsReduce from "./friends-reducer";
 import messageReduce from "./message-reducer";
 import profileReduce from "./profile-reducer";
+import usersReduce from "./users-reducer";
 
 let reduces = combineReducers({
   profilePage: profileReduce,
   messagePage: messageReduce,
-  friends: friendsReduce
+  usersPage: usersReduce
 })
 
 let store = createStore(reduces);

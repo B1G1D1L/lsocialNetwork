@@ -8,8 +8,8 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
-import Friends from './components/Friends/Friends';
 import DialogContainer from './components/Dialog/DialogContainer';
+import UsersContainer from './components/Users/UsersContainer';
 
 
 function App (props) {
@@ -23,10 +23,10 @@ function App (props) {
         <div className='content__wrapper'>
           <Route path='/profile' render={ () => <Profile />}/>
           <Route path='/message' render={ () => <DialogContainer />}/>
-          <Route path='/news' render={ () => <News />}/>
-          <Route path='/music' render={ () => <Music />}/>
+          <Route path='/news'    render={ () => <News />}/>
+          <Route path='/music'   render={ () => <Music />}/>
           <Route path='/setting' render={ () => <Setting />}/>
-          <Route path='/friends' render={ () => <Friends />}/>
+          <Route path='/users'   render={ () => <UsersContainer />}/>
         </div>
 
       </div>
