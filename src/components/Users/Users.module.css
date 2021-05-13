@@ -1,0 +1,37 @@
+.user {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 10px;
+}
+.userAvatar {
+  flex: 0 1 auto;
+}
+.userInfo {
+  display: flex;
+  justify-content: space-between;
+  flex: 1 0 auto;
+  margin-left: 20px;
+  padding: 10px;
+  border: 1px solid rgb(196, 196, 196);
+  border-radius: 10px;
+}
+.photo {
+  width: 100px;
+  height: 100px;
+  display: block;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.location {
+  display: flex;
+  flex-direction: column;
+}
+.location span {
+  text-align: right;
+}
+.name {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

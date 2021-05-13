@@ -4,24 +4,45 @@ const SET_USERS = 'SET_USERS';
 
 let initialState = {
   users: [
-    // {id: 1, followed: false, fullName: 'Yura', status: 'I am imba', location: { sity: 'Prokutkino', country: 'Russia' } },
-    // {id: 2, followed: true, fullName: 'Vasya', status: 'I am Kat', location: { sity: 'Moscow', country: 'Russia' } },
-    // {id: 3, followed: false, fullName: 'Yura', status: 'I am imba', location: { sity: 'Tymen', country: 'Russia' } },
+    {
+      id: 1,
+      photo: 'https://i05.fotocdn.net/s113/b8d246c1b6fd8335/user_xl/2538414040.jpg',
+      followed: true,
+      fullName: 'Yura',
+      status: 'I am imba',
+      location: { sity: 'Prokutkino', country: 'Russia' }
+    },
+    {
+      id: 2,
+      photo: 'https://i05.fotocdn.net/s113/b8d246c1b6fd8335/user_xl/2538414040.jpg',
+      followed: true,
+      fullName: 'Vasya',
+      status: 'I am Kat',
+      location: { sity: 'Moscow', country: 'Russia' }
+    },
+    {
+      id: 3,
+      photo: 'https://i05.fotocdn.net/s113/b8d246c1b6fd8335/user_xl/2538414040.jpg',
+      followed: false,
+      fullName: 'Yura',
+      status: 'I am imba',
+      location: { sity: 'Tymen', country: 'Russia' }
+    },
   ],
 }
 
 const messageReduce = (state = initialState, action) => { 
-
   
   switch(action.type) {
 
     case FOLLOW: {
       return {
-        ...state,
+        ...state, 
         users: state.users.map(user => {
           if (user.id === action.userId) {
             return {...user, followed: true}
           }
+          return {...user}
         })
       }
     }
@@ -33,6 +54,7 @@ const messageReduce = (state = initialState, action) => {
           if (user.id === action.userId) {
             return {...user, followed: false}
           }
+          return {...user}
         })
       }
     }
