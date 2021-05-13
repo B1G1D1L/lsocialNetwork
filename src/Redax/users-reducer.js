@@ -3,32 +3,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 
 let initialState = {
-  users: [
-    {
-      id: 1,
-      photo: 'https://i05.fotocdn.net/s113/b8d246c1b6fd8335/user_xl/2538414040.jpg',
-      followed: true,
-      fullName: 'Yura',
-      status: 'I am imba',
-      location: { sity: 'Prokutkino', country: 'Russia' }
-    },
-    {
-      id: 2,
-      photo: 'https://i05.fotocdn.net/s113/b8d246c1b6fd8335/user_xl/2538414040.jpg',
-      followed: true,
-      fullName: 'Vasya',
-      status: 'I am Kat',
-      location: { sity: 'Moscow', country: 'Russia' }
-    },
-    {
-      id: 3,
-      photo: 'https://i05.fotocdn.net/s113/b8d246c1b6fd8335/user_xl/2538414040.jpg',
-      followed: false,
-      fullName: 'Yura',
-      status: 'I am imba',
-      location: { sity: 'Tymen', country: 'Russia' }
-    },
-  ],
+  users: [],
 }
 
 const messageReduce = (state = initialState, action) => { 
