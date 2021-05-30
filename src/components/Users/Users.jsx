@@ -1,7 +1,6 @@
 import React from 'react';
 import style from './Users.module.css';
-// import * as axios from 'axios';
-import axios from 'axios'
+import * as axios from 'axios';
 import userPhoto from '../../assets/images/user.png';
 
 

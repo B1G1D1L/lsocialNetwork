@@ -19,7 +19,6 @@ let initialState = {
 }
 
 const messageReduce = (state = initialState, action) => { 
-
   
   switch(action.type) {
 
