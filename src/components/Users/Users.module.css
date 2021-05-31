@@ -35,3 +35,11 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.selected {
+  font-weight: 700;
+  color: red;
+}
+.numberPages span {
+  margin-right: 5px;
+}
