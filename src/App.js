@@ -9,7 +9,7 @@ import Profile from './components/Profile/Profile';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 import DialogContainer from './components/Dialog/DialogContainer';
-import UsersContainer from './components/Users/UsersContainer';
+import UsersAPIComponent from './components/Users/UsersContainer';
 
 
 function App (props) {
@@ -26,7 +26,7 @@ function App (props) {
           <Route path='/news'    render={ () => <News />}/>
           <Route path='/music'   render={ () => <Music />}/>
           <Route path='/setting' render={ () => <Setting />}/>
-          <Route path='/users'   render={ () => <UsersContainer />}/>
+          <Route path='/users'   render={ () => <UsersAPIComponent />}/>
         </div>
 
       </div>
