@@ -34,6 +34,7 @@ const profileReduce = (state = initialState, action) => {
         newPostText: ''
       };
     }
+    
     case UPDATE_NEW_POST_TEXT: {
       return {
         ...state,
