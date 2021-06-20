@@ -3,7 +3,7 @@ import * as axios from 'axios';
 import { connect } from 'react-redux';
 import { followAC, setCurrentPageAC, setTotalUserCountAC, setUsersAC, toggleIsFetchingAC, unfollowAC } from '../../Redax/users-reducer';
 import Users from './Users';
-import preloader from '../../assets/images/loader.svg';
+import Preloader from '../common/Preloader/Preloader';
 
 class UsersContainer extends React.Component {
 
@@ -30,7 +30,7 @@ class UsersContainer extends React.Component {
   render() {
     //фековая заглушка <></>
     return <>
-      {this.props.isFetching ? <img src={preloader} alt='preloader' /> : null}
+      {this.props.isFetching ? <Preloader /> : null}
       <Users currentPage={this.props.currentPage}
              totalUsersCount={this.props.totalUsersCount}
              pageSize={this.props.pageSize}
