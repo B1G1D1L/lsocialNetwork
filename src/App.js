@@ -5,7 +5,7 @@ import './App.css';
 import News from './components/News/News'
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import Profile from './components/Profile/Profile';
+import ProfileContainer from './components/Profile/ProfileContainer';
 import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 import DialogContainer from './components/Dialog/DialogContainer';
@@ -21,7 +21,7 @@ function App (props) {
         <Navbar />
 
         <div className='content__wrapper'>
-          <Route path='/profile' render={ () => <Profile />}/>
+          <Route path='/profile' render={ () => <ProfileContainer />}/>
           <Route path='/message' render={ () => <DialogContainer />}/>
           <Route path='/news'    render={ () => <News />}/>
           <Route path='/music'   render={ () => <Music />}/>

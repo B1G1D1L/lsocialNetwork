@@ -1,7 +1,12 @@
 import React from 'react';
+import Preloader from '../../common/Preloader/Preloader';
 import s from './User.module.css';
 
 const User = (props) => {
+  if(!props.profile) {
+    return <Preloader />
+  }
+
   return (
     <div className={s.user}>
 
@@ -11,13 +16,12 @@ const User = (props) => {
       
       <div className={s.user__info}>
         <div className={s.user__avatar}>
-          <img src="https://cdn.wallpapersafari.com/90/43/2gzPci.jpg" alt="Avatar" />
+          <img src={props.profile.photos.small} alt="Avatar" />
         </div>
 
         <div className={s.user__description}>
-          <div>Name: {props.name}</div>
-          <div>Age: {props.age}</div>
-          <div>Sity: {props.sity}</div>
+          <div>Name: {props.profile.fullName}</div>
+          <div>About me: {props.profile.aboutMe}</div>
         </div>
       </div>
     </div>
