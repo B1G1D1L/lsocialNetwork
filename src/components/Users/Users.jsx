@@ -1,13 +1,12 @@
 import React from 'react';
-import * as axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
 import style from './Users.module.css';
 import userPhoto from '../../assets/images/user.png';
+import { userAPI } from '../../api/api';
 
 
 const Users = (props) => {
-
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
 
@@ -35,36 +34,30 @@ const Users = (props) => {
                  alt="Avatar" />
           </NavLink>
             {user.followed
-              ? <button onClick={() => {
-                  axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-                    withCredentials: true,
-                    headers: {
-                      'API-KEY': '733929ad-448f-47bd-9309-ee6c1f37cf00'
-                    }
-                  })
-                  .then(response => {
+              ? <button disabled={props.followingProgress.some(userId => userId === user.id)} onClick={() => {
+                  props.toggleFollowingProgress(true, user.id)
+                  userAPI.getUnfollow(user.id)
+                  .then(data => {
                     // если 0 то залогинены
-                    if(response.data.resultCode === 0) {
+                    if(data.resultCode === 0) {
                       props.unfollow(user.id)
                     }
+                    props.toggleFollowingProgress(false, user.id)
                   }) 
                   
               }}>Unfollow</button>
 
-              : <button onClick={() => {
-                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-                    withCredentials: true,
-                    headers: {
-                      'API-KEY': '733929ad-448f-47bd-9309-ee6c1f37cf00'
-                    }
-                  })
-                  .then(response => {
+              : <button disabled={props.followingProgress.some(userId => userId === user.id)} onClick={() => {
+                  props.toggleFollowingProgress(true, user.id)
+                  userAPI.getFollow(user.id)
+                  .then(data => {
                     // если 0 то залогинены
-                    if(response.data.resultCode === 0) {
-                     
+                    if(data.resultCode === 0) {
                       props.follow(user.id)
                     }
+                    props.toggleFollowingProgress(false, user.id)
                   })
+
               }}>Follow</button>}
 
           </div>
