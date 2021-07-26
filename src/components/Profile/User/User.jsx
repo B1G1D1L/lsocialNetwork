@@ -9,9 +9,8 @@ const User = (props) => {
 
   return (
     <div className={s.user}>
-
       <div>
-        <img className={s.user__background} alt='Background' src={props.urlAvatar}></img>
+        <img className={s.user__background} alt='Background' src={(props.urlAvatar)}></img>
       </div>
       
       <div className={s.user__info}>
