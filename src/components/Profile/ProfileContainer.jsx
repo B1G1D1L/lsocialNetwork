@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { userAPI } from '../../api/api';
 
 import { setUserProfile } from '../../Redax/profile-reducer';
@@ -13,6 +13,8 @@ class ProfileConitaner extends React.Component {
   }
   
   render () {
+    if(!this.props.isAuth) return <Redirect to='/login' />
+
     return (
       <Profile {...this.state} profile={this.props.profile} />
     )

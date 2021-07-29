@@ -11,6 +11,7 @@ import Music from './components/Music/Music';
 import Setting from './components/Setting/Setting';
 import DialogContainer from './components/Dialog/DialogContainer';
 import UsersAPIComponent from './components/Users/UsersContainer';
+import Login from './components/Login/Login';
 
 
 function App (props) {
@@ -20,6 +21,7 @@ function App (props) {
 
         <HeaderContainer />
         <Navbar />
+    {console.log(props)}
 
         <div className='content__wrapper'>
           <Route path='/profile/:userId' render={ () => <ProfileContainer />}/>
@@ -28,6 +30,7 @@ function App (props) {
           <Route path='/music'   render={ () => <Music />}/>
           <Route path='/setting' render={ () => <Setting />}/>
           <Route path='/users'   render={ () => <UsersAPIComponent />}/>
+          <Route path='/login'   render={ () => <Login />}/>
         </div>
 
       </div>
