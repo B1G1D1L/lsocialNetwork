@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { userAPI } from '../../api/api';
 
 import { setUserProfile } from '../../Redax/profile-reducer';
+import { withAuthRedirect } from '../hoc/withAuthRdirect';
 import Profile from './Profile';
 
 class ProfileConitaner extends React.Component {
@@ -13,14 +14,14 @@ class ProfileConitaner extends React.Component {
   }
   
   render () {
-    if(!this.props.isAuth) return <Redirect to='/login' />
-
     return (
       <Profile {...this.state} profile={this.props.profile} />
     )
   }
 };
 
+// Наш HOC
+const authRedirectComponent = withAuthRedirect(ProfileConitaner)
 
 const mapStateToProps = (state) => {
   return {
@@ -28,5 +29,5 @@ const mapStateToProps = (state) => {
   }
 
 }
-let WithUrlDataContainerComponent = withRouter(ProfileConitaner);
+let WithUrlDataContainerComponent = withRouter(authRedirectComponent);
 export default connect(mapStateToProps, {setUserProfile})(WithUrlDataContainerComponent);
