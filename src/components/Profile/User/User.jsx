@@ -1,26 +1,24 @@
 import React from 'react';
 import Preloader from '../../common/Preloader/Preloader';
 import s from './User.module.css';
+import userPhoto from './../../../assets/images/user.png';
 
 const User = (props) => {
+  console.log(props);
   if(!props.profile) {
     return <Preloader />
   }
 
   return (
     <div className={s.user}>
-      <div>
-        <img className={s.user__background} alt='Background' src={(props.urlAvatar)}></img>
-      </div>
-      
       <div className={s.user__info}>
         <div className={s.user__avatar}>
-          <img src={props.profile.photos.small} alt="Avatar" />
+          <img src={props.profile.photos.small || userPhoto} alt="Avatar" />
         </div>
 
         <div className={s.user__description}>
-          <div>Name: {props.profile.fullName}</div>
-          <div>About me: {props.profile.aboutMe}</div>
+          <div>{props.profile.fullName}</div>
+          <div>{props.profile.aboutMe || null}</div>
         </div>
       </div>
     </div>

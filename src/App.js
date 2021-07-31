@@ -21,10 +21,10 @@ function App (props) {
 
         <HeaderContainer />
         <Navbar />
-    {console.log(props)}
 
         <div className='content__wrapper'>
           <Route path='/profile/:userId' render={ () => <ProfileContainer />}/>
+          {/* <Route path='/profile' render={ () => <ProfileContainer />}/> */}
           <Route path='/message' render={ () => <DialogContainer />}/>
           <Route path='/news'    render={ () => <News />}/>
           <Route path='/music'   render={ () => <Music />}/>
