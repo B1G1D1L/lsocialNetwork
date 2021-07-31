@@ -4,7 +4,6 @@ import s from './User.module.css';
 import userPhoto from './../../../assets/images/user.png';
 
 const User = (props) => {
-  console.log(props);
   if(!props.profile) {
     return <Preloader />
   }

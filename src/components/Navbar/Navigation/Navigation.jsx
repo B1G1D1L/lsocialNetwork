@@ -5,7 +5,7 @@ import s from './../Navbar.module.css';
 const Navigation = (props) => {
   return (
     <nav className={s.nav}>
-      <NavLink activeClassName={s.active} to='/profile'>Profile</NavLink>
+      <NavLink activeClassName={s.active} to={`/profile/${props.myId}`}>Profile</NavLink>
       <NavLink activeClassName={s.active} to='/message'>Message</NavLink>
       <NavLink activeClassName={s.active} to='/news'>News</NavLink>
       <NavLink activeClassName={s.active} to='/music'>Music</NavLink>
