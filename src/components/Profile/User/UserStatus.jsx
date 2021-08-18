@@ -1,15 +1,22 @@
 import React from 'react';
+import s from './User.module.css';
 
 class UserStatus extends React.Component {
   state = {
     editMode: false,
-    title: ''
+    title: this.props.UserStatus
   }
 
   activeEditMode() {
-    this.setState = {
+    this.setState({
       editMode: true
-    }
+    })
+  }
+
+  deactivateEditMode() {
+    this.setState({
+      editMode: false
+    })
   }
 
   render () {
@@ -17,11 +24,16 @@ class UserStatus extends React.Component {
       <div>
         {!this.state.editMode ? 
           <div>
-            <span>{this.state.title}</span>
+            <span
+              onClick={this.activeEditMode.bind(this)}
+              className={s.user__status} >{this.state.title}</span>
           </div>
 
         : <div>
-            <input value={this.state.title} />
+            <input 
+              autoFocus={true}
+              onBlur={this.deactivateEditMode.bind(this)}
+              defaultValue={this.state.title} />
           </div>
         }
       </div>
