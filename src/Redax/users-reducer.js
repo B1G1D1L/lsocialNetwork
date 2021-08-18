@@ -126,13 +126,6 @@ export const unfollow = (userId) => {
   }
 }
 
-export const log1 = () => {
-  console.log(1);
-}
-
-export const log2 = () => {
-  console.log(2);
-}
 
 
 export default messageReduce;

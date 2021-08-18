@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { userAPI } from '../../api/api';
 import { compose } from 'redux';
 
-import { setUserProfile } from '../../Redax/profile-reducer';
+import { setUserProfile, setUserStatus } from '../../Redax/profile-reducer';
 import { withAuthRedirect } from '../hoc/withAuthRdirect';
 import Profile from './Profile';
 
@@ -12,25 +12,31 @@ class ProfileConitaner extends React.Component {
   
   componentDidMount() {
     let userId = this.props.match.params.userId;
-    userAPI.getUserProfile(userId).then(response => this.props.setUserProfile(response))
+
+    userAPI.getUserProfile(userId).then(response => this.props.setUserProfile(response));
+    userAPI.getStatus(userId).then(response => this.props.setUserStatus(response));
   }
   
-  render () {
+  render() {
     return (
-      <Profile {...this.state} profile={this.props.profile} />
+      <Profile profile={this.props.profile}
+        userStatus={this.props.userStatus} />
     )
   }
 };
 
+
+
 const mapStateToProps = (state) => {
   return {
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    userStatus: state.profilePage.status
   }
-}
+};
 
 // Наш HOC
 export default compose(
-  connect(mapStateToProps, {setUserProfile}),
+  connect(mapStateToProps, {setUserProfile, setUserStatus}),
   withRouter,
   withAuthRedirect
 )(ProfileConitaner);

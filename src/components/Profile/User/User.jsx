@@ -3,7 +3,7 @@ import Preloader from '../../common/Preloader/Preloader';
 import s from './User.module.css';
 
 import userPhoto from './../../../assets/images/user.png';
-import UserStatusComponent from './UserStatusComponent';
+// import UserStatusComponent from './UserStatusComponent';
 
 const User = (props) => {
   if(!props.profile) {
@@ -19,7 +19,7 @@ const User = (props) => {
 
         <div className={s.user__description}>
           <div>{props.profile.fullName}</div>
-          <UserStatusComponent />
+          <div>{props.userStatus}</div>
           <div>{props.profile.aboutMe || null}</div>
         </div>
       </div>
