@@ -1,4 +1,4 @@
-import { userAPI } from "../api/api";
+import { profileAPI } from "../api/api";
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
@@ -22,7 +22,7 @@ let initialState = {
   ],
   newPostText: '',
   profile: null,
-  status: null
+  status: null,
 }
 
 const profileReduce = (state = initialState, action) => { 
@@ -66,11 +66,36 @@ export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 
 
-// export const userStatus = (userId) => {
-//   return (dispatch) => {
-//     userAPI.getStatus(userId).then(status => dispatch(setUserStatus(status)));
-//   }
-// }
+export const getUserProfile = (userId) => {
+  return (dispatch) => {
+    profileAPI.getUserProfile(userId)
+      .then(response => {
+        dispatch(setUserProfile(response.data));
+      }
+    )
+  }
+}
 
+export const getStatus = (userId) => {
+  return (dispatch) => {
+    profileAPI.getStatus(userId)
+      .then(response =>{
+        dispatch(setUserStatus(response.data));
+      }
+    )
+  }
+};
+
+export const updateStatus = (status) => {
+  return (dispatch) => {
+    profileAPI.updateStatus(status)
+      .then(response =>{
+        if(response.data.resultCode === 0) {
+          dispatch(setUserStatus(status))
+        }
+      }
+    )
+  }
+}
 
 export default profileReduce;

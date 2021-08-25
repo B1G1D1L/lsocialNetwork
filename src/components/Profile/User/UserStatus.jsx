@@ -4,7 +4,7 @@ import s from './User.module.css';
 class UserStatus extends React.Component {
   state = {
     editMode: false,
-    title: this.props.UserStatus
+    title: "lol"
   }
 
   activeEditMode() {

@@ -19,7 +19,7 @@ const User = (props) => {
 
         <div className={s.user__description}>
           <div>{props.profile.fullName}</div>
-          <div>{props.userStatus}</div>
+          <div>{props.status}</div>
           <div>{props.profile.aboutMe || null}</div>
         </div>
       </div>
