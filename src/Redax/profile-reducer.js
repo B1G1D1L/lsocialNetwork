@@ -22,7 +22,7 @@ let initialState = {
   ],
   newPostText: '',
   profile: null,
-  status: null,
+  status: 'helloe mazafaka',
 }
 
 const profileReduce = (state = initialState, action) => { 

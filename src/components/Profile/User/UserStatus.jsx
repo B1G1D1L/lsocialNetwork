@@ -2,21 +2,31 @@ import React from 'react';
 import s from './User.module.css';
 
 class UserStatus extends React.Component {
+
   state = {
     editMode: false,
-    title: "lol"
+    status: this.props.status
   }
 
   activeEditMode() {
     this.setState({
       editMode: true
-    })
+    });
   }
 
   deactivateEditMode() {
     this.setState({
       editMode: false
-    })
+    });
+
+    this.props.updateStatus(this.state.status)
+  }
+
+  onChangeStatus(e) {
+    let value = e.currentTarget.value
+    this.setState({
+      status: value
+    });
   }
 
   render () {
@@ -26,14 +36,15 @@ class UserStatus extends React.Component {
           <div>
             <span
               onClick={this.activeEditMode.bind(this)}
-              className={s.user__status} >{this.state.title}</span>
+              className={s.user__status} >{this.state.status}</span>
           </div>
 
         : <div>
             <input 
+              onChange={this.onChangeStatus.bind(this)}
               autoFocus={true}
               onBlur={this.deactivateEditMode.bind(this)}
-              defaultValue={this.state.title} />
+              defaultValue={this.state.status} />
           </div>
         }
       </div>
