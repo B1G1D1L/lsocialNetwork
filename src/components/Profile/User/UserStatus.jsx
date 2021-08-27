@@ -29,6 +29,14 @@ class UserStatus extends React.Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.status !== this.props.status) {
+      this.setState({
+        status: this.props.status
+      })
+    }
+  }
+
   render () {
     return (
       <div>
@@ -36,7 +44,7 @@ class UserStatus extends React.Component {
           <div>
             <span
               onClick={this.activeEditMode.bind(this)}
-              className={s.user__status} >{this.state.status}</span>
+              className={s.user__status} >{this.state.status || 'No status'}</span>
           </div>
 
         : <div>
@@ -44,7 +52,8 @@ class UserStatus extends React.Component {
               onChange={this.onChangeStatus.bind(this)}
               autoFocus={true}
               onBlur={this.deactivateEditMode.bind(this)}
-              defaultValue={this.state.status} />
+              defaultValue={this.state.status}
+              placeholder="nonon" />
           </div>
         }
       </div>

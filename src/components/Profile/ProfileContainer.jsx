@@ -8,10 +8,12 @@ import { withAuthRedirect } from '../hoc/withAuthRdirect';
 import Profile from './Profile';
 
 class ProfileConitaner extends React.Component {
+
   componentDidMount() {
     let userId = this.props.match.params.userId;
 
-    this.props.getUserProfile(userId)
+    this.props.getStatus(userId);
+    this.props.getUserProfile(userId);
   }
   
   render() {
