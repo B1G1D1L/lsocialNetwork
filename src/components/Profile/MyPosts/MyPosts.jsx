@@ -1,6 +1,12 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import MyPost from './MyPost/MyPost'
+import { Field, reduxForm } from 'redux-form';
+// import { Field, reduxForm} from 'redux-form';
+
+
+
+
 
 const MyPosts = (props) => {
   const postElement = 
@@ -20,21 +26,23 @@ const MyPosts = (props) => {
 
   return (
     <div>
-      <div className={s.posts}>
-        <textarea onChange={onPostChange} ref={newPostElement}
+      <form className={s.posts}>
+        {/* <Field onChange={onPostChange} ref={newPostElement}
           id="inputPost"
           name="post"
           cols="30"
           rows="4"
           placeholder="Напишите свой пост"
-          value={props.profilePage.newPostText} />
+          value={props.profilePage.newPostText}
+          component='textarea' /> */}
 
         <input onClick={onAddPost} className={s.posts__btn} type='button' value='Опубликовать'></input>
-      </div>
+      </form>
       
       {postElement}
     </div>
   )
 }
+
 
 export default MyPosts;
