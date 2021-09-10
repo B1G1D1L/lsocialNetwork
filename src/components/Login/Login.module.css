@@ -1,0 +1,11 @@
+input {
+  display: block;
+}
+
+input:nth-child(3) {
+  display: inline;
+}
+
+button{
+  display: block;
+}

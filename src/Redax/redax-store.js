@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, createStore, compose } from "redux";
 import thunkMiddleware from "redux-thunk";  
-// import logger from 'redux-logger'
+// import logger from 'redux-logger';
+import { reducer as formReducer } from 'redux-form'
 
 import authReduce from "./auth-reducer";
 import messageReduce from "./message-reducer";
@@ -11,7 +12,8 @@ let reduces = combineReducers({
   profilePage: profileReduce,
   messagePage: messageReduce,
   usersPage: usersReduce,
-  auth: authReduce
+  auth: authReduce,
+  form: formReducer,
 })
 
 let store = createStore(

@@ -1,11 +1,7 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import MyPost from './MyPost/MyPost'
-import { Field, reduxForm } from 'redux-form';
 // import { Field, reduxForm} from 'redux-form';
-
-
-
 
 
 const MyPosts = (props) => {
@@ -19,10 +15,10 @@ const MyPosts = (props) => {
     props.addPost();
   };
 
-  const onPostChange = () => {
-    const text = newPostElement.current.value;
-    props.unpadeNewPostText(text);
-  }
+  // const onPostChange = () => {
+  //   const text = newPostElement.current.value;
+  //   props.unpadeNewPostText(text);
+  // }
 
   return (
     <div>
