@@ -1,4 +1,6 @@
 import React from 'react';
+import { Field, reduxForm } from 'redux-form';
+
 import s from './../Dialog.module.css';
 
 const Message = (props) => {
@@ -6,16 +8,16 @@ const Message = (props) => {
     props.dialogPage.messageData
       .map(m => <p key ={props.dialogPage.messageData.indexOf(m)}>{m.message}</p>);
 
-  let newMessageElement = React.createRef();
+  // let newMessageElement = React.createRef();
 
-  const onChange = () => {
-    let text = newMessageElement.current.value;
-    props.updateNewTextMessage(text);
-  };
+  // const onChange = () => {
+  //   let text = newMessageElement.current.value;
+  //   props.updateNewTextMessage(text);
+  // };
 
-  const onAddNewMessage = () => {
-    props.addMessage();
-  };
+  // const onAddNewMessage = () => {
+  //   props.addMessage();
+  // };
   
   return (
     <div className={s.message}>
@@ -25,19 +27,26 @@ const Message = (props) => {
       </div>
 
       <div className={s.messageInput}>
-        <textarea
-          onChange={onChange}
-          ref={newMessageElement}
-          value={props.dialogPage.newMessageText}
-          placeholder='Введите сообщения'
-          cols="50"
-          rows="5" />
-
-        <button onClick={onAddNewMessage} type='button'>Отправить</button>
-
+        <LoginReduxForm />
       </div>
     </div>
   );
 }
+
+
+const LoginForm = (props) => {
+  return <div>
+    <form onSubmit={props.handleSubmit }>
+      <Field component='input' type='text' name='message' />
+      <button type='submit'>Submit</button>
+    </form>
+  </div>
+}
+
+
+const LoginReduxForm = reduxForm({
+  form: 'message'
+})(LoginForm);
+
 
 export default Message;
