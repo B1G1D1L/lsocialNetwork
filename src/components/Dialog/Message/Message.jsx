@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { maxLength, required } from '../../../utils/validators/validators';
 
 import s from './../Dialog.module.css';
 
@@ -8,26 +9,15 @@ const Message = (props) => {
     props.dialogPage.messageData
       .map(m => <p key ={props.dialogPage.messageData.indexOf(m)}>{m.message}</p>);
 
-  // let newMessageElement = React.createRef();
-
-  // const onChange = () => {
-  //   let text = newMessageElement.current.value;
-  //   props.updateNewTextMessage(text);
-  // };
-
-  // const onAddNewMessage = () => {
-  //   props.addMessage();
-  // };
+  const submit = (value) => props.addMessage(value.message);
   
   return (
     <div className={s.message}>
-
       <div className={s.dialog}>
         {messageElement}
       </div>
-
       <div className={s.messageInput}>
-        <LoginReduxForm />
+        <LoginReduxForm onSubmit={submit} />
       </div>
     </div>
   );
@@ -35,17 +25,25 @@ const Message = (props) => {
 
 
 const LoginForm = (props) => {
+  const { handleSubmit, pristine, reset, submitting } = props;
+
   return <div>
-    <form onSubmit={props.handleSubmit }>
-      <Field component='input' type='text' name='message' />
-      <button type='submit'>Submit</button>
+    <form onSubmit={handleSubmit}>
+      <Field 
+        component='input'
+        type='text'
+        name='message'
+        validate={[maxLength(10)]}
+      />
+
+      <button type='submit' >Submit</button>
     </form>
   </div>
 }
 
 
 const LoginReduxForm = reduxForm({
-  form: 'message'
+  form: 'message',
 })(LoginForm);
 
 

@@ -1,5 +1,4 @@
 const ADD_MESSAGE = 'ADD-NEW-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 let initialState = {
   
@@ -11,11 +10,8 @@ let initialState = {
   ],
 
   messageData : [
-    {id: 1, message: 'Hello world'},
-    {id: 2, message: 'Жопа полная'},
+    {id: 1, message: 'hello'},
   ],
-
-  newMessageText: '',
 }
 
 const messageReduce = (state = initialState, action) => { 
@@ -25,16 +21,8 @@ const messageReduce = (state = initialState, action) => {
     case ADD_MESSAGE: {
       return {
         ...state,
-        messageData: [...state.messageData, {id: 7, message: state.newMessageText}],
-        newMessageText: ''
+        messageData: [...state.messageData, {id: 7, message: action.newMessage}],
       };
-    }
-
-    case UPDATE_NEW_MESSAGE_TEXT: {
-      return {
-        ...state,
-        newMessageText: action.text
-      }; 
     }
 
     default: 
@@ -42,7 +30,6 @@ const messageReduce = (state = initialState, action) => {
   }
 };
 
-export const addMessageCreator = () => ({ type: ADD_MESSAGE });
-export const updateNewTextMessageCreator = (text) => ({ type: UPDATE_NEW_MESSAGE_TEXT, text: text });
+export const addMessageCreator = (newMessage) => ({ type: ADD_MESSAGE, newMessage });
 
 export default messageReduce;
