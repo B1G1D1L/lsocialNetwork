@@ -1,9 +1,10 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { maxLength15, required } from '../../../utils/validators/validators';
-import { Textarea } from '../../common/formControls/formControls';
+import { Element } from '../../hoc/element';
 
 import s from './../Dialog.module.css';
+
 
 const Message = (props) => {
   let messageElement = 
@@ -24,11 +25,10 @@ const Message = (props) => {
   );
 }
 
+const Textarea = Element('textarea');
 
 const LoginForm = (props) => {
   const { handleSubmit, pristine, reset, submitting } = props;
-
-  
 
   return <div>
     <form onSubmit={handleSubmit}>
@@ -36,8 +36,8 @@ const LoginForm = (props) => {
         component={Textarea}
         type='text'
         name='message'
-        validate={[maxLength15]}
-        placeholder='input new message'
+        validate={[maxLength15]}  
+        placeholder='input new message' 
       />
 
       <button type='submit' >Submit</button>
