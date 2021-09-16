@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import style from './Users.module.css';
-import userPhoto from '../../assets/images/user.png';
+import userPhoto from '../../assets/images/user.svg';
 
 
 const Users = (props) => {

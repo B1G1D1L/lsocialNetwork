@@ -2,7 +2,7 @@ import React from 'react';
 import Preloader from '../../common/Preloader/Preloader';
 import s from './User.module.css';
 
-import userPhoto from './../../../assets/images/user.png';
+import userPhoto from './../../../assets/images/user.svg';
 import UserStatus from './UserStatus';
 // import UserStatusComponent from './UserStatusComponent';
 
