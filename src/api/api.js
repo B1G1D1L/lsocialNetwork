@@ -13,9 +13,6 @@ export const userAPI = {
     return instance.get(`users/?count=${pageSize}&page=${currentPage}`)
       .then(response => response.data);
   },
-  getAuth() {
-    return authAPI.me();
-  },
   getUnfollow(userId) {
     return instance.delete(`follow/${userId}`)
     .then(response => response.data);
