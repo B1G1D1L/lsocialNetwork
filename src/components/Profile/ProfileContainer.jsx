@@ -12,7 +12,7 @@ class ProfileConitaner extends React.Component {
   componentDidMount() {
     let userId = this.props.match.params.userId;
     if(!userId) {
-      userId = 18153
+      userId = this.props.authorizationUserId;
     }
     this.props.getStatus(userId);
     this.props.getUserProfile(userId);
@@ -32,7 +32,9 @@ class ProfileConitaner extends React.Component {
 const mapStateToProps = (state) => {
   return {
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizationUserId: state.auth.id,
+    isAuth: state.auth.isAuth
   }
 };
 

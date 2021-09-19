@@ -33,7 +33,7 @@ const LoginForm = (props) => {
         name='post'
         component={Textarea}
         type='text'
-        validate={[ maxLength5 ]}
+        validate={[ maxLength5 ]} 
       />
       <button type='submit' >Submit</button>
     </form>
