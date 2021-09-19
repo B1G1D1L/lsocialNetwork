@@ -11,7 +11,9 @@ class ProfileConitaner extends React.Component {
 
   componentDidMount() {
     let userId = this.props.match.params.userId;
-
+    if(!userId) {
+      userId = 18153
+    }
     this.props.getStatus(userId);
     this.props.getUserProfile(userId);
   }

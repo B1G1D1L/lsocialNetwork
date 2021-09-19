@@ -13,10 +13,6 @@ export const userAPI = {
     return instance.get(`users/?count=${pageSize}&page=${currentPage}`)
       .then(response => response.data);
   },
-  getAuth() {
-    return instance.get(`auth/me`)
-      .then(response => response.data);
-  },
   getUnfollow(userId) {
     return instance.delete(`follow/${userId}`)
     .then(response => response.data);
@@ -44,4 +40,18 @@ export const profileAPI = {
   
 };
 
+export const authAPI = {
+  me() {
+    return instance.get(`auth/me`)
+      .then(response => response.data);
+  },
+
+  login(email, password, rememberMe = false) {
+    return instance.post(`auth/login`, {email, password, rememberMe});
+  },
+
+  logout() {
+    return instance.delete(`auth/login`);
+  }
+}
 
