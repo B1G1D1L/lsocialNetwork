@@ -1,5 +1,5 @@
 import React from 'react';
-import Preloader from '../../common/Preloader/Preloader';
+import Preloader from './../../common/Preloader/Preloader';
 import s from './User.module.css';
 
 import userPhoto from './../../../assets/images/user.svg';

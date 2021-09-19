@@ -7,6 +7,7 @@ import authReduce from "./auth-reducer";
 import messageReduce from "./message-reducer";
 import profileReduce from "./profile-reducer";
 import usersReduce from "./users-reducer";
+import appReduce from "./app-reducer";
 
 let reduces = combineReducers({
   profilePage: profileReduce,
@@ -14,6 +15,7 @@ let reduces = combineReducers({
   usersPage: usersReduce,
   auth: authReduce,
   form: formReducer,
+  app: appReduce,
 })
 
 let store = createStore(
