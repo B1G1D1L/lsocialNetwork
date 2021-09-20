@@ -3,7 +3,6 @@ import { Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { render } from '@testing-library/react';
 
 import './App.css';
 import News from './components/News/News'

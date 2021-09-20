@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getAuthUserData, logout } from '../../Redax/auth-reducer'
 import Header from './Header';
-import { authAPI, userAPI } from '../../api/api';
+import { authAPI } from '../../api/api';
 
 class HeaderContainer extends React.Component {
   componentDidMount() {

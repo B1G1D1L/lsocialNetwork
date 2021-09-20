@@ -2,8 +2,6 @@ import React from 'react';
 import styles from './Header.module.css';
 import { NavLink } from 'react-router-dom';
 
-import { connect } from 'react-redux';
-
 const Header = (props) => {
   return (
     <header className={styles.header}>

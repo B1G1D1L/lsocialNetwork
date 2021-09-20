@@ -25,7 +25,7 @@ const MyPosts = (props) => {
 const Textarea = Element('textarea');
 
 const LoginForm = (props) => {
-  const {handleSubmit, pristine, reset, submitting} = props
+  const {handleSubmit} = props
 
   return <div>
     <form onSubmit={handleSubmit}>
@@ -35,7 +35,7 @@ const LoginForm = (props) => {
         type='text'
         validate={[ maxLength5 ]} 
       />
-      <button type='submit' >Submit</button>
+      <button className={s.style} type='submit' >Submit</button>
     </form>
   </div>
 }
