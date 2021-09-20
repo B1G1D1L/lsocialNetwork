@@ -3,11 +3,11 @@ import thunkMiddleware from "redux-thunk";
 // import logger from 'redux-logger';
 import { reducer as formReducer } from 'redux-form'
 
-import authReduce from "./auth-reducer";
-import messageReduce from "./message-reducer";
-import profileReduce from "./profile-reducer";
-import usersReduce from "./users-reducer";
-import appReduce from "./app-reducer";
+import authReduce from "./reducers/auth-reducer";
+import messageReduce from "./reducers/message-reducer";
+import profileReduce from "./reducers/profile-reducer";
+import usersReduce from "./reducers/users-reducer";
+import appReduce from "./reducers/app-reducer";
 
 let reduces = combineReducers({
   profilePage: profileReduce,

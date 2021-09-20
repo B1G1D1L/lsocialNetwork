@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import styles from './Login.module.css';
-import { login } from './../../Redax/auth-reducer';
+import { login } from './../../Redax/reducers/auth-reducer';
 import { Redirect } from 'react-router';
 import { required } from '../../utils/validators/validators';
 import { Element } from '../hoc/element';

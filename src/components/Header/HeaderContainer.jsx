@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getAuthUserData, logout } from '../../Redax/auth-reducer'
+import { getAuthUserData, logout } from '../../Redax/reducers/auth-reducer'
 import Header from './Header';
 import { authAPI } from '../../api/api';
 

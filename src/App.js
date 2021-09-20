@@ -14,7 +14,7 @@ import Setting from './components/Setting/Setting';
 import DialogContainer from './components/Dialog/DialogContainer';
 import UsersAPIComponent from './components/Users/UsersContainer';
 import Login from './components/Login/Login';
-import { initializeApp } from './Redax/app-reducer';
+import { initializeApp } from './Redax/reducers/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
 
 
