@@ -3,7 +3,7 @@ import Preloader from './../../common/Preloader/Preloader';
 import s from './User.module.css';
 
 import userPhoto from './../../../assets/images/user.svg';
-import UserStatus from './UserStatus';
+import UserStatusHooks from './UserStatusHooks';
 // import UserStatusComponent from './UserStatusComponent';
 
 const User = (props) => {
@@ -20,7 +20,7 @@ const User = (props) => {
 
         <div className={s.user__description}>
           <div>{props.profile.fullName}</div>
-          <UserStatus status={props.status} updateStatus={props.updateStatus} />
+          <UserStatusHooks status={props.status} updateStatus={props.updateStatus} />
           <div>{props.profile.aboutMe || null}</div>
         </div>
       </div>
