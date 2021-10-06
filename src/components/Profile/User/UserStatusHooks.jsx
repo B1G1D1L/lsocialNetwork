@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './User.module.css';
 
 const UserStatusHooks = (props) => {
-  
+
   const [editMode, setEditMode] = useState(false);
-  const [status, setStatus] = useState('yes');
+  const [status, setStatus] = useState(' ');
+
+  useEffect(() => {
+    setStatus(props.status)
+  }, [props.status])
 
   const activateEditMode = () => {
     setEditMode(true);
@@ -21,16 +25,16 @@ const UserStatusHooks = (props) => {
 
   return (
     <div>
-      {!editMode ? 
+      {!editMode ?
         <div>
           <span
             onClick={activateEditMode}
             className={s.user__status} >{status || 'No status'}
           </span>
         </div>
-      : 
+        :
         <div>
-          <input 
+          <input
             onChange={onStatusChange}
             autoFocus={true}
             onBlur={deactivateEditMode}
