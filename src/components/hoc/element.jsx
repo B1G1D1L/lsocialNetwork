@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './element.module.css';
 
-export const Element = (Element) => ({input, meta, ...props}) => {
+export const ElementHOC = (Element) => ({input, meta, ...props}) => {
   const hasError = meta.touched && meta.error;
   const classes = styles.form + " " + (hasError ? styles.error : '');
 

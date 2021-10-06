@@ -5,6 +5,8 @@ import style from './Users.module.css';
 import userPhoto from '../../assets/images/user.svg';
 
 
+
+
 const Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
@@ -23,7 +25,8 @@ const Users = (props) => {
       </div>
 
       {
-        props.users.map( (user, index) => <div key = {index} className={style.user}>
+        props.users.map( (user, index) => 
+        <div key = {index} className={style.user}>
           <div className={style.userAvatar}>
           <NavLink to={'/profile/' + user.id}>
             <img className={style.photo}
@@ -43,13 +46,6 @@ const Users = (props) => {
             <div className={style.name}>
               <strong>{user.name}</strong>
               <div className={style.status}>{user.status}</div>
-            </div>
-
-            <div>
-              <div className={style.location}>
-                {/* <span >{user.location.country}</span>
-              <span >{user.location.sity}</span> */}
-              </div>
             </div>
           </div>
 

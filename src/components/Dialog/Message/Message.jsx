@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { maxLength15 } from '../../../utils/validators/validators';
-import { Element } from '../../hoc/element';
+import { ElementHOC } from '../../hoc/element';
 
 import s from './../Dialog.module.css';
 
@@ -25,7 +25,7 @@ const Message = (props) => {
   );
 }
 
-const Textarea = Element('textarea');
+const Textarea = ElementHOC('textarea');
 
 const LoginForm = (props) => {
   const { handleSubmit } = props;

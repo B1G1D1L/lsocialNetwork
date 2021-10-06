@@ -5,7 +5,7 @@ import styles from './Login.module.css';
 import { login } from './../../Redax/reducers/auth-reducer';
 import { Redirect } from 'react-router';
 import { required } from '../../utils/validators/validators';
-import { Element } from '../hoc/element';
+import { ElementHOC } from '../hoc/element';
 
 const Login = (props) => {
   const submit = (value) => {
@@ -21,9 +21,12 @@ const Login = (props) => {
   return <LoginReduxForm onSubmit={submit} />
 }
 
-const InputElement = Element('input');
 
 const LoginForm = (props) => {
+
+  const InputElement = ElementHOC('input');
+
+
   return <div>
     <h1>Login</h1>
     <form onSubmit={props.handleSubmit}>
