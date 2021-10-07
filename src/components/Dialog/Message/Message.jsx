@@ -8,8 +8,9 @@ import s from './../Dialog.module.css';
 
 const Message = (props) => {
   let messageElement = 
-    props.dialogPage.messageData
-      .map(m => <p key ={props.dialogPage.messageData.indexOf(m)}>{m.message}</p>);
+    props.dialogPage.messageData.map(m => 
+      <p key ={props.dialogPage.messageData.indexOf(m)}>{m.message}</p>
+    );
 
   const submit = (value) => props.addMessage(value.message);
   
@@ -25,10 +26,9 @@ const Message = (props) => {
   );
 }
 
-const Textarea = ElementHOC('textarea');
-
 const LoginForm = (props) => {
-  const { handleSubmit } = props;
+  const { handleSubmit, reset } = props;
+  const Textarea = ElementHOC('textarea');
 
   return <div>
     <form onSubmit={handleSubmit}>
@@ -39,8 +39,7 @@ const LoginForm = (props) => {
         validate={[maxLength15]}  
         placeholder='input new message' 
       />
-
-      <button type='submit' >Submit</button>
+      <button type='submit' onClick={reset} >Submit</button>
     </form>
   </div>
 }

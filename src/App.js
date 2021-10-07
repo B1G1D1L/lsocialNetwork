@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -10,12 +10,16 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Music from './components/Music/Music';
-import Setting from './components/Setting/Setting';
+// import Setting from './components/Setting/Setting';
 import DialogContainer from './components/Dialog/DialogContainer';
-import UsersAPIComponent from './components/Users/UsersContainer';
+// import UsersAPIComponent from './components/Users/UsersContainer';
 import Login from './components/Login/Login';
-import { initializeApp } from './Redax/reducers/app-reducer';
 import Preloader from './components/common/Preloader/Preloader';
+
+import { initializeApp } from './Redax/reducers/app-reducer';
+const UsersAPIComponent = React.lazy(() => import('./components/Users/UsersContainer'));
+const Setting = React.lazy(() => import('./components/Setting/Setting'));
+
 
 
 class App extends React.Component {
@@ -42,9 +46,13 @@ class App extends React.Component {
             <Route path='/message' render={ () => <DialogContainer />}/>
             <Route path='/news'    render={ () => <News />}/>
             <Route path='/music'   render={ () => <Music />}/>
-            <Route path='/setting' render={ () => <Setting />}/>
-            <Route path='/users'   render={ () => <UsersAPIComponent />}/>
             <Route path='/login'   render={ () => <Login />}/>
+            <Suspense fallback={<div><Preloader/></div>}>
+              <section>
+                <Route path='/users' render={ () => <UsersAPIComponent />}/>
+                <Route path='/setting' render={ () => <Setting />}/>
+              </section>
+            </Suspense >
           </div>
 
         </div>

@@ -4,9 +4,6 @@ import { NavLink } from 'react-router-dom';
 import style from './Users.module.css';
 import userPhoto from '../../assets/images/user.svg';
 
-
-
-
 const Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
