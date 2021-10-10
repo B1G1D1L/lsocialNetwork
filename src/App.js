@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -41,18 +41,20 @@ class App extends React.Component {
           <Navbar />
 
           <div className='content__wrapper'>
-            <Route path='/profile/:userId?' render={ () => <ProfileContainer />}/>
-            {/* <Route path='/profile' render={ () => <ProfileContainer />}/> */}
-            <Route path='/message' render={ () => <DialogContainer />}/>
-            <Route path='/news'    render={ () => <News />}/>
-            <Route path='/music'   render={ () => <Music />}/>
-            <Route path='/login'   render={ () => <Login />}/>
-            <Suspense fallback={<div><Preloader/></div>}>
-              <section>
-                <Route path='/users' render={ () => <UsersAPIComponent />}/>
-                <Route path='/setting' render={ () => <Setting />}/>
-              </section>
-            </Suspense >
+            <Switch>
+              <Route exact path='/' render={ () => <ProfileContainer />} />
+              <Route path='/profile/:userId?' render={ () => <ProfileContainer />}/>
+              <Route path='/message' render={ () => <DialogContainer />}/>
+              <Route path='/news'    render={ () => <News />}/>
+              <Route path='/music'   render={ () => <Music />}/>
+              <Route path='/login'   render={ () => <Login />}/>
+              <Suspense fallback={<div><Preloader/></div>}>
+                <section>
+                  <Route path='/users' render={ () => <UsersAPIComponent />}/>
+                  <Route path='/setting' render={ () => <Setting />}/>
+                </section>
+              </Suspense >
+            </Switch>
           </div>
 
         </div>

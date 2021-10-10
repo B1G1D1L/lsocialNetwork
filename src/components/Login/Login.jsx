@@ -10,7 +10,6 @@ import { ElementHOC } from '../hoc/element';
 const Login = (props) => {
   const submit = (value) => {
     let {email, password, rememberMe} = value;
-
     props.login(email, password, rememberMe);
   }
 
@@ -23,9 +22,7 @@ const Login = (props) => {
 
 
 const LoginForm = (props) => {
-
   const InputElement = ElementHOC('input');
-
 
   return <div>
     <h1>Login</h1>

@@ -17,7 +17,7 @@ class ProfileConitaner extends React.Component {
     if(!userId) {
       userId = this.props.authorizationUserId;
       if(!userId) {
-        this.props.history.push('/login');
+        this.props.history.push('/login');  
       }
     }
     this.props.getStatus(userId);
