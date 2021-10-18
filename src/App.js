@@ -10,16 +10,13 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Music from './components/Music/Music';
-// import Setting from './components/Setting/Setting';
 import DialogContainer from './components/Dialog/DialogContainer';
-// import UsersAPIComponent from './components/Users/UsersContainer';
 import Login from './components/Login/Login';
 import Preloader from './components/common/Preloader/Preloader';
 
 import { initializeApp } from './Redax/reducers/app-reducer';
 const UsersAPIComponent = React.lazy(() => import('./components/Users/UsersContainer'));
 const Setting = React.lazy(() => import('./components/Setting/Setting'));
-
 
 
 class App extends React.Component {
@@ -34,12 +31,11 @@ class App extends React.Component {
     }
 
     return (
-      <BrowserRouter>
+      
+      <BrowserRouter >
         <div className='content'>
-
           <HeaderContainer />
           <Navbar />
-
           <div className='content__wrapper'>
             <Switch>
               <Route exact path='/' render={ () => <ProfileContainer />} />
@@ -56,9 +52,9 @@ class App extends React.Component {
               </Suspense >
             </Switch>
           </div>
-
         </div>
       </BrowserRouter>
+
     );
   } 
 }

@@ -1,9 +1,11 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import MyPost from './MyPost/MyPost'
+import SendIcon from '@mui/icons-material/Send';
 import { Field, reduxForm } from 'redux-form';
 import { ElementHOC } from '../../hoc/element';
 import { maxLength5 } from '../../../utils/validators/validators';
+import { Button } from '@mui/material';
 
 
 const MyPosts = (props) => {
@@ -42,7 +44,13 @@ const LoginForm = (props) => {
         type='text'
         validate={[ maxLength5 ]} 
       />
-      <button className={s.style} type='submit' >Submit</button>
+      <Button 
+        variant="contained" 
+        endIcon={<SendIcon />}
+        className={s.button}
+      >
+        Send
+      </Button>
     </form>
   </div>
 }
