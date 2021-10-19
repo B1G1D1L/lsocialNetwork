@@ -3,15 +3,14 @@
 }
 
 .user__wrapper {
-  margin-top: 20px;
   display: flex;
 }
 
 .user__avatar img {
   display: block;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+  width: 200px;
+  height: 300px;
+  /* border-radius: 50%; */
   object-fit: cover;
 }
 
@@ -44,8 +43,7 @@
   display: none;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .user__img:hover .user__img_save {

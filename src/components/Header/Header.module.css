@@ -1,3 +1,11 @@
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color:  white;
+} 
+
 .header {
   grid-area: h;
   display: flex;
@@ -12,6 +20,19 @@
 .header img {
   max-width: 50px;
   margin: auto 0;
+}
+
+.header__photo {
+  border-radius: 50%;
+}
+
+.user__info {
+  display: flex;
+  align-items: center;  
+}
+
+.user__info span {
+  margin-right: 10px;
 }
 
 .logo {

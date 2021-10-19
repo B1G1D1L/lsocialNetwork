@@ -5,9 +5,8 @@ import s from './User.module.css';
 import guestPhoto from './../../../assets/images/user.svg';
 import UserStatusHooks from './UserStatusHooks';
 import { IconButton } from '@mui/material';
-import styled from 'styled-components';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
-// import UserStatusComponent from './UserStatusComponent';
+import styled from 'styled-components'; 
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 const Input = styled('input')({
   display: 'none',
@@ -32,7 +31,7 @@ const User = (props) => {
           <div className={s.user__img}>
 
             <img 
-              src={props.profile.photos.small || guestPhoto}
+              src={props.profile.photos.large || guestPhoto}
               alt="Avatar" 
             />
 
@@ -40,7 +39,8 @@ const User = (props) => {
             <div className={s.user__img_save}>
               <div>
                 <label htmlFor="contained-button-file">
-                  <Input accept="image/*"
+                  <Input 
+                    accept="image/*"
                     id="contained-button-file"
                     multiple type="file"
                     onChange={onMainPhotoSelected}
@@ -50,7 +50,7 @@ const User = (props) => {
                     aria-label="upload picture" 
                     component="span"
                   >
-                    <PhotoCamera className={s.lol}/>
+                    <AddAPhotoIcon sx={{ color: 'white' }} fontSize="large" className={s.lol}/>
                   </IconButton>
                 </label>
               </div>

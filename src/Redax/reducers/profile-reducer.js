@@ -1,4 +1,5 @@
 import { profileAPI } from "../../api/api";
+import { setUserProfilePhoto } from "./auth-reducer";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -56,13 +57,13 @@ const profileReduce = (state = initialState, action) => {
   }
 };
 
-// actions creator
+// Actions creator
 export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostText });
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status });
 export const setPhotoSuccess = (photos) => ({type: SET_USER_PHOTO, photos});
 
-// Thunk
+// Thunks creator
 export const getUserProfile = (userId) => async dispatch => {
   let response = await profileAPI.getUserProfile(userId);
   dispatch(setUserProfile(response.data));
@@ -82,8 +83,10 @@ export const updateStatus = (status) => async dispatch => {
 
 export const savePhoto = (photoFile) => async dispatch => {
   const response = await profileAPI.savePhoto(photoFile);
+  
   if(response.data.resultCode === 0) {
-    dispatch(setPhotoSuccess(response.data.data.photos))
+    dispatch(setPhotoSuccess(response.data.data.photos));
+    dispatch(setUserProfilePhoto(response.data.data.photos.small));
   }
 }
 

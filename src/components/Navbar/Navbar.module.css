@@ -1,5 +1,5 @@
 .active {
-  color: gold !important;
+  color: rgb(100, 138, 241) !important;
   font-weight: bold;
 }
 
@@ -14,12 +14,15 @@
   min-width: 150px;
   border: 1px solid #ede9e9;
   background-color: #fff;
-  padding: 20px 10px;
+  padding: 10px 10px;
 }
 
 .nav a {
+  display: flex;
+  align-items: center;
   font-size: 14px;
   color: #797979;
+  line-height: 40px;
   text-transform: capitalize;
   cursor: pointer;
   text-decoration: none;
@@ -27,12 +30,12 @@
 }
 .nav a:hover {
   color: rgb(133, 133, 255);
+  background-color: #dddddd;
 }
 
-.nav a + a {
-  margin-top  : 20px;
+.nav a svg {
+  margin-right: 5px;
 }
-
 
 /* friends========= */
 

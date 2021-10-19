@@ -1,12 +1,14 @@
-import { authAPI } from "./../../api/api";
+import { authAPI, profileAPI } from "./../../api/api";
 import { stopSubmit } from 'redux-form';
 
 const SET_USER_DATA = 'SET_USER_DATA';
+const SET_USER_PROFILE_PHOTOS = 'SET_USER_PROFILE_PHOTOS';
 
 let initialState = {
   id: null,
   email: null,
   login: null,
+  userPhoto: null,
   isAuth: false,
 }
 
@@ -20,14 +22,27 @@ const authReduce = (state = initialState, action) => {
       }
     }
 
+    case SET_USER_PROFILE_PHOTOS: {
+      return {
+        ...state,
+        userPhoto: action.userPhoto
+      }
+    }
+
     default:
       return state;
   }
 };
 
+// Actions creator
 export const setAuthUserData = (id, email, login, isAuth) => (
   { type: SET_USER_DATA, payload: { id, email, login, isAuth } }
 );
+
+export const setUserProfilePhoto = (userPhoto) => (
+  { type: SET_USER_PROFILE_PHOTOS, userPhoto }
+);
+
 
 export const getAuthUserData = () => async (dispatch) => {
   let response = await authAPI.me();
@@ -36,6 +51,11 @@ export const getAuthUserData = () => async (dispatch) => {
     let { id, email, login } = response.data
     dispatch(setAuthUserData(id, email, login, true))
   }
+}
+
+export const getUserProfilePhoto = (userId) => async (dispatch) => {
+  const response = await profileAPI.getUserProfile(userId);
+  dispatch(setUserProfilePhoto(response.data.photos.small));
 }
 
 export const login = (email, password, rememberMe) => async dispatch => {

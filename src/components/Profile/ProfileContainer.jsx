@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
-import { getUserProfile, 
-  getStatus,
-  updateStatus, 
-  savePhoto } from '../../Redax/reducers/profile-reducer';
+import { 
+    getUserProfile, 
+    getStatus,
+    updateStatus, 
+    savePhoto 
+  } from '../../Redax/reducers/profile-reducer';
 import { withAuthRedirect } from '../hoc/withAuthRdirect';
 import Profile from './Profile';
 
@@ -43,6 +45,7 @@ class ProfileConitaner extends React.Component {
         updateStatus={this.props.updateStatus}
         isOwner={!!this.props.match.params.userId}
         savePhoto={this.props.savePhoto}
+        userId={this.props.authorizationUserId}
       />
     )
   }
@@ -61,7 +64,7 @@ const mapStateToProps = (state) => {
 
 // Наш HOC
 export default compose(
-  connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto}),
+  connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto }),
   withRouter,
   withAuthRedirect
 )(ProfileConitaner);

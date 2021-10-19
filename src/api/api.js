@@ -9,14 +9,17 @@ const instance = axios.create({
 })
 
 export const userAPI = {
+  // Получить страницу с пользователями
   getUsers(pageSize = 10, currentPage = 1) {
     return instance.get(`users/?count=${pageSize}&page=${currentPage}`)
       .then(response => response.data);
   },
+  // Подписаться на пользователя
   getUnfollow(userId) {
     return instance.delete(`follow/${userId}`)
     .then(response => response.data);
   },
+  // Отписаться от пользователя
   getFollow(userId) {
     return instance.post(`follow/${userId}`)
     .then(response => response.data);
@@ -47,15 +50,16 @@ export const profileAPI = {
 };
 
 export const authAPI = {
+  // Авторизованы 'true/false'
   me() {
     return instance.get(`auth/me`)
       .then(response => response.data);
   },
-
+  // Залогиниться
   login(email, password, rememberMe = false) {
     return instance.post(`auth/login`, {email, password, rememberMe});
   },
-
+  // Разлогиниться
   logout() {
     return instance.delete(`auth/login`);
   }
