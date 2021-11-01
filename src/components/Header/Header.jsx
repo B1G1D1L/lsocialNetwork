@@ -19,9 +19,9 @@ const Header = (props) => {
 
   return (
     <header className={styles.header}>
-      <div>
+      <picture>
         <img alt='Logo' src='https://s.cdpn.io/3/kiwi.svg'></img>
-      </div>
+      </picture>
 
 
         {props.isAuth

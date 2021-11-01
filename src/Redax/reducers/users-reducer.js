@@ -76,25 +76,24 @@ const messageReduce = (state = initialState, action) => {
   }
 };
 
+// Action creator
 export const followSuccess = (userId) => ({ type: FOLLOW, userId });
 export const unfollowSuccess = (userId) => ({ type: UNFOLLOW, userId });
 export const setUsers = (users) => ({ type: SET_USERS, users });
 export const setCurrentPage = (currentPage) => (
   { type: SET_CURRENT_PAGE, currentPage: currentPage }
 );
-
 export const setTotalUserCount = (totalCount) => (
   { type: SET_TOTAL_USER_COUNT, totalUserCount: totalCount }
 );
-
 export const toggleIsFetching = (isFetching) => (
   { type: TOGGLE_IS_FETCHING, isFetching: isFetching }
 );
-
 export const toggleFollowingProgress = (isFetching, userId) => (
   { type: FOLLOWING_IS_PROGRESS, isFetching, userId }
 );
 
+// Thunk creator
 export const requestUsers = (page, currentPage) => async dispatch => {
   dispatch(toggleIsFetching(true));
   dispatch(setCurrentPage(currentPage));
@@ -104,7 +103,6 @@ export const requestUsers = (page, currentPage) => async dispatch => {
   dispatch(setTotalUserCount(response.totalCount));
   dispatch(toggleIsFetching(false));
 }
-
 export const follow = (userId) => async dispatch => {
   dispatch(toggleFollowingProgress(true, userId));
 
@@ -114,7 +112,6 @@ export const follow = (userId) => async dispatch => {
   }
   dispatch(toggleFollowingProgress(false, userId))
 }
-
 export const unfollow = (userId) => async dispatch => {
   dispatch(toggleFollowingProgress(true, userId));
 

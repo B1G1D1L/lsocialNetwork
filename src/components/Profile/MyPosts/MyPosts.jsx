@@ -9,21 +9,22 @@ import { Button } from '@mui/material';
 
 
 const MyPosts = (props) => {
-
-  const postElement = 
-    props.profilePage.posts.map(post => 
-      <MyPost
-        key={props.profilePage.posts.indexOf(post)}
-        message={post}
-      /> 
-    );
+  console.log(123)
+  const postElement = props.profilePage.posts.map(post => 
+    <MyPost
+      key={props.profilePage.posts.indexOf(post)}
+      message={post}
+    /> 
+  );
 
   const submit = (values) => props.addPost(values.post);
 
   return (
     <div>
       <LoginReduxForm onSubmit={submit} />
-      {postElement}
+      <section>
+        {postElement}
+      </section>
     </div>
   )
 };

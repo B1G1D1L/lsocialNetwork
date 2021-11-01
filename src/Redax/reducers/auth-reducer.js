@@ -43,7 +43,7 @@ export const setUserProfilePhoto = (userPhoto) => (
   { type: SET_USER_PROFILE_PHOTOS, userPhoto }
 );
 
-
+// Thunk creator
 export const getAuthUserData = () => async (dispatch) => {
   let response = await authAPI.me();
 

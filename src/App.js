@@ -36,7 +36,7 @@ class App extends React.Component {
         <div className='content'>
           <HeaderContainer />
           <Navbar />
-          <div className='content__wrapper'>
+          <main className='content__wrapper'>
             <Switch>
               <Route exact path='/' render={ () => <ProfileContainer />} />
               <Route path='/profile/:userId?' render={ () => <ProfileContainer />}/>
@@ -51,7 +51,7 @@ class App extends React.Component {
                 </section>
               </Suspense >
             </Switch>
-          </div>
+          </main>
         </div>
       </BrowserRouter>
 

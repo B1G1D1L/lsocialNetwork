@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-
 import { 
     getUserProfile, 
     getStatus,
@@ -16,12 +15,9 @@ class ProfileConitaner extends React.Component {
 
   refreshProfile = function() {
     let userId = this.props.match.params.userId;
+
     if(!userId) {
       userId = this.props.authorizationUserId;
-      // if(!userId) {
-      //   debugger
-      //   this.props.history.push('/login');  
-      // }
     }
     this.props.getStatus(userId);
     this.props.getUserProfile(userId);
@@ -32,7 +28,7 @@ class ProfileConitaner extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(this.props.match.params.userId !== prevProps.match.params.userId) {
+  if(this.props.match.params.userId !== prevProps.match.params.userId) {
       this.refreshProfile();
     }
   }

@@ -30,6 +30,7 @@ const messageReduce = (state = initialState, action) => {
   }
 };
 
+// Action creator
 export const addMessageCreator = (newMessage) => ({ type: ADD_MESSAGE, newMessage });
 
 export default messageReduce;
