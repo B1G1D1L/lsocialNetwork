@@ -18,4 +18,5 @@
   grid-area: m;
   background-color: #fff;
   border: 1px solid #ede9e9;
+  min-height: 88vh;
 }

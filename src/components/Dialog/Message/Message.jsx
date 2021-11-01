@@ -1,14 +1,16 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { maxLength15, required } from '../../../utils/validators/validators';
-import { Textarea } from '../../common/formControls/formControls';
+import { maxLength15 } from '../../../utils/validators/validators';
+import { ElementHOC } from '../../hoc/element';
 
 import s from './../Dialog.module.css';
 
+
 const Message = (props) => {
   let messageElement = 
-    props.dialogPage.messageData
-      .map(m => <p key ={props.dialogPage.messageData.indexOf(m)}>{m.message}</p>);
+    props.dialogPage.messageData.map(m => 
+      <p key ={props.dialogPage.messageData.indexOf(m)}>{m.message}</p>
+    );
 
   const submit = (value) => props.addMessage(value.message);
   
@@ -24,11 +26,9 @@ const Message = (props) => {
   );
 }
 
-
 const LoginForm = (props) => {
-  const { handleSubmit, pristine, reset, submitting } = props;
-
-  
+  const { handleSubmit, reset } = props;
+  const Textarea = ElementHOC('textarea');
 
   return <div>
     <form onSubmit={handleSubmit}>
@@ -36,11 +36,10 @@ const LoginForm = (props) => {
         component={Textarea}
         type='text'
         name='message'
-        validate={[maxLength15]}
-        placeholder='input new message'
+        validate={[maxLength15]}  
+        placeholder='input new message' 
       />
-
-      <button type='submit' >Submit</button>
+      <button type='submit' onClick={reset} >Submit</button>
     </form>
   </div>
 }

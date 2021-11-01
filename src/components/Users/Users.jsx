@@ -2,11 +2,21 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import style from './Users.module.css';
-import userPhoto from '../../assets/images/user.png';
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Button } from '@mui/material';
 
 const Users = (props) => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+  const {
+    totalUsersCount,
+    pageSize,
+    currentPage,
+    users,
+    onPageChanged,
+    unfollow,
+    follow 
+  } = props;
+
+  let pagesCount = Math.ceil(totalUsersCount / pageSize);
   let pages = [];
 
   for (let i = 1; i <= pagesCount; i++) {
@@ -14,49 +24,68 @@ const Users = (props) => {
   }
 
   return <div>
-      <div className={style.numberPages}>
-        {pages.map( (page, index) => {
-          return <span className={props.currentPage === page ? style.selected : ''} 
-                       key = {index}
-                       onClick={(e) => {props.onPageChanged(page)}} >{page}</span>
-        })}
-      </div>
-
-      {
-        props.users.map( (user, index) => <div key = {index} className={style.user}>
-          <div className={style.userAvatar}>
-          <NavLink to={'/profile/' + user.id}>
-            <img className={style.photo}
-                 src={user.photos.large !== null ? user.photos.large : userPhoto}
-                 alt="Avatar" />
-          </NavLink>
-            {user.followed
-              ? <button disabled={props.followingProgress.some(userId => userId === user.id)} 
-                        onClick={() => {props.unfollow(user.id)}}>Unfollow</button>
-
-              : <button disabled={props.followingProgress.some(userId => userId === user.id)} 
-                        onClick={() => {props.follow(user.id)}}>Follow</button>}
-
-          </div>
-
-          <div className={style.userInfo}>
-            <div className={style.name}>
-              <strong>{user.name}</strong>
-              <div className={style.status}>{user.status}</div>
-            </div>
-
-            <div>
-              <div className={style.location}>
-                {/* <span >{user.location.country}</span>
-              <span >{user.location.sity}</span> */}
-              </div>
-            </div>
-          </div>
-
-        </div>
+    {/* Навигация */}
+    <div className={style.numberPages}>
+      {pages.map((page, index) => {
+        return (
+          <span
+            className={currentPage === page ? style.selected : ''}
+            key={index}
+            onClick={(e) => { onPageChanged(page) }}
+          >
+            {page}
+          </span>
         )
-      }
+      })}
     </div>
+
+    {/* Кол-ва людей */}
+    <div className={style.numberPeople}>Люди: {totalUsersCount}</div>
+
+    {/* Список пользователей */}
+    {users.map((user, index) =>
+      <div key={index} className={style.user}>
+
+        {/* Аватар */}
+        <div className={style.userAvatar}>
+          <NavLink to={'/profile/' + user.id}>
+            {user.photos.large !== null
+              ? <img
+                className={style.photo}
+                src={user.photos.large}
+                alt="Avatar"
+              />
+              : <AccountCircleIcon sx={{ fontSize: 100, color: '#b5b5b5' }} />
+            }
+          </NavLink>
+        </div>
+
+        <div className={style.userInfo}>
+          <strong>{user.name}</strong>
+          <div className={style.status}>{user.status}</div>
+          {user.followed
+            ?
+            <Button
+              variant="outlined"
+              disabled={props.followingProgress.some(userId => userId === user.id)}
+              onClick={() => { unfollow(user.id) }}
+            >
+              Unfollow
+            </Button>
+            :
+            <Button
+              variant="contained"
+              disabled={props.followingProgress.some(userId => userId === user.id)}
+              onClick={() => { follow(user.id) }}
+            >
+              Follow
+            </Button>
+          }
+        </div>
+      </div>
+    )}
+  </div>
 }
+
 
 export default Users;

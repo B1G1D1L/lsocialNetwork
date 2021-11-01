@@ -1,4 +1,4 @@
-import { addMessageCreator } from '../../Redax/message-reducer';
+import { addMessageCreator } from '../../Redax/reducers/message-reducer';
 import Dialog from './Dialog';
 import {connect} from 'react-redux';
 import { withAuthRedirect } from '../hoc/withAuthRdirect';

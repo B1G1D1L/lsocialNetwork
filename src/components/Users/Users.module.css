@@ -3,17 +3,19 @@
   justify-content: space-between;
   max-width: 800px;
   margin: 10px;
+  border-top: 1px solid rgb(196, 196, 196);
 }
+
 .userAvatar {
   flex: 0 1 auto;
 }
+
 .userInfo {
   display: flex;
   justify-content: space-between;
   flex: 1 0 auto;
   margin-left: 20px;
   padding: 10px;
-  border: 1px solid rgb(196, 196, 196);
   border-radius: 10px;
 }
 .photo {
@@ -42,4 +44,14 @@
 }
 .numberPages span {
   margin-right: 5px;
+}
+
+.numberPeople {
+  margin: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+button {
+  height: 40px;
 }

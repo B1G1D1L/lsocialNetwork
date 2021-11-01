@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import style from './Login.module.css';
-import { login } from './../../Redax/auth-reducer';
+import styles from './Login.module.css';
+import { login } from './../../Redax/reducers/auth-reducer';
 import { Redirect } from 'react-router';
+import { required } from '../../utils/validators/validators';
+import { ElementHOC } from '../hoc/element';
 
 const Login = (props) => {
   const submit = (value) => {
     let {email, password, rememberMe} = value;
-
     props.login(email, password, rememberMe);
   }
 
@@ -21,18 +22,39 @@ const Login = (props) => {
 
 
 const LoginForm = (props) => {
+  const InputElement = ElementHOC('input');
+
   return <div>
     <h1>Login</h1>
     <form onSubmit={props.handleSubmit}>
-      <Field type="text" component='input' name='email' placeholder='email' />
-      <Field type="password" component='input' name='password' placeholder='password' />
-      <Field type="checkbox" component='input' name='rememberMe' /> remember me
+
+      <Field
+        type="text"
+        component={InputElement}
+        name='email'
+        placeholder='email'
+        validate={[ required ]}
+      />
+      <Field
+        type="password"
+        component={InputElement}
+        name='password'
+        placeholder='password'
+        validate={[ required ]}
+      />
+      <Field
+        type="checkbox"
+        component='input'
+        name='rememberMe'
+      />
+      <span>remember Me</span>
       <button type="submit">Submit</button>
+      {props.error && <div className={styles.formSummaryError}>{props.error}</div>}
     </form>
   </div>
 }
 
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
 const mapStateToProps = (state) => {
   return {
