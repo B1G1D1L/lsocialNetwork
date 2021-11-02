@@ -26,7 +26,7 @@ const Header = (props) => {
 
         {props.isAuth
           ?
-          <div className={styles.header__info, styles.user__info}>
+          <div className={styles.header__info || styles.user__info}>
             <span>{props.login}</span>
             <StyledBadge
               overlap="circular"

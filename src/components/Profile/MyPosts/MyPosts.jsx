@@ -9,7 +9,6 @@ import { Button } from '@mui/material';
 
 
 const MyPosts = (props) => {
-  console.log(123)
   const postElement = props.profilePage.posts.map(post => 
     <MyPost
       key={props.profilePage.posts.indexOf(post)}
