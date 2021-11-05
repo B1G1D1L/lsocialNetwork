@@ -33,7 +33,7 @@ function areEqual(prevProps, nextProps) {
 }
 
 const LoginForm = (props) => {
-  const { handleSubmit, reset } = props;
+  const { handleSubmit } = props;
   const Textarea = ElementHOC('textarea');
 
   return <div>

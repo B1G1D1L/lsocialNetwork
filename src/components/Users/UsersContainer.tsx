@@ -21,14 +21,33 @@ import {
   getTotalUsersCount,
   getUsers
 } from '../../Redax/selectors/users-selectors';
+import { UsersType } from '../../types/types';
+import { AppStateType } from '../../Redax/redax-store';
+
+type PropsType = {
+  pageSize: number
+  currentPage: number
+  pageNumber: number
+  totalUsersCount: number
+  users: Array<UsersType>
+  followingProgress: Array<number>
+  isFetching: boolean
+
+  unfollow: (userId: number) => void
+  follow: (userId: number) => void
+  requestUsers: (pageSize:  number, currentPage: number) => void
+}
 
 
-class UsersContainer extends React.Component {
+class UsersContainer extends React.Component<PropsType  > {
+
   componentDidMount() { 
-    this.props.requestUsers(this.props.pageSize, this.props.currentPage);
+    const { pageSize, currentPage } = this.props;
+    this.props.requestUsers(pageSize, currentPage);
   }
 
-  onPageChanged = (pageNumber) => {
+  onPageChanged = (pageNumber: number) => {
+    const { pageSize } = this.props;
     this.props.requestUsers(this.props.pageSize, pageNumber);
   }
 
@@ -48,7 +67,7 @@ class UsersContainer extends React.Component {
   }
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
   return {
     users: getUsers(state),
     pageSize: getPageSize(state),

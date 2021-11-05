@@ -9,23 +9,35 @@ import profileReduce from "./reducers/profile-reducer";
 import usersReduce from "./reducers/users-reducer";
 import appReduce from "./reducers/app-reducer";
 
-let reduces = combineReducers({
+let rootReducer = combineReducers({
   profilePage: profileReduce,
   messagePage: messageReduce,
   usersPage: usersReduce,
   auth: authReduce,
-  form: formReducer,
   app: appReduce,
+  form: formReducer,
 })
 
-let store = createStore(
-    reduces, 
-    compose(
-      applyMiddleware(thunkMiddleware),
-      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-  );
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+const store = createStore(
+  rootReducer, 
+  compose(
+    applyMiddleware(thunkMiddleware),
+    composeEnhancers()
+  )
+);
+
+
+export type AppStateType = ReturnType<typeof rootReducer>
+export type DispatchType = typeof store.dispatch
+
+//@ts-ignore
 window.store = store;
 
 export default store;

@@ -4,16 +4,23 @@ import { NavLink } from 'react-router-dom';
 import style from './Users.module.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Button } from '@mui/material';
+import { UsersType } from '../../types/types';
 
-const Users = (props) => {
-  const {
-    totalUsersCount,
-    pageSize,
-    currentPage,
-    users,
-    onPageChanged,
-    unfollow,
-    follow 
+type PropsType = {
+  totalUsersCount: number
+  pageSize: number
+  currentPage: number
+  users: Array<UsersType>
+
+  onPageChanged: (page: number) => void
+  unfollow: (userId: number) => void
+  follow: (userId: number) => void
+  followingProgress: Array<number>
+}
+
+const Users: React.FC<PropsType> = (props) => {
+  const { totalUsersCount, pageSize, currentPage, users,
+    onPageChanged, unfollow, follow 
   } = props;
 
   let pagesCount = Math.ceil(totalUsersCount / pageSize);
@@ -67,7 +74,7 @@ const Users = (props) => {
             ?
             <Button
               variant="outlined"
-              disabled={props.followingProgress.some(userId => userId === user.id)}
+              disabled={props.followingProgress.some((userId: number) => userId === user.id)}
               onClick={() => { unfollow(user.id) }}
             >
               Unfollow
@@ -75,7 +82,7 @@ const Users = (props) => {
             :
             <Button
               variant="contained"
-              disabled={props.followingProgress.some(userId => userId === user.id)}
+              disabled={props.followingProgress.some((userId: number) => userId === user.id)}
               onClick={() => { follow(user.id) }}
             >
               Follow

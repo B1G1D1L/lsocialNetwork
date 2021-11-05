@@ -1,5 +1,6 @@
 import { userAPI } from "../../api/api";
 import { UsersType } from "../../types/types";
+import { DispatchType } from "../redax-store";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -122,7 +123,7 @@ type ToggleIsFetching = {
   type: typeof TOGGLE_IS_FETCHING
   isFetching: boolean
 }
-export const toggleIsFetching = (isFetching: boolean) => (
+export const toggleIsFetching = (isFetching: boolean): ToggleIsFetching => (
   { type: TOGGLE_IS_FETCHING, isFetching: isFetching }
 );
 
@@ -138,7 +139,7 @@ export const toggleFollowingProgress =
 
 
 // Thunk creator
-export const requestUsers = (page: number, currentPage: number) => async (dispatch: any) => {
+export const requestUsers = (page: number, currentPage: number) => async (dispatch: DispatchType) => {
   dispatch(toggleIsFetching(true));
   dispatch(setCurrentPage(currentPage));
 
@@ -147,7 +148,7 @@ export const requestUsers = (page: number, currentPage: number) => async (dispat
   dispatch(setTotalUserCount(response.totalCount));
   dispatch(toggleIsFetching(false));
 }
-export const follow = (userId: number) => async (dispatch: any) => {
+export const follow = (userId: number) => async (dispatch: DispatchType) => {
   dispatch(toggleFollowingProgress(true, userId));
 
   let response = await userAPI.getFollow(userId);
@@ -156,7 +157,7 @@ export const follow = (userId: number) => async (dispatch: any) => {
   }
   dispatch(toggleFollowingProgress(false, userId))
 }
-export const unfollow = (userId: number) => async (dispatch: any) => {
+export const unfollow = (userId: number) => async (dispatch: DispatchType) => {
   dispatch(toggleFollowingProgress(true, userId));
 
   let response = await userAPI.getUnfollow(userId);
