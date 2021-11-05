@@ -4,23 +4,18 @@ import { stopSubmit } from 'redux-form';
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_USER_PROFILE_PHOTOS = 'SET_USER_PROFILE_PHOTOS';
 
-type InitialStateType = {
-  id: number | null
-  email: string | null
-  login: string | null
-  userPhoto: string | null
-  isAuth: boolean
+let initialState = {
+  id: null as number | null,
+  email: null as string | null,
+  login: null as string | null,
+  userPhoto: null as string | null,
+  isAuth: false as boolean,
 }
 
-let initialState: InitialStateType = {
-  id: null,
-  email: null,
-  login: null,
-  userPhoto: null,
-  isAuth: false,
-}
+type initialStateType = typeof initialState
 
-const authReduce = (state = initialState, action: any) => {
+// Reduce 
+const authReduce = (state = initialState, action: any): initialStateType => {
   switch (action.type) {
 
     case SET_USER_DATA: {

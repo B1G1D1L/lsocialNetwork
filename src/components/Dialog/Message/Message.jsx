@@ -28,7 +28,7 @@ const Message = (props) => {
 
 const LoginForm = (props) => {
   const { handleSubmit, reset } = props;
-  const Textarea = ElementHOC('textarea');
+  const Textarea = ElementHOC('textarea'); 
 
   return <div>
     <form onSubmit={handleSubmit}>
@@ -39,7 +39,7 @@ const LoginForm = (props) => {
         validate={[maxLength15]}  
         placeholder='input new message' 
       />
-      <button type='submit' onClick={reset} >Submit</button>
+      <button type='submit' >Submit</button>
     </form>
   </div>
 }

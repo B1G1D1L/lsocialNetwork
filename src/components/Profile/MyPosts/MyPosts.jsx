@@ -33,7 +33,7 @@ function areEqual(prevProps, nextProps) {
 }
 
 const LoginForm = (props) => {
-  const {handleSubmit} = props;
+  const { handleSubmit, reset } = props;
   const Textarea = ElementHOC('textarea');
 
   return <div>
@@ -45,6 +45,7 @@ const LoginForm = (props) => {
         validate={[ maxLength5 ]} 
       />
       <Button 
+        type='submit'
         variant="contained" 
         endIcon={<SendIcon />}
         className={s.button}

@@ -1,10 +1,12 @@
 import { profileAPI } from "../../api/api";
+import { PostsType, ProfileType } from "../../types/types";
 import { setUserProfilePhoto } from "./auth-reducer";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_USER_STATUS = 'SET_USER_STATUS';
 const SET_USER_PHOTO = 'SET_USER_PHOTO';
+
 
 // Начальный state
 let initialState = {
@@ -21,13 +23,16 @@ let initialState = {
       name: 'Ilta',
       urlAvatar: 'https://img3.goodfon.ru/wallpaper/nbig/4/99/neytiri-avatar.jpg'
     },
-  ],
-  profile: null,
+  ] as Array<PostsType>,
+  profile: null as null | ProfileType,
   status: '',
 }
 
-const profileReduce = (state = initialState, action) => {
+type InitialStateType = typeof initialState
 
+
+// Reduce
+const profileReduce = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {
     case ADD_POST: {
       let newPost = {
@@ -37,7 +42,7 @@ const profileReduce = (state = initialState, action) => {
       };
       return {
         ...state,
-        posts: [...state.posts, newPost],
+        posts: [...state.posts, newPost] as Array<PostsType>,
       };
     }
 
@@ -50,38 +55,37 @@ const profileReduce = (state = initialState, action) => {
     }
 
     case SET_USER_PHOTO: {
-      return {...state, profile: {...state.profile, photos: action.photos}}
+      return {...state, profile: {...state.profile, photos: action.photos} as ProfileType}
     }
 
     default: return state;
   }
 };
 
+
 // Actions creator
-export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostText });
-export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
-export const setUserStatus = (status) => ({ type: SET_USER_STATUS, status });
-export const setPhotoSuccess = (photos) => ({type: SET_USER_PHOTO, photos});
+export const addPostActionCreator = (newPostText: string) => ({ type: ADD_POST, newPostText });
+export const setUserProfile = (profile: ProfileType) => ({ type: SET_USER_PROFILE, profile });
+export const setUserStatus = (status: string) => ({ type: SET_USER_STATUS, status });
+export const setPhotoSuccess = (photos: any) => ({type: SET_USER_PHOTO, photos});
+
 
 // Thunks creator
-export const getUserProfile = (userId) => async dispatch => {
+export const getUserProfile = (userId: number) => async (dispatch: any) => {
   let response = await profileAPI.getUserProfile(userId);
   dispatch(setUserProfile(response.data));
 };
-
-export const getStatus = (userId) => async dispatch => {
+export const getStatus = (userId: number) => async (dispatch: any) => {
   let response = await profileAPI.getStatus(userId);
   dispatch(setUserStatus(response.data));
 };
-
-export const updateStatus = (status) => async dispatch => {
+export const updateStatus = (status: string) => async (dispatch: any) => {
   let response = await profileAPI.updateStatus(status);
   if (response.data.resultCode === 0) {
     dispatch(setUserStatus(status));
   }
 }
-
-export const savePhoto = (photoFile) => async dispatch => {
+export const savePhoto = (photoFile: any) => async (dispatch: any) => {
   const response = await profileAPI.savePhoto(photoFile);
   
   if(response.data.resultCode === 0) {
