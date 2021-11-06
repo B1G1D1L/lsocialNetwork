@@ -9,7 +9,7 @@ const Dialog = (props) => {
     <div className={s.dialogs}>
       <DialogItem dialogData={props.dialogPage.dialogData} />
       <Message 
-        dialogPage={props.dialogPage}
+        dialogPage={props.dialogPage.messageData}
         addMessage = {props.addMessage} 
       />
     </div>

@@ -1,27 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, FocusEvent, useEffect, useState } from 'react';
 import s from './User.module.css';
 
-const UserStatusHooks = (props) => {
 
-  const [editMode, setEditMode] = useState(false);
-  const [status, setStatus] = useState(' ');
+type PropsType = {
+  status: string
+  updateStatus: (newStatus: string) => void
+}
+
+
+const UserStatusHooks = (props: PropsType) => {
+
+  const [editMode, setEditMode] = useState<boolean>(false);
+  const [status, setStatus] = useState<string>(' ');
 
   useEffect(() => {
     setStatus(props.status)
-  }, [props.status])
+  }, [props.status]);
 
   const activateEditMode = () => {
     setEditMode(true);
   }
 
-  const deactivateEditMode = (e) => {
+  const deactivateEditMode = (e: FocusEvent<HTMLInputElement>) => {
     const status = e.target.value;
     props.updateStatus(status);
     setEditMode(false);
   }
 
-  const onStatusChange = (e) => {
-    setStatus(e.currentTarget.velue);
+  const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setStatus(e.currentTarget.value);
   }
 
   return (

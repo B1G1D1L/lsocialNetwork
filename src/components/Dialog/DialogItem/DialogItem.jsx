@@ -7,7 +7,6 @@ const DialogItem = props => {
     <NavLink
       to={'/message/' + d.id}
       key={d.id} 
-      // name={d.name}
     >
       {d.name}
     </NavLink> 
