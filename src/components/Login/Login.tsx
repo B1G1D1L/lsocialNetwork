@@ -1,32 +1,41 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, InjectedFormProps } from 'redux-form';
 import styles from './Login.module.css';
-import { login } from './../../Redax/reducers/auth-reducer';
+import { login } from '../../Redax/reducers/auth-reducer';
 import { Redirect } from 'react-router';
 import { required } from '../../utils/validators/validators';
 import { ElementHOC } from '../hoc/element';
+import { AppStateType } from '../../Redax/redax-store';
 
-const Login = (props) => {
-  const submit = (value) => {
+
+const Login: React.FC<StateType & DispatchType> = (props) => {
+  let { login, isAuth } = props;
+
+  const submit = (value: any) => {
     let {email, password, rememberMe} = value;
-    props.login(email, password, rememberMe);
+    login(email, password, rememberMe);
   }
 
-  if(props.isAuth) {
+  if(isAuth) {
     return <Redirect to={'/profile'} />
   }
 
   return <LoginReduxForm onSubmit={submit} />
 }
 
+type LoginFormValuesType = {
+  email: string
+  password: string
+  rememberMe: string
+}
 
-const LoginForm = (props) => {
+const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ handleSubmit, error, }) => {
   const InputElement = ElementHOC('input');
 
   return <div>
     <h1>Login</h1>
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
 
       <Field
         type="text"
@@ -49,17 +58,26 @@ const LoginForm = (props) => {
       />
       <span>remember Me</span>
       <button type="submit">Submit</button>
-      {props.error && <div className={styles.formSummaryError}>{props.error}</div>}
+      {error && <div className={styles.formSummaryError}>{error}</div>}
     </form>
   </div>
 }
 
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
+const LoginReduxForm = reduxForm<LoginFormValuesType>({form: 'login'})(LoginForm);
 
-const mapStateToProps = (state) => {
+
+
+type StateType = {
+  isAuth: boolean
+}
+type DispatchType = {
+  login: (email: string, password: string, rememberMe: boolean) => void
+}
+
+const mapStateToProps = (state: AppStateType): StateType => {
   return {
     isAuth: state.auth.isAuth
   }
 }
 
-export default connect(mapStateToProps, {login})(Login);
+export default connect<StateType, DispatchType, {}, AppStateType>(mapStateToProps, {login})(Login);

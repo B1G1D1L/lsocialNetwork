@@ -36,8 +36,6 @@ type DispatchProps = {
   requestUsers: (pageSize:  number, currentPage: number) => void
 }
 
-type OwnProps = {}
-
 type PropsType = StatePropsType & DispatchProps
 
 
@@ -83,7 +81,7 @@ const mapStateToProps = (state: AppStateType): StatePropsType => {
 
 
 export default compose(
-  connect<StatePropsType, DispatchProps, OwnProps, AppStateType>(
+  connect<StatePropsType, DispatchProps, {}, AppStateType>(
     mapStateToProps, 
     {
       follow, unfollow, requestUsers, 
