@@ -1,6 +1,7 @@
+import { ThunkAction } from "redux-thunk";
 import { userAPI } from "../../api/api";
 import { UsersType } from "../../types/types";
-import { DispatchType } from "../redax-store";
+import { AppStateType, DispatchType } from "../redax-store";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -24,7 +25,9 @@ type InitialStateType = typeof initialState
 
 
 // Reduce
-const messageReduce = (state = initialState, action: any): InitialStateType => {
+type ActionsType = FollowSuccessActionType | UnfollowSuccessActionType | SetUsersActionType | SetCurrentPageActionType | SetTotalUserCountActionType | ToggleIsFetching | ToggleFollowingProgressActionType
+
+const messageReduce = (state = initialState, action: ActionsType): InitialStateType => {
 
   switch (action.type) {
 
@@ -139,7 +142,10 @@ export const toggleFollowingProgress =
 
 
 // Thunk creator
-export const requestUsers = (page: number, currentPage: number) => async (dispatch: DispatchType) => {
+type ThunkTypes = ThunkAction<void, AppStateType, unknown, ActionsType>
+
+export const requestUsers = 
+(page: number, currentPage: number): ThunkTypes => async (dispatch: DispatchType) => {
   dispatch(toggleIsFetching(true));
   dispatch(setCurrentPage(currentPage));
 
@@ -148,7 +154,7 @@ export const requestUsers = (page: number, currentPage: number) => async (dispat
   dispatch(setTotalUserCount(response.totalCount));
   dispatch(toggleIsFetching(false));
 }
-export const follow = (userId: number) => async (dispatch: DispatchType) => {
+export const follow = (userId: number): ThunkTypes => async (dispatch: DispatchType) => {
   dispatch(toggleFollowingProgress(true, userId));
 
   let response = await userAPI.getFollow(userId);
@@ -157,7 +163,7 @@ export const follow = (userId: number) => async (dispatch: DispatchType) => {
   }
   dispatch(toggleFollowingProgress(false, userId))
 }
-export const unfollow = (userId: number) => async (dispatch: DispatchType) => {
+export const unfollow = (userId: number): ThunkTypes => async (dispatch: DispatchType) => {
   dispatch(toggleFollowingProgress(true, userId));
 
   let response = await userAPI.getUnfollow(userId);

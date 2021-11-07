@@ -22,9 +22,10 @@ let initialState = {
 }
 
 type InitialStateType = typeof initialState
+type ActionsType = AddMessageCreatorActionType
 
 // Reduce
-const messageReduce = (state = initialState, action: any): InitialStateType => { 
+const messageReduce = (state = initialState, action: ActionsType): InitialStateType => { 
   switch(action.type) {
 
     case ADD_MESSAGE: {
@@ -38,6 +39,7 @@ const messageReduce = (state = initialState, action: any): InitialStateType => {
       return state;
   }
 };
+
 
 // Action creator
 type AddMessageCreatorActionType = {

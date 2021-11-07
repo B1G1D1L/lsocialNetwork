@@ -1,5 +1,7 @@
 import { authAPI, profileAPI } from "../../api/api";
 import { stopSubmit } from 'redux-form';
+import { AppStateType, DispatchType } from "../redax-store";
+import { ThunkAction } from "redux-thunk";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_USER_PROFILE_PHOTOS = 'SET_USER_PROFILE_PHOTOS';
@@ -13,9 +15,10 @@ let initialState = {
 }
 
 type initialStateType = typeof initialState
+type ActionsType = SetAuthUserDataActionType | SetUserProfilePhotoActionType
 
 // Reduce 
-const authReduce = (state = initialState, action: any): initialStateType => {
+const authReduce = (state = initialState, action: ActionsType): initialStateType => {
   switch (action.type) {
 
     case SET_USER_DATA: {
@@ -37,9 +40,8 @@ const authReduce = (state = initialState, action: any): initialStateType => {
   }
 };
 
+
 // Actions creator ***
-
-
 type SetAuthUserDataPayloadType = {
   id: number | null
   email: string | null
@@ -53,17 +55,18 @@ export type SetAuthUserDataActionType = {
 export const setAuthUserData = (id: number | null, email: string | null, login: string | null, isAuth: boolean): SetAuthUserDataActionType => (
   { type: SET_USER_DATA, payload: { id, email, login, isAuth } }
 );
-
 type SetUserProfilePhotoActionType = {
   type: typeof SET_USER_PROFILE_PHOTOS,
   userPhoto: string
 }
-export const setUserProfilePhoto = (userPhoto: string): SetUserProfilePhotoActionType => (
+export const setUserProfilePhoto = (userPhoto: any): SetUserProfilePhotoActionType => (
   { type: SET_USER_PROFILE_PHOTOS, userPhoto }
 );
 
 // Thunk creator
-export const getAuthUserData = () => async (dispatch: any) => {
+type ThunkTypes = ThunkAction<void, AppStateType, unknown, ActionsType>
+
+export const getAuthUserData = () => async (dispatch: DispatchType) => {
   let response = await authAPI.me();
 
   if (response.resultCode === 0) {
@@ -72,25 +75,25 @@ export const getAuthUserData = () => async (dispatch: any) => {
   }
 }
 
-export const getUserProfilePhoto = (userId: number) => async (dispatch: any) => {
-  const response = await profileAPI.getUserProfile(userId);
-  dispatch(setUserProfilePhoto(response.data.photos.small));
+export const getUserProfilePhoto = (userId: number): ThunkTypes => async (dispatch: DispatchType) => {
+  const response = await profileAPI.getUserProfile(userId)
+  dispatch(setUserProfilePhoto(response.photos.small))
 }
 
 export const login = (email: string, password: string, rememberMe: boolean) => async (dispatch: any) => {
   let response = await authAPI.login(email, password, rememberMe);
 
-  if (response.data.resultCode === 0) {
+  if (response.resultCode === 0) {
     dispatch(getAuthUserData());
   } else {
-    let message = response.data.messages.length > 0
-      ? response.data.messages[0]
+    let message = response.messages.length > 0
+      ? response.messages[0]
       : 'Common Error';
     dispatch(stopSubmit('login', { _error: message }));
   }
 }
 
-export const logout = () => async (dispatch: any) => {
+export const logout = (): ThunkTypes => async (dispatch: DispatchType) => {
   let response = await authAPI.logout();
   if (response.data.resultCode === 0) {
     dispatch(setAuthUserData(null, null, null, false));

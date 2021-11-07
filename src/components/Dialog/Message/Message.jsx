@@ -6,13 +6,13 @@ import { ElementHOC } from '../../hoc/element';
 import s from './../Dialog.module.css';
 
 
-const Message = (props) => {
-  let messageElement = 
-    props.dialogPage.messageData.map(m => 
-      <p key ={props.dialogPage.messageData.indexOf(m)}>{m.message}</p>
+const Message = ({ dialogPage, addMessage }) => {
+
+  let messageElement = dialogPage.map(m => 
+      <p key ={dialogPage.indexOf(m)}>{m.message}</p>
     );
 
-  const submit = (value) => props.addMessage(value.message);
+  const submit = (value) => addMessage(value.message);
   
   return (
     <div className={s.message}>
