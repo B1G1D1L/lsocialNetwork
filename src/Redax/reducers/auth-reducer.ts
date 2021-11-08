@@ -1,7 +1,8 @@
-import { authAPI, profileAPI } from "../../api/api";
 import { stopSubmit } from 'redux-form';
 import { AppStateType, DispatchType } from "../redax-store";
 import { ThunkAction } from "redux-thunk";
+import { authAPI } from '../../api/auth-api';
+import { profileAPI } from '../../api/profile-api';
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_USER_PROFILE_PHOTOS = 'SET_USER_PROFILE_PHOTOS';

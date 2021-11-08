@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import { profileAPI } from "../../api/api";
+import { profileAPI } from "../../api/profile-api";
 import { PostsType, ProfileType } from "../../types/types";
 import { AppStateType, DispatchType } from "../redax-store";
 import { setUserProfilePhoto } from "./auth-reducer";
@@ -100,8 +100,9 @@ export const getStatus = (userId: number): ThunkType => async (dispatch: Dispatc
   dispatch(setUserStatus(response.data));
 };
 export const updateStatus = (status: string): ThunkType => async (dispatch: DispatchType) => {
-  let response = await profileAPI.updateStatus(status);
-  if (response.data.resultCode === 0) {
+  let res = await profileAPI.updateStatus(status);
+  if (res.resultCode === 0) {
+    console.log(res)
     dispatch(setUserStatus(status));
   }
 }

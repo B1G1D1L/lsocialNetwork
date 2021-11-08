@@ -1,5 +1,5 @@
 import { ThunkAction } from "redux-thunk";
-import { userAPI } from "../../api/api";
+import { userAPI } from "../../api/user-api";
 import { UsersType } from "../../types/types";
 import { AppStateType, DispatchType } from "../redax-store";
 
