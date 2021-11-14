@@ -18,6 +18,8 @@ let rootReducer = combineReducers({
   form: formReducer,
 })
 
+
+// Redux DevTools
 declare global {
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
@@ -33,9 +35,18 @@ const store = createStore(
   )
 );
 
-
+// type State
 export type AppStateType = ReturnType<typeof rootReducer>
+
+// Type Dispatch
 export type DispatchType = typeof store.dispatch
+
+// Type Null | any
+export type Nullable<T> = null | T 
+
+// Inferring the types of action creators
+type PropertiesTypes<T> = T extends {[key: string]: infer U} ? U : never
+export type InferActionsTypes<T extends {[key: string]: (...args: Array<any>) => any}> = ReturnType<PropertiesTypes<T>>
 
 //@ts-ignore
 window.store = store;
