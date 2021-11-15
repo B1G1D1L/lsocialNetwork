@@ -1,9 +1,10 @@
-import { stopSubmit } from 'redux-form';
-import { AppStateType, DispatchType, InferActionsTypes } from "../redax-store";
-import { ThunkAction } from "redux-thunk";
+import { FormAction, stopSubmit } from 'redux-form';
+import { BaseThunkType, InferActionsTypes } from "../redax-store";
 import { authAPI } from '../../api/auth-api';
 import { profileAPI } from '../../api/profile-api';
 
+
+// State
 let initialState = {
   id: null as number | null,
   email: null as string | null,
@@ -12,21 +13,19 @@ let initialState = {
   isAuth: false as boolean,
 }
 
-type initialStateType = typeof initialState
-type ActionsType = InferActionsTypes<typeof actions>
 
 // Reduce 
 const authReduce = (state = initialState, action: ActionsType): initialStateType => {
   switch (action.type) {
 
-    case 'SET_USER_DATA': {
+    case 'auth/SET_USER_DATA': {
       return {
         ...state,
         ...action.payload,
       }
     }
 
-    case 'SET_USER_PROFILE_PHOTOS': {
+    case 'auth/SET_USER_PROFILE_PHOTOS': {
       return {
         ...state,
         userPhoto: action.userPhoto
@@ -39,37 +38,36 @@ const authReduce = (state = initialState, action: ActionsType): initialStateType
 };
 
 
-// Actions creator ***
-export const actions = {
-  // Данные о пользователя
+// Actions creator
+export const actionsAuth = {
+  // Утсановить данные о пользователя
   setAuthUserData: (id: number | null, email: string | null, login: string | null, isAuth: boolean) => (
-    { type: 'SET_USER_DATA', payload: { id, email, login, isAuth }} as const),
+    { type: 'auth/SET_USER_DATA', payload: { id, email, login, isAuth }} as const),
 
-  // Установить главное фото
+  // Утсановить главное фото
   setUserProfilePhoto: (userPhoto: any) => (
-    { type: 'SET_USER_PROFILE_PHOTOS', userPhoto } as const),
+    { type: 'auth/SET_USER_PROFILE_PHOTOS', userPhoto } as const),
   
 }
 
 
 // Thunk creator
-type ThunkTypes = ThunkAction<void, AppStateType, unknown, ActionsType>
-
-export const getAuthUserData = () => async (dispatch: DispatchType) => {
+export const getAuthUserData = (): ThunkTypes => async (dispatch) => {
   let response = await authAPI.me();
 
   if (response.resultCode === 0) {
     let { id, email, login } = response.data
-    dispatch(actions.setAuthUserData(id, email, login, true))
+    dispatch(actionsAuth.setAuthUserData(id, email, login, true))
   }
-}
+} // Авторизация (Boolean)
 
-export const getUserProfilePhoto = (userId: number): ThunkTypes => async (dispatch: DispatchType) => {
+export const getUserProfilePhoto = (userId: number): ThunkTypes => async (dispatch) => {
   const response = await profileAPI.getUserProfile(userId)
-  dispatch(actions.setUserProfilePhoto(response.photos.small))
-}
+  dispatch(actionsAuth.setUserProfilePhoto(response.photos.small))
+} // Получить маленькую фото пользователя (для Header)
 
-export const login = (email: string, password: string, rememberMe: boolean) => async (dispatch: any) => {
+export const login = (email: string, password: string, rememberMe: boolean): ThunkTypes => 
+async (dispatch) => {
   let response = await authAPI.login(email, password, rememberMe);
 
   if (response.resultCode === 0) {
@@ -80,13 +78,20 @@ export const login = (email: string, password: string, rememberMe: boolean) => a
       : 'Common Error';
     dispatch(stopSubmit('login', { _error: message }));
   }
-}
+} // Войти в уч. запись
 
-export const logout = (): ThunkTypes => async (dispatch: DispatchType) => {
+export const logout = (): ThunkTypes => async (dispatch) => {
   let response = await authAPI.logout();
   if (response.data.resultCode === 0) {
-    dispatch(actions.setAuthUserData(null, null, null, false));
+    dispatch(actionsAuth.setAuthUserData(null, null, null, false));
   }
-}
+} // Выйти из уч. запись
 
 export default authReduce;
+
+
+// Types
+type initialStateType = typeof initialState // State
+type ActionsType = InferActionsTypes<typeof actionsAuth> // actions
+type ThunkTypes = BaseThunkType<ActionsType | FormAction> // Thunk. FormAction для redux-form
+

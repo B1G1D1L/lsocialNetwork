@@ -1,14 +1,7 @@
-const ADD_MESSAGE = 'ADD-NEW-MESSAGE';
+import { InferActionsTypes } from "../redax-store";
 
-type DialogStateType = {
-  id: Number
-  name: String
-}
-type MessageDataType = {
-  id: number
-  message: string
-}
 
+// State
 let initialState = {
   dialogData: [
     { id: 1, name: 'Ilya' },
@@ -21,14 +14,12 @@ let initialState = {
   ] as Array<MessageDataType>,
 }
 
-type InitialStateType = typeof initialState
-type ActionsType = AddMessageCreatorActionType
 
 // Reduce
 const messageReduce = (state = initialState, action: ActionsType): InitialStateType => { 
   switch(action.type) {
 
-    case ADD_MESSAGE: {
+    case 'message/ADD_NEW_MESSAGE': {
       return {
         ...state,
         messageData: [...state.messageData, {id: 7, message: action.newMessage}],
@@ -42,10 +33,21 @@ const messageReduce = (state = initialState, action: ActionsType): InitialStateT
 
 
 // Action creator
-type AddMessageCreatorActionType = {
-  type: typeof ADD_MESSAGE
-  newMessage: string
+export const actionsMessage = {
+  // Добавить сообщение
+  addMessageCreator: (newMessage: string) => ({ type: 'message/ADD_NEW_MESSAGE', newMessage } as const),
 }
-export const addMessageCreator = (newMessage: string): AddMessageCreatorActionType => ({ type: ADD_MESSAGE, newMessage });
 
 export default messageReduce;
+
+// Type state
+type InitialStateType = typeof initialState // State
+type DialogStateType = {
+  id: Number
+  name: String
+}
+type MessageDataType = {
+  id: number
+  message: string
+}
+type ActionsType = InferActionsTypes<typeof actionsMessage> // Actions

@@ -1,6 +1,5 @@
-import { applyMiddleware, combineReducers, createStore, compose } from "redux";
-import thunkMiddleware from "redux-thunk";  
-// import logger from 'redux-logger';
+import { applyMiddleware, combineReducers, createStore, compose, Action } from "redux";
+import thunkMiddleware, { ThunkAction } from "redux-thunk";  
 import { reducer as formReducer } from 'redux-form'
 
 import authReduce from "./reducers/auth-reducer";
@@ -9,6 +8,7 @@ import profileReduce from "./reducers/profile-reducer";
 import usersReduce from "./reducers/users-reducer";
 import appReduce from "./reducers/app-reducer";
 
+// Root Reducer
 let rootReducer = combineReducers({
   profilePage: profileReduce,
   messagePage: messageReduce,
@@ -27,6 +27,7 @@ declare global {
 }
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+// Store
 const store = createStore(
   rootReducer, 
   compose(
@@ -35,18 +36,16 @@ const store = createStore(
   )
 );
 
-// type State
-export type AppStateType = ReturnType<typeof rootReducer>
-
-// Type Dispatch
-export type DispatchType = typeof store.dispatch
-
-// Type Null | any
-export type Nullable<T> = null | T 
+// Types
+export type AppStateType = ReturnType<typeof rootReducer>   // General State
+export type DispatchType = typeof store.dispatch  // Dispatch
+export type Nullable<T> = null | T  // Null | any
+export type BaseThunkType<A extends Action, R = Promise<any>> = 
+  ThunkAction<R, AppStateType, unknown, A> //Think
 
 // Inferring the types of action creators
-type PropertiesTypes<T> = T extends {[key: string]: infer U} ? U : never
-export type InferActionsTypes<T extends {[key: string]: (...args: Array<any>) => any}> = ReturnType<PropertiesTypes<T>>
+export type InferActionsTypes<T> = 
+T extends { [keys: string]: (...args: Array<any>) => infer U } ? U : never
 
 //@ts-ignore
 window.store = store;
