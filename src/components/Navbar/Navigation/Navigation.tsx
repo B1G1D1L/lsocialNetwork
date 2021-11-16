@@ -7,9 +7,10 @@ import AnnouncementIcon from '@mui/icons-material/Announcement';
 import QueueMusicIcon from '@mui/icons-material/QueueMusic';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PeopleIcon from '@mui/icons-material/People';
+import { Nullable } from '../../../Redax/redax-store';
 
 
-const Navigation = (props) => {
+const Navigation: React.FC<NavigationPropsType> = (props) => {
   return (
     <nav className={s.nav}>
       <NavLink
@@ -64,3 +65,7 @@ const Navigation = (props) => {
 }
 
 export default Navigation;
+
+
+// Types
+type NavigationPropsType = {myId: Nullable<number>}

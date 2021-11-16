@@ -6,15 +6,16 @@ import { compose } from 'redux';
 
 import './App.css';
 import News from './components/News/News'
-import HeaderContainer from './components/Header/HeaderContainer';
+import { HeaderContainer } from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
-import ProfileContainer from './components/Profile/ProfileContainer';
+import { ProfileContainer } from './components/Profile/ProfileContainer';
 import Music from './components/Music/Music';
 import DialogContainer from './components/Dialog/DialogContainer';
 import Login from './components/Login/Login';
 import Preloader from './components/common/Preloader/Preloader';
 
 import { initializeApp } from './Redax/reducers/app-reducer';
+
 const UsersAPIComponent = React.lazy(() => import('./components/Users/UsersContainer'));
 const Setting = React.lazy(() => import('./components/Setting/Setting'));
 

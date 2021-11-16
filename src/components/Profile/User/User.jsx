@@ -14,13 +14,15 @@ const Input = styled('input')({
 
 
 const User = (props) => {
-  if (!props.profile) {
+  const { profile, savePhoto, isOwner, status, updateStatus } = props
+
+  if (!profile) {
     return <Preloader />
   }
 
   const onMainPhotoSelected = (e) => {
     if (e.target.files.length) {
-      props.savePhoto(e.target.files[0]);
+      savePhoto(e.target.files[0]);
     }
   }
 
@@ -31,11 +33,11 @@ const User = (props) => {
           <div className={s.user__img}>
 
             <img 
-              src={props.profile.photos.large || guestPhoto}
+              src={profile.photos.large || guestPhoto}
               alt="Avatar" 
             />
 
-            {!props.isOwner && 
+            {!isOwner && 
             <div className={s.user__img_save}>
               <div>
                 <label htmlFor="contained-button-file">
@@ -60,9 +62,9 @@ const User = (props) => {
         </div>
 
         <div className={s.user__description}>
-          <div>{props.profile.fullName}</div>
-          <UserStatusHooks status={props.status} updateStatus={props.updateStatus} />
-          <div>{props.profile.aboutMe || null}</div>
+          <div>{profile.fullName}</div>
+          <UserStatusHooks status={status} updateStatus={updateStatus} />
+          <div>{profile.aboutMe || null}</div>
         </div>
       </div>
     </div>

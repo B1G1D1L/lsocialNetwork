@@ -4,6 +4,11 @@ import { NavLink } from 'react-router-dom';
 import { Avatar, Badge, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+import { Nullable } from '../../Redax/redax-store';
+import guestPhoto from '../../assets/images/user.svg';
+
+
+// Material-ui
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
     backgroundColor: '#44b700',
@@ -14,8 +19,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 
 
-const Header = (props) => {
-
+const Header: React.FC<HeaderProps> = (props) => {
+  const { isAuth, login, userPhoto, logout } = props
 
   return (
     <header className={styles.header}>
@@ -24,20 +29,20 @@ const Header = (props) => {
       </picture>
 
 
-        {props.isAuth
+        {isAuth
           ?
           <div className={styles.header__info || styles.user__info}>
-            <span>{props.login}</span>
+            <span>{login}</span>
             <StyledBadge
               overlap="circular"
               anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
               variant="dot"
             >
-              <Avatar alt={props.login} src={props.userPhoto} />
+              <Avatar src={userPhoto ? userPhoto : guestPhoto} alt={login ? login : ''} />
             </StyledBadge>
 
             <Button 
-              onClick={props.logout} 
+              onClick={logout} 
               variant="contained"
               size="small"
             >
@@ -55,6 +60,14 @@ const Header = (props) => {
 }
 
 
-
-
 export default Header;
+
+
+// Types
+type HeaderProps = {
+  isAuth: Nullable<boolean>
+  login: Nullable<string>
+  userPhoto: Nullable<string>
+
+  logout: () => void
+}
