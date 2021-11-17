@@ -18,12 +18,12 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 
-
 const Header: React.FC<HeaderProps> = (props) => {
   const { isAuth, login, userPhoto, logout } = props
 
   return (
     <header className={styles.header}>
+      {/* Logo */}
       <picture>
         <img alt='Logo' src='https://s.cdpn.io/3/kiwi.svg'></img>
       </picture>

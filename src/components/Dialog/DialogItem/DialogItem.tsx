@@ -1,8 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { DialogStateType } from '../../../Redax/reducers/message-reducer';
 import s from './../Dialog.module.css';
 
-const DialogItem = props => {
+const DialogItem: React.FC<DialogItemProps> = (props) => {
+  // Массив контактов
   let dialogElement = props.dialogData.map(d => 
     <NavLink
       to={'/message/' + d.id}
@@ -21,3 +23,9 @@ const DialogItem = props => {
 
 
 export default DialogItem;
+
+
+// Types
+type DialogItemProps = {
+  dialogData: Array<DialogStateType>
+}

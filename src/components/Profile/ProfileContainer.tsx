@@ -16,10 +16,10 @@ import Profile from './Profile';
 
 
 
-class ProfileConitaner extends React.Component<ProfileConitanerProps & RouteComponentProps<RouteParams>> {
-
+class ProfileConitaner extends React.Component<ProfileConitanerProps> {
+  
   refreshProfile() {
-    let userId = Number(this.props.match.params.userId);
+    let userId = Number(this.props.match.params.userId)
 
     if(userId) {
       this.props.getStatus(userId);
@@ -37,7 +37,7 @@ class ProfileConitaner extends React.Component<ProfileConitanerProps & RouteComp
     this.refreshProfile();
   }
 
-  componentDidUpdate(prevProps: ProfileConitanerProps & RouteComponentProps<RouteParams>, {}) {
+  componentDidUpdate(prevProps: ProfileConitanerProps , prevState: {}) {
     // Если владелец зашел на главную страницу
     if(this.props.match.params.userId !== prevProps.match.params.userId) {
       this.refreshProfile();
@@ -72,13 +72,17 @@ const mapStateToProps = (state: AppStateType) => {
 
 // Наш HOC
 const connectHOC = connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto })
-const connectProps = connectHOC(ProfileConitaner);
+const withConnectHook = compose(
+  connectHOC,
+  withRouter,
+  withAuthRedirect
+) (ProfileConitaner)
 
-export { connectProps as ProfileContainer}
+export { withConnectHook as ProfileContainer}
 
 
 // Type
-type ProfileConitanerProps = ConnectType<typeof connectHOC> // Props
+type ProfileConitanerProps = ConnectType<typeof connectHOC> & RouteComponentProps<RouteParams> // Props
 
 interface RouteParams {
   userId: undefined | string

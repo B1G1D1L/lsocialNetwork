@@ -3,15 +3,17 @@ import Dialog from './Dialog';
 import {connect} from 'react-redux';
 import { withAuthRedirect } from '../hoc/withAuthRdirect';
 import { compose } from 'redux';
+import { AppStateType, DispatchType } from '../../Redax/redax-store';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
   return {
-    dialogPage: state.messagePage,
+    dialogData: state.messagePage.dialogData,
+    messageData: state.messagePage.messageData,
   }
 };
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: DispatchType) => {
   return {
-    addMessage: (newMessage) => dispatch(actionsMessage.addMessageCreator(newMessage))
+    addMessage: (newMessage: string) => dispatch(actionsMessage.addMessageCreator(newMessage))
   }
 };
 

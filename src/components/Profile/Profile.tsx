@@ -9,7 +9,7 @@ import { Nullable } from '../../Redax/redax-store';
 
 const Profile: React.FC<ProfileProps> = (props) => {
   return (
-    <div className={s.content}>
+    <div className={s.content}> 
       <User {...props} />
       <MyPostsContainer  />
     </div>
@@ -23,7 +23,7 @@ export default Profile;
 type ProfileProps = {
   profile: Nullable<ProfileType> 
   status: string 
-  isOwner: boolean 
+  isOwner: boolean
   userId: Nullable<number>
 
   updateStatus: (status: string) => Promise<any> 

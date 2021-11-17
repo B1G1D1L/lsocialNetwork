@@ -40,14 +40,18 @@ export const actionsMessage = {
 
 export default messageReduce;
 
+
 // Type state
 type InitialStateType = typeof initialState // State
-type DialogStateType = {
-  id: Number
-  name: String
-}
-type MessageDataType = {
+
+export type DialogStateType = {
+  id: number
+  name: string
+} // Контакты
+
+export type MessageDataType = {
   id: number
   message: string
-}
+} // Сообщения
+
 type ActionsType = InferActionsTypes<typeof actionsMessage> // Actions

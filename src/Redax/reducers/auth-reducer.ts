@@ -82,6 +82,7 @@ async (dispatch) => {
 
 export const logout = (): ThunkTypes => async (dispatch) => {
   let response = await authAPI.logout();
+
   if (response.data.resultCode === 0) {
     dispatch(actionsAuth.setAuthUserData(null, null, null, false));
   }

@@ -17,12 +17,14 @@ class HeaderContainer extends React.Component<HeaderContainerProps> {
   }
   
   render() {
-    return <Header
-      isAuth={this.props.isAuth}
-      login={this.props.login} 
-      userPhoto={this.props.userPhoto}
-      logout={logout}
-    ></Header>
+    return(
+      <Header
+        isAuth={this.props.isAuth}
+        login={this.props.login} 
+        userPhoto={this.props.userPhoto}
+        logout={this.props.logout} >
+      </Header>
+    )
   }
 }
 
