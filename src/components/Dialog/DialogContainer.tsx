@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import { withAuthRedirect } from '../hoc/withAuthRdirect';
 import { compose } from 'redux';
 import { AppStateType, DispatchType } from '../../Redax/redax-store';
+import React from 'react';
 
 const mapStateToProps = (state: AppStateType) => {
   return {
@@ -17,7 +18,7 @@ const mapDispatchToProps = (dispatch: DispatchType) => {
   }
 };
 
-export default compose(
+export default compose<React.ComponentType>(
   connect(mapStateToProps, mapDispatchToProps),
   withAuthRedirect
 )(Dialog)

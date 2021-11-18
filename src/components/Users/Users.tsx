@@ -6,17 +6,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Button } from '@mui/material';
 import { UsersType } from '../../types/types';
 
-type PropsType = {
-  totalUsersCount: number
-  pageSize: number
-  currentPage: number
-  users: Array<UsersType>
-  followingProgress: Array<number>
 
-  onPageChanged: (page: number) => void
-  unfollow: (userId: number) => void
-  follow: (userId: number) => void
-}
 
 const Users: React.FC<PropsType> = (props) => {
   const { totalUsersCount, pageSize, currentPage, users,
@@ -96,3 +86,17 @@ const Users: React.FC<PropsType> = (props) => {
 
 
 export default Users;
+
+
+// Types
+type PropsType = {
+  totalUsersCount: number
+  pageSize: number
+  currentPage: number
+  users: Array<UsersType>
+  followingProgress: Array<number>
+
+  onPageChanged: (page: number) => void
+  unfollow: (userId: number) => void
+  follow: (userId: number) => void
+}

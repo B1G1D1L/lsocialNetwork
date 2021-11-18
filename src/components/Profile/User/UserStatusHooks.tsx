@@ -10,7 +10,7 @@ type PropsType = {
 
 const UserStatusHooks = (props: PropsType) => {
 
-  const [editMode, setEditMode] = useState<boolean>(false);
+  const [editMode, setEditMode] = useState<boolean>(false); // Полу редактирования статуса
   const [status, setStatus] = useState<string>(' ');
 
   useEffect(() => {

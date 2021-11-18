@@ -15,12 +15,13 @@ import Login from './components/Login/Login';
 import Preloader from './components/common/Preloader/Preloader';
 
 import { initializeApp } from './Redax/reducers/app-reducer';
+import { AppStateType } from './Redax/redax-store';
 
 const UsersAPIComponent = React.lazy(() => import('./components/Users/UsersContainer'));
 const Setting = React.lazy(() => import('./components/Setting/Setting'));
 
 
-class App extends React.Component {
+class App extends React.Component<PropsType> {
 
   componentDidMount() {
     this.props.initializeApp()
@@ -39,7 +40,7 @@ class App extends React.Component {
           <Navbar />
           <main className='content__wrapper'>
             <Switch>
-              <Route exact path='/' render={ () => <ProfileContainer />} />
+              <Route exact path='/'  render={ () => <ProfileContainer />} />
               <Route path='/profile/:userId?' render={ () => <ProfileContainer />}/>
               <Route path='/message' render={ () => <DialogContainer />}/>
               <Route path='/news'    render={ () => <News />}/>
@@ -47,7 +48,7 @@ class App extends React.Component {
               <Route path='/login'   render={ () => <Login />}/>
               <Suspense fallback={<div><Preloader/></div>}>
                 <section>
-                  <Route path='/users' render={ () => <UsersAPIComponent />}/>
+                  <Route path='/users'   render={ () => <UsersAPIComponent />}/>
                   <Route path='/setting' render={ () => <Setting />}/>
                 </section>
               </Suspense >
@@ -60,14 +61,23 @@ class App extends React.Component {
   } 
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
   return {
     initialized: state.app.initialized
   }
 }
 
-export default compose(
+export default compose<React.ComponentType>(
   connect(mapStateToProps, {initializeApp}),
 )(App)
+
+
+// Types
+type PropsType = MapPropsType & DispatchPropsType
+
+type MapPropsType = ReturnType<typeof mapStateToProps>
+type DispatchPropsType = {
+  initializeApp: () => void
+}
 
 

@@ -72,7 +72,7 @@ const mapStateToProps = (state: AppStateType) => {
 
 // Наш HOC
 const connectHOC = connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto })
-const withConnectHook = compose(
+const withConnectHook = compose<React.ComponentType>(
   connectHOC,
   withRouter,
   withAuthRedirect

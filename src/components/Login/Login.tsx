@@ -17,6 +17,7 @@ const Login: React.FC<StateType & DispatchType> = (props) => {
     login(email, password, rememberMe);
   }
 
+  // Redirect
   if(isAuth) {
     return <Redirect to={'/profile'} />
   }
@@ -24,12 +25,8 @@ const Login: React.FC<StateType & DispatchType> = (props) => {
   return <LoginReduxForm onSubmit={submit} />
 }
 
-type LoginFormValuesType = {
-  email: string
-  password: string
-  rememberMe: string
-}
 
+// Form
 const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ handleSubmit, error, }) => {
   const InputElement = ElementHOC('input');
 
@@ -67,17 +64,25 @@ const LoginReduxForm = reduxForm<LoginFormValuesType>({form: 'login'})(LoginForm
 
 
 
-type StateType = {
-  isAuth: boolean
-}
-type DispatchType = {
-  login: (email: string, password: string, rememberMe: boolean) => void
-}
 
-const mapStateToProps = (state: AppStateType): StateType => {
+const mapStateToProps = (state: AppStateType) => {
   return {
     isAuth: state.auth.isAuth
   }
 }
 
 export default connect<StateType, DispatchType, {}, AppStateType>(mapStateToProps, {login})(Login);
+
+
+// Types
+type LoginFormValuesType = {
+  email: string
+  password: string
+  rememberMe: string
+}
+
+type StateType = ReturnType<typeof mapStateToProps>  //Map State
+
+type DispatchType = {   
+  login: (email: string, password: string, rememberMe: boolean) => void
+} // Map Dispatch

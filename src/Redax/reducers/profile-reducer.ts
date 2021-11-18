@@ -99,6 +99,6 @@ export default profileReduce;
 
 
 // Types
-type InitialStateType = typeof initialState //State
-type ActionsType = InferActionsTypes<typeof actionsProfile> //Actions
+type InitialStateType = typeof initialState // State
+type ActionsType = InferActionsTypes<typeof actionsProfile> // Actions
 type ThunkType = BaseThunkType<ActionsType | FormAction> // Thunk

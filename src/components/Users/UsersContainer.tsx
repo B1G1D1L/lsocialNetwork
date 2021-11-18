@@ -20,26 +20,9 @@ import { UsersType } from '../../types/types';
 import { AppStateType } from '../../Redax/redax-store';
 
 
-interface StatePropsType {
-  pageSize: number
-  currentPage: number
-  pageNumber?: number
-  totalUsersCount: number
-  users: Array<UsersType>
-  followingProgress: Array<number>
-  isFetching: boolean
-}
-
-type DispatchProps = {
-  unfollow: (userId: number) => void
-  follow: (userId: number) => void
-  requestUsers: (pageSize:  number, currentPage: number) => void
-}
-
-type PropsType = StatePropsType & DispatchProps
 
 
-class UsersContainer extends React.Component<PropsType  > {
+class UsersContainer extends React.Component<PropsType> {
 
   componentDidMount() { 
     const { pageSize, currentPage } = this.props;
@@ -66,6 +49,7 @@ class UsersContainer extends React.Component<PropsType  > {
   }
 };
 
+
 const mapStateToProps = (state: AppStateType): StatePropsType => {
   return {
     users: getUsers(state),
@@ -79,8 +63,7 @@ const mapStateToProps = (state: AppStateType): StatePropsType => {
 
 
 
-
-export default compose(
+export default compose<React.ComponentType>(
   connect<StatePropsType, DispatchProps, {}, AppStateType>(
     mapStateToProps, 
     {
@@ -88,3 +71,22 @@ export default compose(
     }),
   withAuthRedirect
 )(UsersContainer)
+
+
+// Type 
+interface StatePropsType {
+  pageSize: number
+  currentPage: number
+  totalUsersCount: number
+  users: Array<UsersType>
+  followingProgress: Array<number>
+  isFetching: boolean
+}
+
+type DispatchProps = {
+  unfollow: (userId: number) => void
+  follow: (userId: number) => void
+  requestUsers: (pageSize:  number, currentPage: number) => void
+}
+
+type PropsType = StatePropsType & DispatchProps

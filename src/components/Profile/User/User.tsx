@@ -1,5 +1,5 @@
-import React from 'react';
-import Preloader from './../../common/Preloader/Preloader';
+import React, { ChangeEvent, ChangeEventHandler, InputHTMLAttributes } from 'react';
+import Preloader from '../../common/Preloader/Preloader';
 import s from './User.module.css';
 
 import guestPhoto from './../../../assets/images/user.svg';
@@ -7,21 +7,23 @@ import UserStatusHooks from './UserStatusHooks';
 import { IconButton } from '@mui/material';
 import styled from 'styled-components'; 
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import { ProfileType } from '../../../types/types';
+import { Nullable } from '../../../Redax/redax-store';
 
 const Input = styled('input')({
   display: 'none',
 });
 
 
-const User = (props) => {
+const User: React.FC<PropsType > = (props) => {
   const { profile, savePhoto, isOwner, status, updateStatus } = props
 
   if (!profile) {
     return <Preloader />
   }
 
-  const onMainPhotoSelected = (e) => {
-    if (e.target.files.length) {
+  const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.length) {
       savePhoto(e.target.files[0]);
     }
   }
@@ -64,7 +66,6 @@ const User = (props) => {
         <div className={s.user__description}>
           <div>{profile.fullName}</div>
           <UserStatusHooks status={status} updateStatus={updateStatus} />
-          <div>{profile.aboutMe || null}</div>
         </div>
       </div>
     </div>
@@ -72,3 +73,14 @@ const User = (props) => {
 };
 
 export default User;
+
+
+// Types
+type PropsType = {
+  profile: Nullable<ProfileType>
+  isOwner: boolean
+  status: string
+  userId: Nullable<number>
+  savePhoto: (file: File) => Promise<any> 
+  updateStatus: (newStatus: string) => Promise<any>
+}

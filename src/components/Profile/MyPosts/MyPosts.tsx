@@ -2,21 +2,22 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import MyPost from './MyPost/MyPost'
 import SendIcon from '@mui/icons-material/Send';
-import { Field, reduxForm } from 'redux-form';
+import { Field, FormSubmitHandler, InjectedFormProps, reduxForm } from 'redux-form';
 import { ElementHOC } from '../../hoc/element';
 import { maxLength5 } from '../../../utils/validators/validators';
 import { Button } from '@mui/material';
+import { PostsType } from '../../../types/types';
 
 
-const MyPosts = (props) => {
-  const postElement = props.profilePage.posts.map(post => 
+const MyPosts: React.FC<MyPostsProps> = (props) => {
+  const postElement = props.posts.map(post => 
     <MyPost
-      key={props.profilePage.posts.indexOf(post)}
+      key={props.posts.indexOf(post)}
       message={post}
     /> 
   );
 
-  const submit = (values) => props.addPost(values.post);
+  const submit = (values: any) => props.addPost(values.post);
 
   return (
     <div>
@@ -28,11 +29,10 @@ const MyPosts = (props) => {
   )
 };
 
-function areEqual(prevProps, nextProps) {
-  return prevProps !== nextProps;
-}
 
-const LoginForm = (props) => {
+
+// Form
+const LoginForm: React.FC<InjectedFormProps<FormData>> = (props) => {
   const { handleSubmit } = props;
   const Textarea = ElementHOC('textarea');
 
@@ -57,9 +57,28 @@ const LoginForm = (props) => {
 }
 
 
-const LoginReduxForm = reduxForm({
+const LoginReduxForm = reduxForm<FormData>({
   form: 'post'
 })(LoginForm)
 
 
+// For Memo
+function areEqual(prevProps: MyPostsProps, nextProps: MyPostsProps) {
+  return prevProps !== nextProps;
+}
+
 export default React.memo(MyPosts, areEqual);
+
+
+// Types
+type MyPostsProps = {
+  posts: Array<PostsType>
+  addPost: (newPost: string) => void
+} // Props MyPosts
+
+type FormData = {
+  post: string
+} // Props Form
+
+
+
