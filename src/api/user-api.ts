@@ -1,3 +1,4 @@
+import { Nullable } from './../Redax/redax-store';
 import { UsersType } from "../types/types";
 import { APIResponseType, instance } from "./api";
 
@@ -9,8 +10,8 @@ type GetUsersResponseType = {
 
 export const userAPI = {
   // Получить страницу с пользователями
-  getUsers(pageSize = 10, currentPage = 1) {
-    return instance.get<GetUsersResponseType>(`users/?count=${pageSize}&page=${currentPage}`)
+  getUsers(pageSize = 10, currentPage = 1, term = '', friend = null as boolean | null) {
+    return instance.get<GetUsersResponseType>(`users/?count=${pageSize}&page=${currentPage}&term=${term}` + (friend == null ? '' : `&friend=${friend}` ))
       .then(response => response.data);
   },
   // Подписаться на пользователя

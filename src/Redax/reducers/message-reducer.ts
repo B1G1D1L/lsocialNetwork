@@ -18,7 +18,6 @@ let initialState = {
 // Reduce
 const messageReduce = (state = initialState, action: ActionsType): InitialStateType => { 
   switch(action.type) {
-
     case 'message/ADD_NEW_MESSAGE': {
       return {
         ...state,
@@ -35,9 +34,11 @@ const messageReduce = (state = initialState, action: ActionsType): InitialStateT
 // Action creator
 export const actionsMessage = {
   // Добавить сообщение
-  addMessageCreator: (newMessage: string) => ({ type: 'message/ADD_NEW_MESSAGE', newMessage } as const),
+  addMessageCreator: (newMessage: string) => {
+    debugger
+    return { type: 'message/ADD_NEW_MESSAGE', newMessage } as const
+  }
 }
-
 export default messageReduce;
 
 

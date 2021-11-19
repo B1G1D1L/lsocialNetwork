@@ -1,16 +1,20 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Field, Form, Formik } from 'formik';
 
 import style from './Users.module.css';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 import { Button } from '@mui/material';
 import { UsersType } from '../../types/types';
+import { Nullable } from '../../Redax/redax-store';
+import User from './User';
+import Preloader from '../common/Preloader/Preloader';
 
 
 
 const Users: React.FC<PropsType> = (props) => {
-  const { totalUsersCount, pageSize, currentPage, users,
-    onPageChanged, unfollow, follow 
+  const { totalUsersCount, pageSize, currentPage, users, isFetching,
+    onPageChanged, unfollow, follow, onChangeFilters
   } = props;
 
   let pagesCount = Math.ceil(totalUsersCount / pageSize);
@@ -39,53 +43,62 @@ const Users: React.FC<PropsType> = (props) => {
     {/* Кол-ва людей */}
     <div className={style.numberPeople}>Люди: {totalUsersCount}</div>
 
+    {/* Фильтр по именам */}
+    <FormFilter onSumit={onChangeFilters} />
+
     {/* Список пользователей */}
-    {users.map((user, index) =>
-      <div key={index} className={style.user}>
-
-        {/* Аватар */}
-        <div className={style.userAvatar}>
-          <NavLink to={'/profile/' + user.id}>
-            {user.photos.large !== null
-              ? <img
-                className={style.photo}
-                src={user.photos.large}
-                alt="Avatar"
-              />
-              : <AccountCircleIcon sx={{ fontSize: 100, color: '#b5b5b5' }} />
-            }
-          </NavLink>
-        </div>
-
-        <div className={style.userInfo}>
-          <strong>{user.name}</strong>
-          <div className={style.status}>{user.status}</div>
-          {user.followed
-            ?
-            <Button
-              variant="outlined"
-              disabled={props.followingProgress.some((userId: number) => userId === user.id)}
-              onClick={() => { unfollow(user.id) }}
-            >
-              Unfollow
-            </Button>
-            :
-            <Button
-              variant="contained"
-              disabled={props.followingProgress.some((userId: number) => userId === user.id)}
-              onClick={() => { follow(user.id) }}
-            >
-              Follow
-            </Button>
-          }
-        </div>
-      </div>
+    
+    { isFetching ? <Preloader /> : 
+      users.map((user) => (
+        <User user={user} 
+          unfollow={unfollow}
+          follow={follow}
+          key={user.id}
+          followingProgress={props.followingProgress}
+        />
+      )
     )}
   </div>
 }
 
-
 export default Users;
+
+
+// Filters form
+const FormFilter: React.FC<FormProps> = ({ onSumit }) => {
+
+  const initialValues: FormFilter = { filter: '', friend: 'null' }
+
+  return(
+  <div>
+    <Formik
+      initialValues = {initialValues}
+      onSubmit={(values, { setSubmitting }) => {
+        let FormValue = {
+          filter: values.filter,
+          friend: values.friend === 'null' ? null : values.friend === 'false' ? false : true 
+        }
+        onSumit(FormValue.filter, FormValue.friend)
+        setSubmitting(false)
+      }}
+    >
+      {({ isSubmitting }) => (
+        <Form>
+          <Field type="text" name="filter" placeholder='Поиск Людей' />
+          <Field name="friend" as="select">
+            <option value="null">All</option>
+            <option value="true">Followed</option>
+            <option value="false">Unfollowed</option>
+          </Field>
+          <button type="submit" disabled={isSubmitting}>
+            Find
+          </button>
+        </Form>
+      )}
+    </Formik>
+  </div>
+)};
+
 
 
 // Types
@@ -95,8 +108,20 @@ type PropsType = {
   currentPage: number
   users: Array<UsersType>
   followingProgress: Array<number>
+  isFetching: boolean
 
+
+  onChangeFilters: (filters: string, friend: Nullable<boolean>) => void
   onPageChanged: (page: number) => void
   unfollow: (userId: number) => void
   follow: (userId: number) => void
+} // Props
+
+export type FormFilter = {
+  filter: string
+  friend: 'null' | 'false' | 'true'
 }
+type FormProps = {
+  onSumit: (filter: string, friend: Nullable<boolean>) => void
+}
+

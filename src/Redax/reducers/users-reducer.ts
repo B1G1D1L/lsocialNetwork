@@ -1,3 +1,4 @@
+import { Nullable } from './../redax-store';
 import { userAPI } from "../../api/user-api";
 import { UsersType } from "../../types/types";
 import { BaseThunkType, DispatchType, InferActionsTypes } from "../redax-store";
@@ -11,6 +12,10 @@ let initialState = {
   currentPage: 1 as number,
   isFetching: false as boolean,
   followingInProgress: [] as Array<number>, // Массив ID пользователей
+  filters: {
+    term: '',
+    friend: null
+  } as Filters
 }
 
 
@@ -68,6 +73,13 @@ const messageReduce = (state = initialState, action: ActionsType): InitialStateT
       }
     }
 
+    case "users/SET_FILTERS": {
+      return {
+        ...state,
+        filters: action.payload
+      }
+    }
+
     default:
       return state;
 
@@ -80,6 +92,7 @@ export const actionsUsers = {
   followSuccess: (userId: number) => ({ type: 'users/FOLLOW', userId } as const),
   unfollowSuccess: (userId: number) => ({ type: 'users/UNFOLLOW', userId } as const),
   setUsers: (users: Array<UsersType>) => ({ type: 'users/SET_USERS', users } as const),
+  setFilters: (payload: FilterType) => ({ type: 'users/SET_FILTERS', payload } as const),
   setCurrentPage: (currentPage: number) => (
     { type: 'users/SET_CURRENT_PAGE', currentPage: currentPage} as const),
   setTotalUserCount: (totalCount: number) => (
@@ -93,14 +106,15 @@ export const actionsUsers = {
 
 // Thunk creator
 export const requestUsers = 
-(page: number, currentPage: number): ThunkTypes => async (dispatch: DispatchType) => {
-  dispatch(actionsUsers.toggleIsFetching(true));
-  dispatch(actionsUsers.setCurrentPage(currentPage));
+(page: number, currentPage: number, filters: FilterType): ThunkTypes => async (dispatch: DispatchType) => {
+  dispatch(actionsUsers.toggleIsFetching(true))
+  dispatch(actionsUsers.setCurrentPage(currentPage))
+  dispatch(actionsUsers.setFilters(filters))
 
-  let response = await userAPI.getUsers(page, currentPage);
-  dispatch(actionsUsers.setUsers(response.items));
-  dispatch(actionsUsers.setTotalUserCount(response.totalCount));
-  dispatch(actionsUsers.toggleIsFetching(false));
+  let response = await userAPI.getUsers(page, currentPage, filters.term, filters.friend)
+  dispatch(actionsUsers.setUsers(response.items))
+  dispatch(actionsUsers.setTotalUserCount(response.totalCount))
+  dispatch(actionsUsers.toggleIsFetching(false))
 } // Получить пользователей 
 
 export const follow = (userId: number): ThunkTypes => async (dispatch: DispatchType) => {
@@ -129,5 +143,10 @@ export default messageReduce;
 
 // Types
 type InitialStateType = typeof initialState                // State
+export type FilterType = typeof initialState.filters                // Term
 type ActionsType = InferActionsTypes<typeof actionsUsers>  // Actions
 type ThunkTypes = BaseThunkType<ActionsType>               // Thunk
+type Filters = {
+  term: string
+  friend: Nullable<boolean>
+}

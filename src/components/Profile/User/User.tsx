@@ -23,7 +23,7 @@ const User: React.FC<PropsType > = (props) => {
   }
 
   const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.length) {
+    if (e.target.files?.length) {   
       savePhoto(e.target.files[0]);
     }
   }
