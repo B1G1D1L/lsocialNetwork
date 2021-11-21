@@ -1,5 +1,4 @@
-import { Nullable } from './../Redax/redax-store';
-import { UsersType } from "../types/types";
+          import { UsersType } from "../types/types";
 import { APIResponseType, instance } from "./api";
 
 type GetUsersResponseType = {

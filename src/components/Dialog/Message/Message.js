@@ -1,9 +1,4 @@
 import { Form, Formik, Field, ErrorMessage } from 'formik';
-import React from 'react';
-import { InjectedFormProps, reduxForm } from 'redux-form';
-import { MessageDataType } from '../../../Redax/reducers/message-reducer';
-import { maxLength15 } from '../../../utils/validators/validators';
-import { ElementHOC } from '../../hoc/element';
 
 import s from './../Dialog.module.css';
 
@@ -15,16 +10,12 @@ const Message = ({ dialogPage, addMessage }) => {
       <p key ={dialogPage.indexOf(m)}>{m.message}</p>
     );
 
-  // Отправка сообщения
-  const submit = (value) => addMessage(value.message);
-  
   return (
     <div className={s.message}>
       <div className={s.dialog}>
         {messageElement}
       </div>
       <div className={s.messageInput}>
-        {/* <LoginReduxForm onSubmit={submit} /> */}
         <MessageForm />
       </div>
     </div>

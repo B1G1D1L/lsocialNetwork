@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect, ConnectedProps } from 'react-redux';
+import { connect} from 'react-redux';
 import { AppStateType, ConnectType } from '../../Redax/redax-store';
 import { getAuthUserData, logout, getUserProfilePhoto } from '../../Redax/reducers/auth-reducer'
 import Header from './Header';

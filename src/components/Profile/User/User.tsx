@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ChangeEventHandler, InputHTMLAttributes } from 'react';
+import React, { ChangeEvent } from 'react';
 import Preloader from '../../common/Preloader/Preloader';
 import s from './User.module.css';
 

@@ -1,21 +1,45 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { Field, Form, Formik } from 'formik';
 
 import style from './Users.module.css';
 
-import { Button } from '@mui/material';
-import { UsersType } from '../../types/types';
 import { Nullable } from '../../Redax/redax-store';
 import User from './User';
 import Preloader from '../common/Preloader/Preloader';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentPage, getFollowingProgress, getIsFetching, getPageSize, getTotalUsersCount, getUsers } from '../../Redax/selectors/users-selectors';
+import { follow, requestUsers, unfollow } from '../../Redax/reducers/users-reducer';
+import Paginator from '../common/Paginator/Paginator';
 
 
 
-const Users: React.FC<PropsType> = (props) => {
-  const { totalUsersCount, pageSize, currentPage, users, isFetching,
-    onPageChanged, unfollow, follow, onChangeFilters
-  } = props;
+const Users: React.FC = (props) => {
+  
+  const dispatch = useDispatch();
+  const totalUsersCount = useSelector(getTotalUsersCount)
+  const pageSize = useSelector(getPageSize)
+  const currentPage = useSelector(getCurrentPage)
+  const users = useSelector(getUsers)
+  const isFetching = useSelector(getIsFetching)
+  const followingProgress = useSelector(getFollowingProgress)
+
+  const onChangeFilters = (filters: string, friend: Nullable<boolean>) => {
+    dispatch(requestUsers(pageSize , 1, {term: filters, friend}))
+  }
+  const onPageChanged = (pageNumber: number) => {
+    dispatch(requestUsers(pageSize , pageNumber, {term: '', friend: false}))
+  }
+  const onUnfollow = (userId: number) => {
+    dispatch(unfollow(userId))
+  }
+  const onFollow = (userId: number) => {
+    dispatch(follow(userId))
+  }
+
+  useEffect( () => {
+    dispatch(requestUsers(pageSize, currentPage, {term: '', friend: null}))
+  },[])
+
 
   let pagesCount = Math.ceil(totalUsersCount / pageSize);
   let pages = [];
@@ -26,19 +50,13 @@ const Users: React.FC<PropsType> = (props) => {
 
   return <div>
     {/* Навигация */}
-    <div className={style.numberPages}>
-      {pages.map((page, index) => {
-        return (
-          <span
-            className={currentPage === page ? style.selected : ''}
-            key={index}
-            onClick={(e) => { onPageChanged(page) }}
-          >
-            {page}
-          </span>
-        )
-      })}
-    </div>
+    <Paginator
+      totalItemsCount={totalUsersCount}
+      pageSize={pageSize}
+      currentPage={currentPage}
+      onPageChanged={onPageChanged} 
+      portionSize={30}
+    />
 
     {/* Кол-ва людей */}
     <div className={style.numberPeople}>Люди: {totalUsersCount}</div>
@@ -51,10 +69,11 @@ const Users: React.FC<PropsType> = (props) => {
     { isFetching ? <Preloader /> : 
       users.map((user) => (
         <User user={user} 
-          unfollow={unfollow}
-          follow={follow}
           key={user.id}
-          followingProgress={props.followingProgress}
+          unfollow={onUnfollow}
+          follow={onFollow}
+          keyUser={user.id}
+          followingProgress={followingProgress}
         />
       )
     )}
@@ -102,21 +121,6 @@ const FormFilter: React.FC<FormProps> = ({ onSumit }) => {
 
 
 // Types
-type PropsType = {
-  totalUsersCount: number
-  pageSize: number
-  currentPage: number
-  users: Array<UsersType>
-  followingProgress: Array<number>
-  isFetching: boolean
-
-
-  onChangeFilters: (filters: string, friend: Nullable<boolean>) => void
-  onPageChanged: (page: number) => void
-  unfollow: (userId: number) => void
-  follow: (userId: number) => void
-} // Props
-
 export type FormFilter = {
   filter: string
   friend: 'null' | 'false' | 'true'

@@ -7,10 +7,10 @@ import style from './Users.module.css';
 import { Button } from '@mui/material';
 
 export default function User(props: UserProps ) {
-  const { user, key, followingProgress, follow, unfollow } = props
-
+  const { user, keyUser, followingProgress, follow, unfollow } = props
+  
   return (
-    <div key={key} className={style.user}>
+    <div key={keyUser} className={style.user}>
         {/* Аватар */}
       <div className={style.userAvatar}>
         <NavLink to={'/profile/' + user.id}>
@@ -32,7 +32,7 @@ export default function User(props: UserProps ) {
           ?
           <Button
             variant="outlined"
-            disabled={props.followingProgress.some((userId: number) => userId === user.id)}
+            disabled={followingProgress.some((userId: number) => userId === user.id)}
             onClick={() => { unfollow(user.id) }}
           >
             Unfollow
@@ -54,7 +54,7 @@ export default function User(props: UserProps ) {
 
 type UserProps = {
   user: UsersType
-  key: number
+  keyUser: number
   followingProgress: Array<number>
   follow: (userId: number) => void
   unfollow: (userId: number) => void

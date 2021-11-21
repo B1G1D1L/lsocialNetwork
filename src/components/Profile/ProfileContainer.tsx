@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { AppStateType, ConnectType } from '../../Redax/redax-store';
-import { RouteComponentProps, RouteProps } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import { 
     getUserProfile, 
     getStatus,

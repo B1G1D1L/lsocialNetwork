@@ -2,7 +2,7 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import MyPost from './MyPost/MyPost'
 import SendIcon from '@mui/icons-material/Send';
-import { Field, FormSubmitHandler, InjectedFormProps, reduxForm } from 'redux-form';
+import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { ElementHOC } from '../../hoc/element';
 import { maxLength5 } from '../../../utils/validators/validators';
 import { Button } from '@mui/material';

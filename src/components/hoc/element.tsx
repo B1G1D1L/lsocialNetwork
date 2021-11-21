@@ -1,5 +1,4 @@
 import React from "react";
-import { InjectedFormProps } from "redux-form";
 import styles from './element.module.css';
 
 export const ElementHOC = (Element: string) => ({input, meta, ...props}: any) => {
@@ -14,8 +13,6 @@ export const ElementHOC = (Element: string) => ({input, meta, ...props}: any) =>
   )
 }
 
-
-type ReduxForm = InjectedFormProps
 
 // Types
 // type ElementHOCProps = {
