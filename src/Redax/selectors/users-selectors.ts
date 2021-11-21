@@ -24,3 +24,4 @@ export const getIsFetching = (state: AppStateType): boolean => {
 export const getFollowingProgress = (state: AppStateType): Array<number> => {
   return state.usersPage.followingInProgress;
 }
+

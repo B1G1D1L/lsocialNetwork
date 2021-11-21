@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { AppStateType, ConnectType } from '../../Redax/redax-store';
+import { ConnectType } from '../../Redax/redax-store';
 import { RouteComponentProps } from 'react-router';
 import { 
     getUserProfile, 
@@ -12,66 +12,57 @@ import {
   } from '../../Redax/reducers/profile-reducer';
 import { withAuthRedirect } from '../hoc/withAuthRdirect';
 import Profile from './Profile';
+import { getUserId } from '../../Redax/selectors/auth.selectors';
 
 
 
+const ProfileConitaner: React.FC<ProfileConitanerProps> = (props) => {
+  const userIdURL = props.match.params.userId
 
-class ProfileConitaner extends React.Component<ProfileConitanerProps> {
+  const dispatch = useDispatch()
+  const authorizationUserId = useSelector(getUserId)
+
+  const fetchStatus = (userId: number) => {
+    dispatch(getStatus(userId))
+  }
+  const fetchUserProfile = (userId: number) => {
+    dispatch(getUserProfile(userId))
+  }
+
+  useEffect(() => {
+    refreshProfile()
+  }, [])
   
-  refreshProfile() {
-    let userId = Number(this.props.match.params.userId)
+  useEffect(() => {
+    refreshProfile()
+  }, [userIdURL])
+  
+  const refreshProfile = () => {
+    let userId = Number(userIdURL)
 
     if(userId) {
-      this.props.getStatus(userId);
-      this.props.getUserProfile(userId);
-    } else {
-      let userIdPath = this.props.authorizationUserId
+      fetchStatus(userId);
+      fetchUserProfile(userId);
+    } else {  
+      let userIdPath = authorizationUserId
       if(userIdPath) {
-        this.props.getStatus(userIdPath);
-        this.props.getUserProfile(userIdPath);
+        fetchStatus(userIdPath);
+        fetchUserProfile(userIdPath);
       }
     }
   }
 
-  componentDidMount() {
-    this.refreshProfile();
-  }
-
-  componentDidUpdate(prevProps: ProfileConitanerProps , prevState: {}) {
-    // Если владелец зашел на главную страницу
-    if(this.props.match.params.userId !== prevProps.match.params.userId) {
-      this.refreshProfile();
-    }
-  }
-  
-  render() {
-    return (
-      <Profile 
-        profile={this.props.profile}
-        status={this.props.status}
-        isOwner={!!this.props.match.params.userId}
-        userId={this.props.authorizationUserId}
-
-        updateStatus={this.props.updateStatus}
-        savePhoto={this.props.savePhoto}
-      />
-    )
-  }
+  return (
+    <Profile 
+      isOwner={!!userIdURL}
+    />
+  )
 };
 
-
-// Map state
-const mapStateToProps = (state: AppStateType) => {
-  return {
-    profile: state.profilePage.profile,
-    status: state.profilePage.status,
-    authorizationUserId: state.auth.id,
-    isAuth: state.auth.isAuth,
-  }
-};
 
 // Наш HOC
-const connectHOC = connect(mapStateToProps, {getUserProfile, getStatus, updateStatus, savePhoto })
+const connectHOC = connect(null, {})
+
 const withConnectHook = compose<React.ComponentType>(
   connectHOC,
   withRouter,

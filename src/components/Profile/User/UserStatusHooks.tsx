@@ -1,29 +1,32 @@
 import React, { ChangeEvent, FocusEvent, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getStatusSL } from '../../../Redax/selectors/profile-selectors';
 import s from './User.module.css';
 
 
-type PropsType = {
-  status: string
-  updateStatus: (newStatus: string) => void
-}
+const UserStatusHooks: React.FC = (props) => {
+  const dispatch = useDispatch()
+  const status = useSelector(getStatusSL)
 
+  const updateStatus = (newStatus: string) => {
+    dispatch(updateStatus(newStatus))
+  }
 
-const UserStatusHooks = (props: PropsType) => {
+  const [editMode, setEditMode] = useState<boolean>(false); // Полe редактирования статуса
+  const [newStatus, setStatus] = useState<string>(' ');
 
-  const [editMode, setEditMode] = useState<boolean>(false); // Полу редактирования статуса
-  const [status, setStatus] = useState<string>(' ');
 
   useEffect(() => {
-    setStatus(props.status)
-  }, [props.status]);
+    setStatus(status)
+  }, [status]);
 
   const activateEditMode = () => {
     setEditMode(true);
   }
 
   const deactivateEditMode = (e: FocusEvent<HTMLInputElement>) => {
-    const status = e.target.value;
-    props.updateStatus(status);
+    const newStatus = e.target.value;
+    updateStatus(newStatus);
     setEditMode(false);
   }
 
@@ -37,7 +40,7 @@ const UserStatusHooks = (props: PropsType) => {
         <div>
           <span
             onClick={activateEditMode}
-            className={s.user__status} >{status || 'No status'}
+            className={s.user__status} >{newStatus || 'No status'}
           </span>
         </div>
         :
@@ -46,7 +49,7 @@ const UserStatusHooks = (props: PropsType) => {
             onChange={onStatusChange}
             autoFocus={true}
             onBlur={deactivateEditMode}
-            defaultValue={status}
+            defaultValue={newStatus}
             placeholder="nonon"
           />
         </div>

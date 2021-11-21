@@ -21,11 +21,5 @@ export default Profile;
 
 // Types
 type ProfileProps = {
-  profile: Nullable<ProfileType> 
-  status: string 
   isOwner: boolean
-  userId: Nullable<number>
-
-  updateStatus: (status: string) => Promise<any> 
-  savePhoto: (file: File) => Promise<any> 
 }

@@ -7,11 +7,9 @@ import UserStatusHooks from './UserStatusHooks';
 import { IconButton } from '@mui/material';
 import styled from 'styled-components'; 
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import { ProfileType } from '../../../types/types';
-import { Nullable } from '../../../Redax/redax-store';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProfile, getStatus } from '../../../Redax/selectors/profile-selectors';
-import { getIsAuth } from '../../../Redax/selectors/auth.selectors';
+import { getProfile } from '../../../Redax/selectors/profile-selectors';
+import { getUserId } from '../../../Redax/selectors/auth.selectors';
 import { savePhoto } from '../../../Redax/reducers/profile-reducer';
 
 const Input = styled('input')({
@@ -20,11 +18,11 @@ const Input = styled('input')({
 
 
 const User: React.FC<PropsType > = (props) => {
-  const { isOwner, updateStatus } = props
+  const { isOwner } = props
 
   const dispatch = useDispatch()
-  const profile = useSelector(getProfile)
-  const status = useSelector(getStatus)
+  const profile = useSelector(getProfile) 
+   
 
   if (!profile) {
     return <Preloader />
@@ -73,7 +71,7 @@ const User: React.FC<PropsType > = (props) => {
 
         <div className={s.user__description}>
           <div>{profile.fullName}</div>
-          <UserStatusHooks status={status} updateStatus={updateStatus} />
+          <UserStatusHooks />
         </div>
       </div>
     </div>
@@ -85,10 +83,5 @@ export default User;
 
 // Types
 type PropsType = {
-  profile: Nullable<ProfileType>
   isOwner: boolean
-  status: string
-  userId: Nullable<number>
-  savePhoto: (file: File) => Promise<any> 
-  updateStatus: (newStatus: string) => Promise<any>
 }

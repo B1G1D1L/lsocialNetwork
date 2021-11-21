@@ -7,17 +7,27 @@ import { ElementHOC } from '../../hoc/element';
 import { maxLength5 } from '../../../utils/validators/validators';
 import { Button } from '@mui/material';
 import { PostsType } from '../../../types/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPosts } from '../../../Redax/selectors/profile-selectors';
+import { actionsProfile } from './../../../Redax/reducers/profile-reducer'
 
 
-const MyPosts: React.FC<MyPostsProps> = (props) => {
-  const postElement = props.posts.map(post => 
+const MyPosts: React.FC = (props) => {
+  const dispatch = useDispatch()
+  const posts = useSelector(getPosts)
+
+  const addPost = (post: string) => {
+    dispatch(actionsProfile.addPostActionCreator(post))
+  }
+
+  const postElement = posts.map(post => 
     <MyPost
-      key={props.posts.indexOf(post)}
+      key={posts.indexOf(post)}
       message={post}
     /> 
   );
 
-  const submit = (values: any) => props.addPost(values.post);
+  const submit = (values: any) => addPost(values.post);
 
   return (
     <div>
@@ -56,25 +66,15 @@ const LoginForm: React.FC<InjectedFormProps<FormData>> = (props) => {
   </div>
 }
 
-
 const LoginReduxForm = reduxForm<FormData>({
   form: 'post'
 })(LoginForm)
 
 
-// For Memo
-function areEqual(prevProps: MyPostsProps, nextProps: MyPostsProps) {
-  return prevProps !== nextProps;
-}
-
-export default React.memo(MyPosts, areEqual);
+export default React.memo(MyPosts);
 
 
 // Types
-type MyPostsProps = {
-  posts: Array<PostsType>
-  addPost: (newPost: string) => void
-} // Props MyPosts
 
 type FormData = {
   post: string
