@@ -55,7 +55,6 @@ export const actionsAuth = {
 // Thunk creator
 export const getAuthUserData = (): ThunkTypes => async (dispatch) => {
   let response = await authAPI.me();
-
   if (response.resultCode === 0) {
     let { id, email, login } = response.data
     dispatch(actionsAuth.setAuthUserData(id, email, login, true))

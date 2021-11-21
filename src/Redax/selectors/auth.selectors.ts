@@ -7,3 +7,11 @@ export const getIsAuth = (state: AppStateType) => {
 export const getUserId = (state: AppStateType) => {
   return state.auth.id
 }
+
+export const getUserPhoto = (state: AppStateType) => {
+  return state.auth.userPhoto
+}
+
+export const getLogin = (state: AppStateType) => {
+  return state.auth.login
+}

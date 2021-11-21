@@ -6,6 +6,9 @@ import { styled } from '@mui/material/styles';
 
 import { Nullable } from '../../Redax/redax-store';
 import guestPhoto from '../../assets/images/user.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { getIsAuth, getLogin, getUserPhoto } from '../../Redax/selectors/auth.selectors';
+import { logout } from '../../Redax/reducers/auth-reducer';
 
 
 // Material-ui
@@ -18,8 +21,16 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 
-const Header: React.FC<HeaderProps> = (props) => {
-  const { isAuth, login, userPhoto, logout } = props
+const Header: React.FC = (props) => {
+  const dispatch = useDispatch()
+
+  const isAuth = useSelector(getIsAuth)
+  const userPhoto = useSelector(getUserPhoto)
+  const login = useSelector(getLogin)
+
+  const fetchLogout = () => {
+    dispatch(logout)
+  }
 
   return (
     <header className={styles.header}>
@@ -42,7 +53,7 @@ const Header: React.FC<HeaderProps> = (props) => {
             </StyledBadge>
 
             <Button 
-              onClick={logout} 
+              onClick={fetchLogout} 
               variant="contained"
               size="small"
             >
@@ -64,10 +75,4 @@ export default Header;
 
 
 // Types
-type HeaderProps = {
-  isAuth: Nullable<boolean>
-  login: Nullable<string>
-  userPhoto: Nullable<string>
 
-  logout: () => void
-}

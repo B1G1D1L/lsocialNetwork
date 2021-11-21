@@ -1,31 +1,35 @@
-import React from 'react';
-import { connect} from 'react-redux';
+import React, { useEffect } from 'react';
+import { connect, useDispatch, useSelector} from 'react-redux';
 import { AppStateType, ConnectType } from '../../Redax/redax-store';
 import { getAuthUserData, logout, getUserProfilePhoto } from '../../Redax/reducers/auth-reducer'
+import { getUserId } from '../../Redax/selectors/auth.selectors';
 import Header from './Header';
 
 
-class HeaderContainer extends React.Component<HeaderContainerProps> {
-
-  componentDidMount() {
-    const { getAuthUserData, userId, getUserProfilePhoto, } = this.props
-
-    getAuthUserData();
-    if(userId){
-      getUserProfilePhoto(userId);
-    }
-  }
+const HeaderContainer: React.FC = (props) => {
+  const userId = useSelector(getUserId)
   
-  render() {
-    return(
-      <Header
-        isAuth={this.props.isAuth}
-        login={this.props.login} 
-        userPhoto={this.props.userPhoto}
-        logout={this.props.logout} >
-      </Header>
-    )
+  const dispatch = useDispatch()
+
+  const fetchUserProfilePhoto = (userId: number) => {
+    dispatch(getUserProfilePhoto(userId))
   }
+    
+  const fetchUserDataOwner = () => {
+    dispatch(getAuthUserData())
+  }
+
+  useEffect(() => {
+    fetchUserDataOwner()
+    if(userId) {
+      fetchUserProfilePhoto(userId)
+    }
+  }, [])
+
+  
+  return(
+    <Header />
+  )
 }
 
 
