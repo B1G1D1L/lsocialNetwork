@@ -50,7 +50,7 @@ const profileReduce = (state = initialState, action: ActionsType): InitialStateT
     }
 
     case 'profile/SET_USER_PHOTO': {
-      return {...state, profile: {...state.profile, photos: action.photos} as ProfileType}
+      return {...state, profile: {...state.profile, photos: action.photos.photos} as ProfileType}
     }
 
     default: return state;
@@ -88,10 +88,9 @@ export const updateStatus = (status: string): ThunkType => async (dispatch) => {
 
 export const savePhoto = (photoFile: File): ThunkType => async (dispatch) => {
   const response = await profileAPI.savePhoto(photoFile);
-  
   if(response.resultCode === 0) {
-    dispatch(actionsProfile.setPhotoSuccess(response.data));
-    dispatch(actionsAuth.setUserProfilePhoto(response.data.small));
+    dispatch(actionsProfile.setPhotoSuccess(response.data))
+    dispatch(actionsAuth.setUserProfilePhoto(response.data.photos.small))
   }
 } // Загрузить на сервер главное фото
 

@@ -46,7 +46,8 @@ export const actionsAuth = {
 
   // Утсановить главное фото
   setUserProfilePhoto: (userPhoto: any) => (
-    { type: 'auth/SET_USER_PROFILE_PHOTOS', userPhoto } as const),
+    { type: 'auth/SET_USER_PROFILE_PHOTOS', userPhoto } as const
+  ),
   
 }
 

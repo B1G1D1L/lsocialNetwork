@@ -9,6 +9,10 @@ import styled from 'styled-components';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { ProfileType } from '../../../types/types';
 import { Nullable } from '../../../Redax/redax-store';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfile, getStatus } from '../../../Redax/selectors/profile-selectors';
+import { getIsAuth } from '../../../Redax/selectors/auth.selectors';
+import { savePhoto } from '../../../Redax/reducers/profile-reducer';
 
 const Input = styled('input')({
   display: 'none',
@@ -16,7 +20,11 @@ const Input = styled('input')({
 
 
 const User: React.FC<PropsType > = (props) => {
-  const { profile, savePhoto, isOwner, status, updateStatus } = props
+  const { isOwner, updateStatus } = props
+
+  const dispatch = useDispatch()
+  const profile = useSelector(getProfile)
+  const status = useSelector(getStatus)
 
   if (!profile) {
     return <Preloader />
@@ -24,7 +32,7 @@ const User: React.FC<PropsType > = (props) => {
 
   const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length) {   
-      savePhoto(e.target.files[0]);
+      dispatch(savePhoto(e.target.files[0]))
     }
   }
 
