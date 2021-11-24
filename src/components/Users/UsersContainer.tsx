@@ -19,7 +19,7 @@ class UsersContainer extends React.Component<PropsType> {
 
 
 export default compose<React.ComponentType>(
-  connect<{}, {}, {}, AppStateType>( null, {} ),
+  connect(),
   withAuthRedirect
 )(UsersContainer)
 

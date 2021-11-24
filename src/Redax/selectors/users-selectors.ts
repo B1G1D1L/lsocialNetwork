@@ -25,3 +25,6 @@ export const getFollowingProgress = (state: AppStateType): Array<number> => {
   return state.usersPage.followingInProgress;
 }
 
+export const getFilter = (state:AppStateType) => {
+  return state.usersPage.filters
+}
