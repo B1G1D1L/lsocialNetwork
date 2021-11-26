@@ -5,7 +5,7 @@ import s from './User.module.css';
 import guestPhoto from './../../../assets/images/user.svg';
 import UserStatusHooks from './UserStatusHooks';
 import { IconButton } from '@mui/material';
-import styled from 'styled-components'; 
+import styled from 'styled-components'
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from '../../../Redax/selectors/profile-selectors';
