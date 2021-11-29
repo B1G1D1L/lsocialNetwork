@@ -16,6 +16,7 @@ import Preloader from './components/common/Preloader/Preloader';
 
 import { initializeApp } from './Redax/reducers/app-reducer';
 import { AppStateType } from './Redax/redax-store';
+import ChatPage from './pages/Chat/ChatPage';
 
 const UsersAPIComponent = React.lazy(() => import('./components/Users/UsersContainer'));
 const Setting = React.lazy(() => import('./components/Setting/Setting'));
@@ -46,6 +47,7 @@ class App extends React.Component<PropsType> {
               <Route path='/news'    render={ () => <News />}/>
               <Route path='/music'   render={ () => <Music />}/>
               <Route path='/login'   render={ () => <Login />}/>
+              <Route path='/chat'    render={ () => <ChatPage />}/>
               <Suspense fallback={<div><Preloader/></div>}>
                 <section>
                   <Route path='/users'   render={ () => <UsersAPIComponent />}/>
