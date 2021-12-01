@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { Avatar, Badge, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-import { Nullable } from '../../Redax/redax-store';
 import guestPhoto from '../../assets/images/user.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { getIsAuth, getLogin, getUserPhoto } from '../../Redax/selectors/auth.selectors';

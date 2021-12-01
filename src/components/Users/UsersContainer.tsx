@@ -4,12 +4,8 @@ import Users from './Users';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../hoc/withAuthRdirect';
 
-import { AppStateType } from '../../Redax/redax-store';
 
-
-
-
-class UsersContainer extends React.Component<PropsType> {
+class UsersContainer extends React.Component {
   render() {
     return <>
       <Users />
@@ -23,6 +19,3 @@ export default compose<React.ComponentType>(
   withAuthRedirect
 )(UsersContainer)
 
-
-// Type 
-type PropsType = {}

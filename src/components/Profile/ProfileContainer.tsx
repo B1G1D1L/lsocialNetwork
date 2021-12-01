@@ -7,8 +7,6 @@ import { RouteComponentProps } from 'react-router';
 import { 
     getUserProfile, 
     getStatus,
-    updateStatus, 
-    savePhoto 
   } from '../../Redax/reducers/profile-reducer';
 import { withAuthRedirect } from '../hoc/withAuthRdirect';
 import Profile from './Profile';
@@ -28,14 +26,6 @@ const ProfileConitaner: React.FC<ProfileConitanerProps> = (props) => {
   const fetchUserProfile = (userId: number) => {
     dispatch(getUserProfile(userId))
   }
-
-  useEffect(() => {
-    refreshProfile()
-  }, [])
-  
-  useEffect(() => {
-    refreshProfile()
-  }, [userIdURL])
   
   const refreshProfile = () => {
     let userId = Number(userIdURL)
@@ -51,6 +41,14 @@ const ProfileConitaner: React.FC<ProfileConitanerProps> = (props) => {
       }
     }
   }
+
+  useEffect(() => {
+    refreshProfile()
+  }, [])
+  
+  useEffect(() => {
+    refreshProfile()
+  }, [userIdURL])
 
   return (
     <Profile 

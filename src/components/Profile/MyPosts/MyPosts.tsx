@@ -6,7 +6,6 @@ import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { ElementHOC } from '../../hoc/element';
 import { maxLength5 } from '../../../utils/validators/validators';
 import { Button } from '@mui/material';
-import { PostsType } from '../../../types/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '../../../Redax/selectors/profile-selectors';
 import { actionsProfile } from './../../../Redax/reducers/profile-reducer'

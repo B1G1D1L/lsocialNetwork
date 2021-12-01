@@ -9,7 +9,6 @@ import styled from 'styled-components'
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from '../../../Redax/selectors/profile-selectors';
-import { getUserId } from '../../../Redax/selectors/auth.selectors';
 import { savePhoto } from '../../../Redax/reducers/profile-reducer';
 
 const Input = styled('input')({
