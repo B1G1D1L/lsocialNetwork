@@ -1,6 +1,8 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-import { MessageType } from '../../api/chat-api'
-import { MessageDataType } from '../../Redax/reducers/message-reducer'
+import { useDispatch, useSelector } from 'react-redux'
+import { statusType } from '../../api/chat-api'
+import { sendMessage, startMessagesListening, stopMessagesListening } from '../../Redax/reducers/chat-reducer'
+import { getMessagesSL, getStatusWsSL } from '../../Redax/selectors/chat-selector'
 
 const ChatPage = () => {
   return (
@@ -11,69 +13,42 @@ const ChatPage = () => {
 }
 
 const Chat = () => {
-  const [WsChannel, setWsChannel] = useState<WebSocket | null>(null)
-
-  // Создать канал
+  const dispatch = useDispatch()
+  const status = useSelector(getStatusWsSL)
+ 
   useEffect(() => {
-    let ws: WebSocket
-
-    const closeHandler = () => {
-      console.log('CLOSE WS')
-      setTimeout(() => createChannel, 3000)
-    }
-
-    const createChannel = () => {
-        ws?.removeEventListener('close', closeHandler)
-        ws?.close()
-      ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
-      ws.addEventListener('close', closeHandler)
-
-      setWsChannel(ws)
-    }
-
-    createChannel()
+    dispatch(startMessagesListening())
 
     return () => {
-      ws.removeEventListener('close', closeHandler)
-      ws.close()
+      dispatch(stopMessagesListening())
     }
-  }, [])
+  })
 
 
   return (
     <div>
-      <Messages WsChannel={WsChannel} />
-      <AddMessage WsChannel={WsChannel}/>
+      {status === 'error' 
+        && <div>Произошла ошибка. Пожалуйста, перезагрузите страницу</div>}
+         <>
+            <Messages  />
+            <AddMessage status={status} />
+          </>
     </div>
   )
 }
 
 
-const Messages: React.FC<{WsChannel: WebSocket | null}> = ({WsChannel}) => {
-  const [messages, setMessages] = useState<MessageType[]>([])
-
-  useEffect(() => {
-    const messageHandler = (e: MessageEvent<any>) => {
-      let newMessages = JSON.parse(e.data)
-      setMessages((prevMessages) => [...prevMessages, ...newMessages])
-    }
-
-    WsChannel?.addEventListener('message', messageHandler)
-
-    // Отписка на собитие
-    return () => {
-      WsChannel?.removeEventListener('message', messageHandler)
-    }
-  }, [WsChannel])
+const Messages: React.FC = () => {
+  const messages = useSelector(getMessagesSL)
 
   return (
     <div style={{height: '500px', overflowY: 'auto'}}>
-      {messages.map((m, index) => <Message message={m} key={index} />)}
+      {messages?.map((m, index) => <Message message={m} key={index} />)}
     </div>
   )
 }
 
-const Message: React.FC<{message:MessageType}> = ({message}) => {
+const Message: React.FC<any> = ({message}) => {
 
   return (
     <div style={{display: 'flex', margin: '10px'}}>
@@ -92,27 +67,16 @@ const Message: React.FC<{message:MessageType}> = ({message}) => {
 }
 
 
-const AddMessage: React.FC<{WsChannel: WebSocket | null}> = ({WsChannel}) => {
+const AddMessage: React.FC<{status: statusType}> = ({status}) => {
+  const dispatch = useDispatch()
   const [message, setMessage] = useState('')
-  const [readyStatus, setReadyStatus] = useState<'ready' | 'pending'>('pending')
-
-  useEffect(() => {
-    const openHandler = () => {
-      setReadyStatus('ready')
-    }
-
-    WsChannel?.addEventListener('open', openHandler)
-
-    // Удаление обработчика
-    return () => {
-      WsChannel?.removeEventListener('open', openHandler)
-    }
-  }, [WsChannel])
   
-  const sendMessage = (e: FormEvent<HTMLFormElement>) => {
+  
+  
+  const sendMessageHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if(message) {
-      WsChannel?.send(message)
+      dispatch(sendMessage(message))
       setMessage('')
     }
   }
@@ -122,10 +86,10 @@ const AddMessage: React.FC<{WsChannel: WebSocket | null}> = ({WsChannel}) => {
   }
 
   return(
-    <form onSubmit={sendMessage}>
+    <form onSubmit={sendMessageHandler}>
       <textarea name="message" id="message" value={message} onChange={messageChange}/>
       <button 
-        disabled={WsChannel === null || readyStatus !== 'ready'} 
+        disabled={status !== 'ready'} 
         type='submit'
       >send</button>
     </form>
