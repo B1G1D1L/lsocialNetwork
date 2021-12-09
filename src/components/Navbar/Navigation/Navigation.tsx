@@ -8,6 +8,7 @@ import QueueMusicIcon from '@mui/icons-material/QueueMusic';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PeopleIcon from '@mui/icons-material/People';
 import { Nullable } from '../../../Redax/redax-store';
+import ChatIcon from '@mui/icons-material/Chat';
 
 
 const Navigation: React.FC<NavigationPropsType> = (props) => {
@@ -59,6 +60,14 @@ const Navigation: React.FC<NavigationPropsType> = (props) => {
       >
         <PeopleIcon fontSize="small" />
         Users
+      </NavLink>
+
+      <NavLink
+        to='/chat'
+        activeClassName={s.active}
+      >
+        <ChatIcon fontSize="small" />
+        Chat
       </NavLink>
     </nav>
   )
