@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { statusType } from '../../api/chat-api'
 import { sendMessage, startMessagesListening, stopMessagesListening } from '../../Redax/reducers/chat-reducer'
@@ -40,10 +40,16 @@ const Chat = () => {
 
 const Messages: React.FC = () => {
   const messages = useSelector(getMessagesSL)
+  const messagesAnchorRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    messagesAnchorRef.current?.scrollIntoView({behavior: 'smooth', block: 'end'})
+  }, [messages])
 
   return (
     <div style={{height: '500px', overflowY: 'auto'}}>
       {messages?.map((m, index) => <Message message={m} key={index} />)}
+      <div ref={messagesAnchorRef}></div>
     </div>
   )
 }
