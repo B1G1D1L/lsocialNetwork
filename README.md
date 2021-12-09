@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# `Social-Netwok`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In this project, I learned how to use the React JS library. On the social network, you can find a person and subscribe to him. As the application grew, I added strong typing with the TypeScript library. For server requests I used api https://social-network.samuraijs.com/docs (to use this api you need to be registered on the site https://social-network.samuraijs.com/). 
 
 ## Available Scripts
 
@@ -10,9 +10,6 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
 ### `npm test`
 
@@ -37,34 +34,34 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Other libraries were used in the project:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `TypeScript`
+It is a strict syntactical superset of JavaScript and adds optional static typing to the language.
 
-### Code Splitting
+### `Redux, React-redux`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Redux is an open-source JavaScript library for managing and centralizing application state.
 
-### Analyzing the Bundle Size
+React-redux provides APIs that enable your components to interact with the Redux store, so you don't have to write that logic yourself.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+For asynchronous state update i used `thunk` middleware
+Thunk middleware for Redux. It allows writing functions with logic inside that can interact with a Redux store's `dispatch` and `getState` methods.
 
-### Making a Progressive Web App
+### `React-Router`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+React Router is the standard routing library in React. It keeps the application interface in sync with the URL in the browser. React Router allows you to route the data flow in your application in a meaningful way.
 
-### Advanced Configuration
+### `Axios`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Axios is a simple promise based HTTP client for the browser and node.js. Axios provides a simple to use library in a small package with a very extensible interface.
 
-### Deployment
+### `redux-form, formik`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Formik is a library that helps you work with forms. It makes it easy to retrieve data from a form, validate data, display error messages, and more.
 
-### `npm run build` fails to minify
+### `lassnames`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This is a library for simple conditional concatenation of class names. For me personally, this library is a must in any React application. Of course, until the moment when I find a more convenient tool.
