@@ -1,6 +1,5 @@
-import { MessageType } from "../../api/chat-api";
-import { BaseThunkType, InferActionsTypes } from "../redax-store";
-import { getAuthUserData } from "./auth-reducer";
+import { chatAPI, MessageType } from "../../api/chat-api";
+import { BaseThunkType, DispatchType, InferActionsTypes } from "../redax-store";
 
 
 // State
@@ -10,7 +9,7 @@ const initialState = {
 
 
 // Reducer
-const appReducer = (state = initialState, action: ActionsTypes): initialStateType => { 
+const chatReducer = (state = initialState, action: ActionsTypes): initialStateType => { 
   switch(action.type) {
 
     case 'SN/CHAT/MESSAGES_RESEIVED': {
@@ -28,17 +27,42 @@ const appReducer = (state = initialState, action: ActionsTypes): initialStateTyp
 
 // actions creator
 const actionsChat = {
-  messagesReceived: (messages: MessageType[]) => ({type: 'SN/CHAT/MESSAGES_RESEIVED', payload: {messages}} as const)
+  messagesReceived: (messages: MessageType[]) => {
+    return {type: 'SN/CHAT/MESSAGES_RESEIVED', payload: {messages}} as const
+  }
 }
 
 
 // Thunk creator
-export const getMessagesListening = (): ThunkTypes => async (dispatch) => {
- 
-} // Выполнение всех запросов
+let _newMessagesHandler: ((messages: MessageType[]) => void) | null = null
 
+const newMessageHandlerCreator = (dispatch: DispatchType) => {
+  if(_newMessagesHandler === null) {
+    _newMessagesHandler = (messages) => {
+      dispatch(actionsChat.messagesReceived(messages))
+    }
+  }
 
-export default appReducer;
+  return _newMessagesHandler
+} 
+
+// Подписаться
+export const startMessagesListening = (): ThunkTypes => async (dispatch) => {
+  chatAPI.start()
+  chatAPI.subscribe(newMessageHandlerCreator(dispatch))
+} 
+
+// Отписаться 
+export const stopMessagesListening = (): ThunkTypes => async (dispatch) => {
+  chatAPI.unsubscribe(newMessageHandlerCreator(dispatch))
+} 
+
+// Отправить сообщение
+export const sendMessage = (message: string): ThunkTypes => async (dispatch) => {
+  chatAPI.sendMessage(message)
+}
+
+export default chatReducer;
 
 
 // Types

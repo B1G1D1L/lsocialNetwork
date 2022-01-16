@@ -1,16 +1,10 @@
-let subscrubers = [] as subscrube[]
+let subscrubers = [] as subscribe[]
 
-let ws: WebSocket
+let ws: WebSocket | null = null
 
 const closeHandler = () => {
   console.log('CLOSE WS')
   setTimeout(() => createChannel, 3000)
-}
-const createChannel = () => {
-  ws?.removeEventListener('close', closeHandler)
-  ws?.close()
-  ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
-  ws.addEventListener('close', closeHandler)
 }
 
 const messageHandler = (e: MessageEvent<any>) => {
@@ -18,21 +12,47 @@ const messageHandler = (e: MessageEvent<any>) => {
   subscrubers.forEach(s => s(newMessages))
 }
 
-export const chatAPI = {
+const createChannel = () => {
+  ws?.removeEventListener('close', closeHandler)
+  ws?.close()
+  ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
+  ws.addEventListener('close', closeHandler)
+  ws.addEventListener('message', messageHandler)
+}
 
-  subscrube(callback: subscrube) {
+export const chatAPI = {
+  start() {
+    createChannel()
+  },
+
+  stop() {
+    subscrubers = []
+    ws?.close()
+    ws?.removeEventListener('close', closeHandler)
+    ws?.removeEventListener('message', messageHandler)
+  },
+
+  subscribe(callback: subscribe) {
     subscrubers.push(callback)
     // Отписаться
-    return (callback: subscrube) => {
+    return (callback: subscribe) => {
       subscrubers.filter(s => s !== callback)
     }
   },
+
+  unsubscribe(callback: subscribe) {
+    subscrubers = subscrubers.filter(s => s !== callback)
+  },
+
+  sendMessage(message:string) {
+    ws?.send(message)
+  }
 
 }
 
 
 // Types
-type subscrube = (message: MessageType) => void
+type subscribe = (message: MessageType[]) => void
 
 export type MessageType = {
   message: string
