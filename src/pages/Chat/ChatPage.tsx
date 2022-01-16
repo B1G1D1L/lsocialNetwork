@@ -47,7 +47,7 @@ const Messages: React.FC = () => {
   }, [messages])
 
   return (
-    <div style={{height: '500px', overflowY: 'auto'}}>
+    <div style={{height: '80vh', overflowY: 'auto'}}>
       {messages?.map((m, index) => <Message message={m} key={index} />)}
       <div ref={messagesAnchorRef}></div>
     </div>

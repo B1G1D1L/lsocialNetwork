@@ -26,6 +26,7 @@ const Header: React.FC = (props) => {
   const isAuth = useSelector(getIsAuth)
   const userPhoto = useSelector(getUserPhoto)
   const login = useSelector(getLogin)
+  console.log(userPhoto)
 
   const fetchLogout = () => {
     dispatch(logout)

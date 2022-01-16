@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field, InjectedFormProps } from 'redux-form';
+import { reduxForm, Field, InjectedFormProps, isDirty  } from 'redux-form';
 import styles from './Login.module.css';
 import { login } from '../../Redax/reducers/auth-reducer';
 import { Redirect } from 'react-router';
@@ -9,11 +9,10 @@ import { ElementHOC } from '../hoc/element';
 import { AppStateType } from '../../Redax/redax-store';
 
 
-const Login: React.FC<StateType & DispatchType> = (props) => {
-  let { login, isAuth } = props;
+const Login: React.FC<StateType & DispatchType> = ({ login, isAuth }) => {
 
   const submit = (value: any) => {
-    let {email, password, rememberMe} = value;
+    let { email, password, rememberMe } = value;
     login(email, password, rememberMe);
   }
 
@@ -27,7 +26,7 @@ const Login: React.FC<StateType & DispatchType> = (props) => {
 
 
 // Form
-const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ handleSubmit, error, }) => {
+const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ handleSubmit, error }) => {
   const InputElement = ElementHOC('input');
 
   return <div>
@@ -60,7 +59,9 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ handleSub
   </div>
 }
 
-const LoginReduxForm = reduxForm<LoginFormValuesType>({form: 'login'})(LoginForm);
+const LoginReduxForm = reduxForm<LoginFormValuesType>({
+  form: 'login',
+})(LoginForm);
 
 
 

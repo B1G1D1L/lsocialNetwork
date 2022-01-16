@@ -11,20 +11,23 @@ const HeaderContainer: React.FC = (props) => {
   
   const dispatch = useDispatch()
 
+  const fetchUserProfilePhoto = (userId: number) => {
+    dispatch(getUserProfilePhoto(userId))
+  }
+
   useEffect(() => {
     const fetchUserDataOwner = () => {
       dispatch(getAuthUserData())
     }
-
-    const fetchUserProfilePhoto = (userId: number) => {
-      dispatch(getUserProfilePhoto(userId))
-    }
-
+    
     fetchUserDataOwner()
+  }, [])
+
+  useEffect(() => {
     if(userId) {
       fetchUserProfilePhoto(userId)
     }
-  }, [])
+  }, [userId])
 
   
   return(
