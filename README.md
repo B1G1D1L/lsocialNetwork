@@ -62,6 +62,6 @@ Axios is a simple promise based HTTP client for the browser and node.js. Axios p
 
 Formik is a library that helps you work with forms. It makes it easy to retrieve data from a form, validate data, display error messages, and more.
 
-### `lassnames`
+### `Classnames`
 
 This is a library for simple conditional concatenation of class names. For me personally, this library is a must in any React application. Of course, until the moment when I find a more convenient tool.
