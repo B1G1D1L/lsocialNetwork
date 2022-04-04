@@ -1,0 +1,25 @@
+@import './fonts/fonts.css';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', 'Pacifico', sans-serif;
+  background-color: #f2f2f2;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  outline: none;
+  font-family: Roboto, Pacifico, sans-serif;
+  line-height: 1;
+}
