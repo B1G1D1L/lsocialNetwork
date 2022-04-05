@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useState, ChangeEvent, FormEvent } from 'react'
 
 import styles from './Header.module.css'
 import logo from './../../assets/image/logo.svg'
+import { Field } from '../Field/Field'
 
 
 export const Header = () => {
+  const [value, setValue] = useState('')
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value)
+  }
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log(value)
+  }
+
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <div className='container'>
         <div className={styles.header__wrap}>
 
@@ -14,7 +26,18 @@ export const Header = () => {
             <span>
               <img src={logo} alt="logo" />
             </span>
-            <h3>BceTi</h3>
+            <h2>BceTi</h2>
+          </div>
+
+          <div className="container--small">
+            <div className={styles.header__form}>
+              <Field
+                placeholder='Search for something here...'
+                value={value}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+              />
+            </div>
           </div>
 
           <div className={styles.user}>
@@ -26,6 +49,6 @@ export const Header = () => {
 
         </div>
       </div>
-    </div>
+    </header>
   )
 }
