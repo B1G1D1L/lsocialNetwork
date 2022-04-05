@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react'
+import cn from 'classnames'
 
 import styles from './Header.module.css'
 import logo from './../../assets/image/logo.svg'
@@ -22,7 +23,7 @@ export const Header = () => {
       <div className='container'>
         <div className={styles.header__wrap}>
 
-          <div className={styles.logo}>
+          <div className={cn(styles.logo, 'container--side')}>
             <span>
               <img src={logo} alt="logo" />
             </span>
@@ -40,7 +41,7 @@ export const Header = () => {
             </div>
           </div>
 
-          <div className={styles.user}>
+          <div className={cn(styles.user, 'container--side')}>
             <h3 className={styles.user__name}>Saleh Ahmed</h3>
             <span className={styles.user__avatar}>
               <img src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" alt="" />

@@ -1,10 +1,7 @@
 import React from 'react'
 
-import { Header } from '../../components/Header/Header'
-
-
 export const ProfilePage = () => {
   return (
-    <Header />
+    <div>hello profile</div>
   )
 }
