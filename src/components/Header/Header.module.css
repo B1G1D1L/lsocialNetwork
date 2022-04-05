@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  height: 75px;
+}
+
+.header__wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-self: start;
+}
+
+.logo span {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+/* Avatar */
+.user {
+  display: flex; 
+  align-items: center;
+}
+
+.user__avatar {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+
+  margin-left: 10px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.user__avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
