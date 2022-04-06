@@ -3,6 +3,7 @@
   padding: 5px 10px;
   border: 1px solid #dadbdf;
   border-radius: 10px;
+  background-color: transparent;
 }
 
 .form {
@@ -14,6 +15,7 @@
   border: none;
   font-size: 16px;
   width: 100%;
+  background-color: transparent;
 }
 
 .form__btn {

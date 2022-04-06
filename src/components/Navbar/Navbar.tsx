@@ -10,34 +10,35 @@ import { ReactComponent as Profile } from './../../assets/image/profile.svg'
 import { ReactComponent as Setting } from './../../assets/image/setting.svg'
 import { ReactComponent as Logout } from './../../assets/image/logout.svg'
 
+
 export const Navbar = () => {
   return (
     <nav className={styles.nav}>
-      <LinkCustom to='/profile' text='Feed' > 
-        <Feed/>
+      <LinkCustom to='/feed' text='Feed' >
+        <Feed />
       </LinkCustom>
 
-      <LinkCustom to='/Users' text='Users' > 
+      <LinkCustom to='/Users' text='Users' >
         <Users />
       </LinkCustom>
 
-      <LinkCustom to='/Messages' text='Messages' > 
+      <LinkCustom to='/Messages' text='Messages' >
         <Messages />
       </LinkCustom>
 
-      <LinkCustom to='/notification' text='Notification' > 
+      <LinkCustom to='/notification' text='Notification' >
         <Notification />
       </LinkCustom>
 
-      <LinkCustom to='/profile' text='Profile' > 
+      <LinkCustom to='/profile' text='Profile' >
         <Profile />
       </LinkCustom>
 
-      <LinkCustom to='/setting' text='Setting' > 
+      <LinkCustom to='/setting' text='Setting' >
         <Setting />
       </LinkCustom>
 
-      <LinkCustom to='/logout' text='Logout' > 
+      <LinkCustom to='/logout' text='Logout' >
         <Logout />
       </LinkCustom>
     </nav>
@@ -51,13 +52,16 @@ interface PropsLink {
   children: React.ReactNode
 }
 
-const LinkCustom = ( {to, text, children}: PropsLink ) => {
+const styleActive = styles.active
+const styleLink = styles.nav__link
+
+const LinkCustom = ({ to, text, children }: PropsLink) => {
   return (
     <NavLink
       to={to}
-      className={({ isActive }) => isActive ? 'active' : ''}
+      className={({ isActive }) => (isActive ? styleActive : styleLink ) }
     >
-      <div className={styles.nav__link}>
+      <div className={styles.nav__body}>
         {children}
         <h3 className={styles.nav__text}>{text}</h3>
       </div>

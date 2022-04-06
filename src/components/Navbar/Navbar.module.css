@@ -1,9 +1,16 @@
-.nav__link {
+.nav .nav__body {
+  margin-bottom: 10px;
+}
+
+.nav__body {
   display: flex;
   align-items: center;
   padding: 14px;
   border-radius: 10px;
   transition: background 0.2s ease-in;
+}
+.nav__body:hover {
+  background-color: #dadbdf;
 }
 
 .nav__text {
@@ -15,19 +22,19 @@ svg {
   height: 17px;
   fill: #4d577b;
   margin-right: 10px;
-  transition: fill 0.2s ease-in;
+  transition: fill 0.3s ease-in;
 }
 
-.nav__link:hover {
+
+/* Active Link */
+.active .nav__body {
   background: #4d577b;
 }
 
-.nav__link:hover .nav__text {
+.active .nav__text {
   color: white;
 }
 
-.nav__link:hover svg {
+.active svg {
   fill: white;
 }
-
-

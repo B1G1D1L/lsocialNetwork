@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', 'Pacifico', sans-serif;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   font-size: 15px;
 }
 
@@ -15,6 +15,7 @@ body {
   font-family: Roboto, sans-serif;
   line-height: 1;
   color: #42547a;
+  font-weight: 400;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -47,13 +48,61 @@ a {
   padding: 0 10px;
 }
 
+.container__side {
+  max-width: 250px;
+  width: 100%;
+  background-color: white;
+}
+
+.container__center {
+  background-color: #f2f2f2;
+  border-radius: 20px 20px 0 0 ;
+}
+
+.container__side--left {
+  padding-right: 20px;
+  padding-top: 15px;
+}
+
+.container__side--right {
+  padding-left: 20px;
+}
+
 .container--small {
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
 }
 
-.container--side {
-  max-width: 250px;
-  width: 100%;
+
+
+
+
+
+
+
+
+
+
+
+
+
+.swiper {
+  position: relative;
+  display: flex;
+  width: 200px;
+  height: 50px;
 }
+
+.swiper-wrapper {
+  flex-direction: row;
+  align-items: center;
+}
+
+.swiper-slide {
+  background-color: red;
+  border-radius: 10px;
+}
+
+
+
