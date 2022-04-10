@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import cn from 'classnames'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 
 import styles from './App.module.css'
 import { Header } from './components/Header/Header';
@@ -13,11 +13,6 @@ import { FriendsParty } from './components/FriendsParty/FriendsParty';
 
 
 function App() {
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    navigate('/feed')
-  }, [navigate])
 
   return (
     <>
@@ -33,12 +28,13 @@ function App() {
 
             <div className={cn("container--small", 'container__center')}>
               <Routes>
-                <Route path='*' element={<ErrorPaage />} />
-                <Route path='/profile' element={<ProfilePage />}>
+                <Route path='/' element={<Navigate replace to='feed' />} />
+                <Route path='feed' element={<Feed />} />
+                <Route path='profile' element={<ProfilePage />}>
                   <Route path=':userId' element={<ProfilePage />} />
                 </Route>
-                <Route path='feed' element={<Feed />} />
                 <Route path='logout' element={<LoginPage />} />
+                <Route path='*' element={<ErrorPaage />} />
               </Routes>
             </div>
 

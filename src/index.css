@@ -73,36 +73,3 @@ a {
   width: 100%;
   margin: 0 auto;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.swiper {
-  position: relative;
-  display: flex;
-  width: 200px;
-  height: 50px;
-}
-
-.swiper-wrapper {
-  flex-direction: row;
-  align-items: center;
-}
-
-.swiper-slide {
-  background-color: red;
-  border-radius: 10px;
-}
-
-
-

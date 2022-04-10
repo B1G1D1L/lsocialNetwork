@@ -59,7 +59,10 @@ const LinkCustom = ({ to, text, children }: PropsLink) => {
   return (
     <NavLink
       to={to}
-      className={({ isActive }) => (isActive ? styleActive : styleLink ) }
+      className={({ isActive }) => {
+        console.log(isActive)
+        return isActive ? styleActive : styleLink 
+      } }
     >
       <div className={styles.nav__body}>
         {children}
