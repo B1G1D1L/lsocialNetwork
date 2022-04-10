@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.swiper__wrapper {
+  justify-content: flex-start;
+}
+
 .slide__stories {
   display: flex;
   flex-direction: column;
@@ -26,6 +30,7 @@
   background: #fff url('./../../assets/image/plus.svg') no-repeat center;
   background-size: 80%;
   border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 

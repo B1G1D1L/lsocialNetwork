@@ -25,8 +25,10 @@ export const FriendsParty = () => {
         maxWidth='100%'
         placeholder="Search Friends!"
       />
-      <ShortStories />
 
+      <div className={styles.stories}>
+        <ShortStories />
+      </div>
     </div>
   )
 }

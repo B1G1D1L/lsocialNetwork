@@ -14,9 +14,9 @@ export const ShortStories = () => {
     <>
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
-        spaceBetween={20}
+        spaceBetween={15}
+        slidesPerView={3.6}
         crollbar={{ draggable: true }}
-        onSlideChange={() => console.log('slide change')}
       >
         <SwiperSlide>
           <div className='slide__wrap'>
@@ -31,7 +31,6 @@ export const ShortStories = () => {
           <div className='slide__wrap'>
             <div className='slide__stories'>
               <img src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" alt="" />
-              <span className='slide__stories--add' />
             </div>
           </div>
         </SwiperSlide>
@@ -40,7 +39,6 @@ export const ShortStories = () => {
           <div className='slide__wrap'>
             <div className='slide__stories'>
               <img src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" alt="" />
-              <span className='slide__stories--add' />
             </div>
           </div>
         </SwiperSlide>
@@ -49,10 +47,19 @@ export const ShortStories = () => {
           <div className='slide__wrap'>
             <div className='slide__stories'>
               <img src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" alt="" />
-              <span className='slide__stories--add' />
             </div>
           </div>
         </SwiperSlide>
+
+        <SwiperSlide>
+          <div className='slide__wrap'>
+            <div className='slide__stories'>
+              <img src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" alt="" />
+            </div>
+          </div>
+        </SwiperSlide>
+
+        
 
       </Swiper>
     </>
