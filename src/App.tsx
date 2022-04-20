@@ -27,15 +27,17 @@ function App() {
 
 
             <div className={cn("container--small", 'container__center')}>
-              <Routes>
-                <Route path='/' element={<Navigate replace to='feed' />} />
-                <Route path='feed' element={<Feed />} />
-                <Route path='profile' element={<ProfilePage />}>
-                  <Route path=':userId' element={<ProfilePage />} />
-                </Route>
-                <Route path='logout' element={<LoginPage />} />
-                <Route path='*' element={<ErrorPaage />} />
-              </Routes>
+              <div className='container__center--wrapper'>
+                <Routes>
+                  <Route path='/' element={<Navigate replace to='feed' />} />
+                  <Route path='feed' element={<Feed />} />
+                  <Route path='profile' element={<ProfilePage />}>
+                    <Route path=':userId' element={<ProfilePage />} />
+                  </Route>
+                  <Route path='logout' element={<LoginPage />} />
+                  <Route path='*' element={<ErrorPaage />} />
+                </Routes>
+              </div>
             </div>
 
             <div className={cn(styles.friends, 'container__side', 'container__side--right')}>

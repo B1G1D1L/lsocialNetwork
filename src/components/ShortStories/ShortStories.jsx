@@ -15,7 +15,7 @@ export const ShortStories = () => {
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={15}
-        slidesPerView={3.6}
+        slidesPerView={4}
         crollbar={{ draggable: true }}
       >
         <SwiperSlide>

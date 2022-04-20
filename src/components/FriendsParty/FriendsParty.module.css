@@ -1,3 +1,90 @@
-.stories {
+.aside {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Friends */
+
+.friends {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.friends__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+}
+
+.friends__title {
+  font-weight: inherit;
+}
+
+.friends__menu {
+  font-size: 20px;
+  line-height: 0;
+  cursor: pointer;
+}
+
+.friends__body {
   margin-top: 20px;
+}
+
+/* Friend */
+.friend {
+  display: flex;
+  align-items: center;
+}
+
+.friend + .friend {
+  margin-top: 15px;
+}
+
+.friend__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #f2f2f2;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.friend__avatar img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.friend__name {
+  font-weight: 700;
+  margin-left: 15px;
+}
+
+.friend__initials {
+  line-height: 0;
+  font-weight: 700;
+}
+
+.friend__condition {
+  margin-left: auto;
+  
+}
+
+.friend__online {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: lawngreen;
+  border-radius: 50%;
+}
+
+.friend__offline {
+  color: #757575;
+  font-size: 12px;
 }

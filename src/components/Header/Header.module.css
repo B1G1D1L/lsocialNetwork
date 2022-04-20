@@ -29,11 +29,19 @@
   margin-right: 10px;
 }
 
+.logo h2 {
+  font-weight: 700;
+}
+
 /* Avatar */
 .user {
   display: flex; 
   align-items: center;
   justify-content: flex-end;
+}
+
+.user h3 {
+  font-weight: 700;
 }
 
 .user__avatar {
