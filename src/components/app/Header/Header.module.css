@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   background-color: #ffffff;
-  height: 75px;
+  height: var(--header-height);
 }
 
 .header__wrap {

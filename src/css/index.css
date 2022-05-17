@@ -1,4 +1,10 @@
-@import './fonts/fonts.css';
+@import '../fonts/fonts.css';
+
+:root {
+  --header-height: 75px; 
+  --container-height: calc(100vh - var(--header-height)); 
+  --container-background: #f6f6f6;
+}
 
 body {
   margin: 0;
@@ -42,7 +48,7 @@ a {
 }
 
 .container {
-  max-width: 1420px;
+  max-width: 1220px;
   width: 100%;
   margin: 0 auto;
   padding: 0 10px;
@@ -55,8 +61,9 @@ a {
 }
 
 .container__center {
-  background-color: #f2f2f2;
-  border-radius: 20px 20px 0 0 ;
+  background-color: var(--container-background);
+  border-radius: 20px 20px 0 0;
+  height: var(--container-height);
 }
 
 .container__side--left {
@@ -73,7 +80,6 @@ a {
 }
  
 .container--small {
-  max-width: 900px;
   width: 100%;
   margin: 0 auto;
 }

@@ -1,54 +1,62 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { useState } from 'react'
 import cn from 'classnames'
 
 import styles from './FriendsParty.module.css'
-import { Field } from '../Field/Field'
+import { Field } from '../'
 
 
 const fakeFriends = [
-  {
+  { 
+    id: 1,
     name: 'Diana Pugachovads',
     online: false,
     visit: '15 min',
     avatar: null
   },
   {
+    id: 2,
     name: 'Yura Pricadsfgsgsdgsgfs',
     online: true,
     visit: '',
     avatar: 'https://i.pinimg.com/736x/7b/42/4a/7b424a30b80d383ed34a40135f84a305.jpg'
   },
   {
+    id: 3,
     name: 'Diana Pugachova',
     online: false,
     visit: '2 min',
     avatar: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
   },
   {
+    id: 4,
     name: 'Yura Prica',
     online: true,
     visit: '',
     avatar: 'https://i.pinimg.com/736x/7b/42/4a/7b424a30b80d383ed34a40135f84a305.jpg'
   },
   {
+    id: 5,
     name: 'Diana Pugachova',
     online: false,
     visit: '2 min',
     avatar: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
   },
   {
+    id: 6,
     name: 'Yura Prica',
     online: true,
     visit: '',
     avatar: 'https://i.pinimg.com/736x/7b/42/4a/7b424a30b80d383ed34a40135f84a305.jpg'
   },
   {
+    id: 7,
     name: 'Diana Pugachova',
     online: false,
     visit: '10 min',
     avatar: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
   },
   {
+    id: 8,
     name: 'Yura Prica',
     online: true,
     visit: '',
@@ -62,14 +70,18 @@ const fakeFriends = [
 export const FriendsParty = () => {
   const [value, setValue] = useState('')
 
-  const handleChange = (value: string) => {
-    setValue(value)
-    console.log(value)
+  const handleChange = (val: string) => {
+    setValue(val)
   }
 
-  const handleSubmit = (value: string) => {
-    console.log(value)
+  const handleSubmit = (val: string) => {
+    console.log(val)
   }
+
+  // Заглушка
+  React.useEffect(() => {
+    console.log(value)
+  }, [value])
 
   return (
     <aside className={styles.aside}>
@@ -89,10 +101,8 @@ export const FriendsParty = () => {
         <div className={cn(styles.friends__body, styles.body)}>
           {fakeFriends.map(item => (
             <Friend
-              name={item.name}
-              avatar={item.avatar}
-              online={item.online}
-              visit={item.visit}
+              key={item.id}
+              {...item}
             />
           ))}
         </div>
@@ -104,13 +114,16 @@ export const FriendsParty = () => {
 
 
 interface PropsFriend {
+  id: number,
   name: string,
   online?: boolean,
   visit?: string,
   avatar: string | null,
 }
 
-const Friend = ({ name, avatar, online = false, visit = '1 min' }: PropsFriend) => {
+const Friend = (props: PropsFriend) => {
+  const { name, avatar, online = false, visit = '1 min' } = props
+
   const lengthName = online ? 19 : 15
   const shortName = name.length > 16 ? name.slice(0, lengthName) + '...' : name
   const splitName = name.split(' ')

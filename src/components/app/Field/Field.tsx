@@ -6,14 +6,15 @@ import styles from './Field.module.css'
 
 interface PropsType {
   placeholder?: string,
-  maxWidth?: string 
+  maxWidth?: string,
+  classNames?: string[],
   onChange: (value: string) => void,
-  onSubmit: (value: string) => void
+  onSubmit: (value: string) => void,
 }
 
 
 export const Field = (props: PropsType) => {
-  const { onChange, onSubmit, placeholder, maxWidth } = props
+  const { onChange, onSubmit, placeholder, maxWidth, classNames } = props
   const [value, setValue] = useState('')
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -27,7 +28,7 @@ export const Field = (props: PropsType) => {
 
   useEffect(() => {
     onChange(value)
-  }, [value])
+  }, [value, onChange])
   
 
   return (
@@ -35,7 +36,7 @@ export const Field = (props: PropsType) => {
       className={styles.wrapper} 
       style={{maxWidth: maxWidth }}
     >
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form onSubmit={handleSubmit} className={cn(styles.form, (classNames && [...classNames]))}>
         <button type='submit' className={styles.form__btn} />
         <input 
           type="text"

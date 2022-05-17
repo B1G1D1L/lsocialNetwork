@@ -1,0 +1,12 @@
+.field {
+  display: flex;
+  align-items: center;
+}
+
+.field img {
+  max-width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  object-fit: cover;
+  border-radius: 50%;
+}

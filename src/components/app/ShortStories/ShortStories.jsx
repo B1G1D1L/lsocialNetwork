@@ -1,11 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { A11y, Navigation, Pagination, Scrollbar } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js'
-import cn from 'classnames'
 
 import 'swiper/swiper-bundle.css';
 import './ShortStories.css'
-
 
 
 export const ShortStories = () => {

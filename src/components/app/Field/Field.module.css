@@ -1,14 +1,17 @@
 .wrapper {
   width: 100%;
-  padding: 5px 10px;
-  border: 1px solid #dadbdf;
-  border-radius: 10px;
+  
   background-color: transparent;
 }
 
 .form {
   display: flex;
   align-items: center;
+  padding: 5px 10px;
+  
+  border: 1px solid #dadbdf;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .form__input {
@@ -18,12 +21,16 @@
   background-color: transparent;
 }
 
+.form__input::placeholder {
+  opacity: 0.7;
+}
+
 .form__btn {
   width: 30px;
   height: 30px;
   margin-right: 5px;
 
-  background-image: url('./../../assets/image/search.svg');
+  background-image: url('./../../../assets/image/search.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 67%;

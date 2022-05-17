@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import cn from 'classnames'
 
 import styles from './Header.module.css'
-import logo from './../../assets/image/logo.svg'
-import { Field } from '../Field/Field'
+import logo from './../../../assets/image/logo.svg'
+import { Field } from '../'
 
 
 export const Header = () => {
@@ -17,17 +18,22 @@ export const Header = () => {
     console.log(value)
   }
 
+  // Заглушка
+  React.useEffect(() => {
+    console.log(value)
+  }, [value])
+
   return (
     <header className={styles.header}>
       <div className='container'>
         <div className={styles.header__wrap}>
 
-          <div className={cn(styles.logo, 'container__side')}>
+          <Link to='/feed' className={cn(styles.logo, 'container__side')}>
             <span>
               <img src={logo} alt="logo" />
             </span>
             <h2>BceTi</h2>
-          </div>
+          </Link>
 
           <div className="container--small">
             <div className={styles.header__form}>
