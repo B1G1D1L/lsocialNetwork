@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import cn from 'classnames'
 
 import styles from './FriendsParty.module.css'
@@ -74,8 +74,9 @@ export const FriendsParty = () => {
     setValue(val)
   }
 
-  const handleSubmit = (val: string) => {
-    console.log(val)
+  const onSearchFriends = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    console.log(value)
   }
 
   // Заглушка
@@ -85,12 +86,13 @@ export const FriendsParty = () => {
 
   return (
     <aside className={styles.aside}>
-      <Field
-        onChange={handleChange}
-        onSubmit={handleSubmit}
-        maxWidth='100%'
-        placeholder="Search Friends!"
-      />
+      <form onSubmit={onSearchFriends} >
+        <Field
+          onChange={handleChange}
+          maxWidth='100%'
+          placeholder="Search Friends!"
+        />
+      </form>
 
       <div className={styles.friends}>
         <div className={styles.friends__header}>

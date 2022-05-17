@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
 
@@ -14,7 +14,8 @@ export const Header = () => {
     setValue(value)
   }
 
-  const handleSubmit = (value: string) => {
+  const onSubmitSearch = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     console.log(value)
   }
 
@@ -36,13 +37,12 @@ export const Header = () => {
           </Link>
 
           <div className="container--small">
-            <div className={styles.header__form}>
+            <form onSubmit={onSubmitSearch} className={styles.header__form}>
               <Field
                 placeholder='Search for something here...'
                 onChange={handleChange}
-                onSubmit={handleSubmit}
               />
-            </div>
+            </form>
           </div>
 
           <div className={cn(styles.user, 'container__side')}>
