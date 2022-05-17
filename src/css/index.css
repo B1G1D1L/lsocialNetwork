@@ -4,6 +4,7 @@
   --header-height: 75px; 
   --container-height: calc(100vh - var(--header-height)); 
   --container-background: #f6f6f6;
+  --svg-fill: #4d577b;
 }
 
 body {

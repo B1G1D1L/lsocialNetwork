@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Field } from '../../app';
 import { ReactComponent as Photo } from './../../../assets/image/photo.svg';
+import { FieldPost } from '../FieldPost/FieldPost';
 
 import styles from './NewPost.module.css';
 import stylesPost from './../Post/Post.module.css';
@@ -9,7 +10,7 @@ import stylesPost from './../Post/Post.module.css';
 
 
 export const NewPost = () => {
-  const onChangeText = (val: string) => {
+  const onChangeNewPost = (val: string) => {
     console.log(val)
   }
 
@@ -20,13 +21,13 @@ export const NewPost = () => {
   return (
     <div className={stylesPost.post}>
       <div className={styles.field}>
-        <form >
+
+        <form>
           <div className={styles.field__input}>
             <img src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" alt="ava" />
-            <Field 
-              onChange={onChangeText}
+            <FieldPost 
+              onChange={onChangeNewPost} 
               placeholder="What's happening?"
-              classNames={[`${stylesPost.field__post}`]}
             />
           </div>
 
@@ -39,6 +40,7 @@ export const NewPost = () => {
             <button type='submit'>Post</button>
           </div>
         </form>
+        
       </div>
     </div>
   )
