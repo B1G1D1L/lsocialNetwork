@@ -21,12 +21,6 @@
   font-weight: inherit;
 }
 
-.friends__menu {
-  font-size: 20px;
-  line-height: 0;
-  cursor: pointer;
-}
-
 .friends__body {
   margin-top: 20px;
 }

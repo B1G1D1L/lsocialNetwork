@@ -3,12 +3,14 @@
 :root {
   --header-height: 75px; 
   --container-height: calc(100vh - var(--header-height)); 
-  --container-background: rgba(183, 183, 183, 0.1);
+  --container-background: rgba(200, 200, 200, 0.1);
   --svg-fill: #4d577b;
 
+  --color-main: #42547a;
   --color-white: white;
   --color-blue: #3a89ed;
   --color-blue-light: #0574ff;
+
 }
 
 body {
@@ -87,4 +89,11 @@ a {
 .container--small {
   width: 100%;
   margin: 0 auto;
+}
+
+.menu_btn {
+  font-size: 20px;
+  line-height: 0;
+  cursor: pointer;
+  background-color: transparent;
 }

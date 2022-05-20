@@ -1,5 +1,7 @@
-import { NewPost } from "./FeedPage/NewPost/NewPost";
+import { NewPost } from './FeedPage/NewPost/NewPost';
+import { Post } from './FeedPage/Post/Post';
 
 export {
-  NewPost
+  NewPost,
+  Post
 }

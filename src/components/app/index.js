@@ -5,6 +5,7 @@ import { FriendsParty } from "./FriendsParty/FriendsParty";
 import { Preloader } from "./Preloader/Preloader";
 import { ShortStories } from "./ShortStories/ShortStories";
 import { Button } from './Button/Button';
+import { DotButton } from "./DotButton/DotButton";
 
 export {
   Field,
@@ -13,5 +14,6 @@ export {
   Navbar,
   Preloader,
   ShortStories,
-  Button
+  Button,
+  DotButton
 }
