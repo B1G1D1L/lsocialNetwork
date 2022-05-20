@@ -38,20 +38,12 @@
 .friend__avatar {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 40px;
   height: 40px;
   background-color: #f2f2f2;
   border-radius: 50%;
   overflow: hidden;
-}
-
-.friend__avatar img {
-  display: block;
-  width: 40px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 50%;
 }
 
 .friend__name {
@@ -60,6 +52,10 @@
 }
 
 .friend__initials {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
   line-height: 0;
   font-weight: 700;
 }

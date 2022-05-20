@@ -3,8 +3,8 @@
   align-items: center;
   width: 100%;
   padding: 5px 10px;
-  border: 1px solid #f6f6f6;
-  background-color: #f6f6f6;
+  border: 1px solid var(--color-super-light);
+  background-color: var(--color-super-light);
   border-radius: 10px;
   overflow: hidden;
 }

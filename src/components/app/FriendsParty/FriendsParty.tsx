@@ -110,7 +110,6 @@ export const FriendsParty = () => {
           ))}
         </div>
       </div>
-
     </aside>
   )
 }
@@ -134,14 +133,15 @@ const Friend = (props: PropsFriend) => {
 
   return (
     <div className={styles.friend}>
-
       <div className={styles.friend__avatar}>
         {avatar
-          ? <img src={avatar} alt={name} />
+          ? <img className={cn('avatar', 'avatar_small')} src={avatar} alt={name} />
           : <span className={styles.friend__initials}>{initials}</span>
-      }
+        }
       </div>
+
       <span className={styles.friend__name} >{shortName}</span>
+      
       <div className={styles.friend__condition}>
         {online
           ? <span className={styles.friend__online} />

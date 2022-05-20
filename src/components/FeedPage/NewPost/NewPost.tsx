@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { FormEvent } from 'react'
+import cn from 'classnames';
 
 import { ReactComponent as Photo } from './../../../assets/image/photo.svg';
 import { FieldPost } from '../FieldPost/FieldPost';
@@ -10,23 +11,28 @@ import stylesPost from './../Post/Post.module.css';
 
 
 export const NewPost = () => {
-  const onChangeNewPost = (val: string) => {
-    console.log(val)
-  }
+  const [value, setValue] = React.useState('')
 
-  const onSubmit = (val: string) => {
-    console.log(val)
+  const onSubmitNewPost = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log(value)
+    setValue('')
   }
 
   return (
     <div className={stylesPost.post}>
       <div className={styles.field}>
 
-        <form>
+        <form onSubmit={onSubmitNewPost}>
           <div className={styles.field__input}>
-            <img src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" alt="ava" />
+            <img 
+              className={cn('avatar', 'avatar_small')}
+              src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" 
+              alt="ava"
+            />
             <FieldPost 
-              onChange={onChangeNewPost} 
+              value={value}
+              onChange={setValue} 
               placeholder="What's happening?"
             />
           </div>

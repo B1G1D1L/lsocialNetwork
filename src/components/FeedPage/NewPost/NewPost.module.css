@@ -8,25 +8,22 @@
 }
 
 .field img {
-  max-width: 40px;
-  height: 40px;
   margin-right: 10px;
-  object-fit: cover;
-  border-radius: 50%;
 }
 
 /* Top */
 .field__input {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
-}
+  padding: 20px 0 10px;
+  }
 
 /* Bottom */
 .field__send {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px 0 20px;
 }
 
 .field__send label {

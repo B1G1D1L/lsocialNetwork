@@ -5,6 +5,7 @@ import styles from './FieldPost.module.css';
 
 
 interface PropsType {
+  value: string,
   placeholder?: string,
   isExtended?: boolean 
   onChange: (value: string) => void,
@@ -12,7 +13,7 @@ interface PropsType {
 
 
 export const FieldPost = (props: PropsType) => {
-  const { placeholder, isExtended = false, onChange } = props
+  const { value, placeholder, onChange, } = props
 
   const [text, setText] = React.useState('')
 
@@ -30,6 +31,7 @@ export const FieldPost = (props: PropsType) => {
         type="text" 
         placeholder={placeholder} 
         onChange={onChangePost}
+        value={value}
       />
     </div>
   )

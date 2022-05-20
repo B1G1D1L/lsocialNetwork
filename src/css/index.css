@@ -8,10 +8,11 @@
 
   --color-main: #42547a;
   --color-white: white;
-  --color-blue: #3a89ed;
-  --color-blue-light: #0574ff;
+  --color-blue: #0574ff;
+  --color-blue-light:  #3a89ed;
   --color-grey: rgb(176, 176, 176);
   --color-light: rgb(213 213 213);
+  --color-super-light: #f6f6f6;
 
 }
 
@@ -49,7 +50,9 @@ h3 {
   font-size: 18px;
 }
 p {
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 1.3;
+  margin: 0;
 }
 
 a {
@@ -98,4 +101,20 @@ a {
   line-height: 0;
   cursor: pointer;
   background-color: transparent;
+}
+
+.avatar {
+  display: block;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatar_large {
+  width: 50px;
+  height: 50px;
+}
+
+.avatar_small {
+  width: 40px;
+  height: 40px;
 }
