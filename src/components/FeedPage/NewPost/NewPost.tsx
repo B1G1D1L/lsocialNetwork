@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Field } from '../../app';
 import { ReactComponent as Photo } from './../../../assets/image/photo.svg';
 import { FieldPost } from '../FieldPost/FieldPost';
+import { Button } from '../../app';
 
 import styles from './NewPost.module.css';
 import stylesPost from './../Post/Post.module.css';
@@ -36,8 +36,7 @@ export const NewPost = () => {
               <Photo />Photo
             </label>
             <input type="file" id='newPostFile' />
-
-            <button type='submit'>Post</button>
+            <Button type='submit'>Post</Button>
           </div>
         </form>
         
