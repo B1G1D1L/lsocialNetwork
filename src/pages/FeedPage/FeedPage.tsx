@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { NewPost } from '../../components'
-import { Post } from '../../components'
+import { NewPost } from '@components/index'
+import { Post } from '@components/index'
 
 export const FeedPage = () => {
   return (

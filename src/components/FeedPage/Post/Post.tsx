@@ -1,12 +1,12 @@
 import React from 'react';
 import cn from 'classnames';
 
-import { ReactComponent as Like } from './../../../assets/image/like.svg';
-import { ReactComponent as LikeNo } from './../../../assets/image/like-no.svg';
-import { ReactComponent as Comment } from './../../../assets/image/comment.svg';
-import { ReactComponent as Share } from './../../../assets/image/share.svg';
-import { ReactComponent as Send } from './../../../assets/image/send.svg';
-import { DotButton, Button } from '../../app';
+import { ReactComponent as Like } from '@assets/image/like.svg';
+import { ReactComponent as LikeNo } from '@assets/image/like-no.svg';
+import { ReactComponent as Comment } from '@assets/image/comment.svg';
+import { ReactComponent as Share } from '@assets/image/share.svg';
+import { ReactComponent as Send } from '@assets/image/send.svg';
+import { DotButton, Button } from '@components/app';
 import { FieldPost } from '../FieldPost/FieldPost';
 
 

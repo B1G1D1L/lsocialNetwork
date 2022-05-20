@@ -1,9 +1,9 @@
 import React, { FormEvent } from 'react'
 import cn from 'classnames';
 
-import { ReactComponent as Photo } from './../../../assets/image/photo.svg';
-import { FieldPost } from '../FieldPost/FieldPost';
-import { Button } from '../../app';
+import { ReactComponent as Photo } from '@assets/image/photo.svg';
+import { FieldPost } from '@components/index';
+import { Button } from '@components/app';
 
 import styles from './NewPost.module.css';
 import stylesPost from './../Post/Post.module.css';

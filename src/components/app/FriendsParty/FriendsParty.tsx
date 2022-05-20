@@ -1,10 +1,10 @@
 import React, { FormEvent, useState } from 'react'
 import cn from 'classnames'
 
-import styles from './FriendsParty.module.css'
-import { Field } from './../'
-import { DotButton } from './../'
+import { Field } from '@components/app'
+import { DotButton } from '@components/app'
 
+import styles from './FriendsParty.module.css'
 
 const fakeFriends = [
   { 

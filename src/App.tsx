@@ -3,7 +3,7 @@ import cn from 'classnames'
 import { Routes, Route, Navigate } from 'react-router-dom'
 
 import styles from './App.module.css'
-import { Header, Navbar, FriendsParty } from './components/app';
+import { Header, Navbar, FriendsParty } from '@components/app';
 import { LoginPage, ProfilePage, ErrorPaage, FeedPage } from './pages';
 
 

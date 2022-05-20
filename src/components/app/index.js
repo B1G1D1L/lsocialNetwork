@@ -15,5 +15,5 @@ export {
   Preloader,
   ShortStories,
   Button,
-  DotButton
+  DotButton,
 }

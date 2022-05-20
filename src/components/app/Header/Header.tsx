@@ -2,9 +2,10 @@ import React, { FormEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
 
+import logo from '@assets/image/logo.svg'
+import { Field } from '@components/app'
+
 import styles from './Header.module.css'
-import logo from './../../../assets/image/logo.svg'
-import { Field } from '../'
 
 
 export const Header = () => {
