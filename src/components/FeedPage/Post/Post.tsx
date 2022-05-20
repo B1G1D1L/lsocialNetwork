@@ -16,10 +16,19 @@ import styles from './Post.module.css'
 export const Post = () => {
 
   const [comment, setComment] = React.useState<string>('')
+  const [like, setLike] = React.useState(false)
 
   const onSubmitComment = () => {
     console.log(comment)
     setComment('')
+  }
+
+  const onShowComments = () => {
+    console.log('show comment')
+  }
+
+  const onShare = () => {
+    console.log('on share')
   }
 
   return (
@@ -66,19 +75,19 @@ export const Post = () => {
       </div>
 
       <div className={cn(styles.post__actions, styles.actions)}>
-        <Button transparent>
+        <Button onClick={() => setLike(!like)} transparent>
           <div className={cn(styles.actions__like, styles.actions__item)}>
-            <LikeNo />
+            {like ? <Like /> : <LikeNo />}
             <span>Like</span>
           </div>
         </Button>
-        <Button transparent>
+        <Button onClick={onShowComments} transparent>
           <div className={cn(styles.actions__comments, styles.actions__item)}>
             <Comment />
             <span>Comments</span>
           </div>
         </Button>
-        <Button transparent>
+        <Button onClick={onShare} transparent>
           <div className={cn(styles.actions__share, styles.actions__item)}>
             <Share />
             <span>Share</span>

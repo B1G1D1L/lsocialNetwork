@@ -5,10 +5,11 @@ import styles from './Button.module.css';
 
 // Types
 interface PropsType {
-  children: React.ReactNode
+  children: React.ReactNode,
   type?: "button" | "submit" | "reset"
   transparent?: boolean
   outline?: boolean
+  onClick?: () => void,
 }
 
 
@@ -18,11 +19,13 @@ export const Button = (props: PropsType) => {
     type='button', 
     outline = false, 
     transparent = false,
+    onClick,
     children 
   } = props
 
   return (
     <button 
+      onClick={onClick}
       type={type}
       className={cn(
         styles.button,
