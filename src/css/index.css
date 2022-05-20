@@ -10,6 +10,8 @@
   --color-white: white;
   --color-blue: #3a89ed;
   --color-blue-light: #0574ff;
+  --color-grey: rgb(176, 176, 176);
+  --color-light: rgb(213 213 213);
 
 }
 
@@ -70,7 +72,7 @@ a {
 .container__center {
   background-color: var(--container-background);
   border-radius: 20px 20px 0 0;
-  height: var(--container-height);
+  min-height: var(--container-height);
 }
 
 .container__side--left {

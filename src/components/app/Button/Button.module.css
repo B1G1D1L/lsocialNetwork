@@ -22,3 +22,18 @@
 .button:focus {
   outline: none;
 }
+
+.transparent {
+  background-color: transparent;
+  border-color: transparent;
+}
+.transparent:hover {
+  background-color: #ebebeb;
+  border-color: #ebebeb;
+} 
+
+.outline {
+  background-color: transparent;
+  border-color: #ebebeb;
+  border-width: 1px;
+}
