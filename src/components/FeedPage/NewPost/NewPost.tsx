@@ -19,34 +19,32 @@ export const NewPost = () => {
     setValue('')
   }
 
-  return (
-    <div className={stylesPost.post}>
-      <div className={styles.field}>
+  return ( 
+    <div className={cn(stylesPost.post, 'item')}>
 
-        <form onSubmit={onSubmitNewPost}>
-          <div className={styles.field__input}>
-            <img 
-              className={cn('avatar', 'avatar_small')}
-              src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" 
-              alt="ava"
-            />
-            <FieldPost 
-              value={value}
-              onChange={setValue} 
-              placeholder="What's happening?"
-            />
-          </div>
+      <form onSubmit={onSubmitNewPost}>
+        <div className={styles.field__input}>
+          <img 
+            className={cn('avatar', 'avatar_small')}
+            src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" 
+            alt="ava"
+          />
+          <FieldPost 
+            value={value}
+            onChange={setValue} 
+            placeholder="What's happening?"
+          />
+        </div>
 
-          <div className={styles.field__send}>
-            <label htmlFor="newPostFile">
-              <Photo />Photo
-            </label>
-            <input type="file" id='newPostFile' />
-            <Button type='submit'>Post</Button>
-          </div>
-        </form>
+        <div className={styles.field__send}>
+          <label htmlFor="newPostFile">
+            <Photo />Photo
+          </label>
+          <input type="file" id='newPostFile' />
+          <Button type='submit'>Post</Button>
+        </div>
+      </form>
         
-      </div>
     </div>
   )
 }

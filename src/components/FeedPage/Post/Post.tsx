@@ -32,7 +32,7 @@ export const Post = () => {
   }
 
   return (
-    <div className={styles.post}>
+    <div className='item'>
 
       <div className={cn(styles.post__header, styles.header)}>
         <div className={styles.header__avatar}>

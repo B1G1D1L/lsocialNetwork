@@ -90,9 +90,21 @@ a {
 }
 
 .container_center--small {
+  flex: 1;
   padding: 20px 20px 0 20px;
   border-radius: 20px 20px 0 0;
   background-color: var(--container-background);
+}
+
+.item {
+  padding: 20px;
+  margin-bottom: 30px;
+  width: 100%;
+  
+  background-color: var(--color-white);
+  box-shadow: 0 6px 10px rgb(138 138 138 / 10%);
+  border-radius: 14px;
+  overflow: hidden;
 }
 
 .menu_btn {
