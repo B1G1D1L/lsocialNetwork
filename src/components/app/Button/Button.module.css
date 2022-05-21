@@ -23,6 +23,7 @@
   outline: none;
 }
 
+/* options */
 .transparent {
   background-color: transparent;
   border-color: transparent;
@@ -36,4 +37,8 @@
   background-color: transparent;
   border-color: #ebebeb;
   border-width: 1px;
+}
+
+.width {
+  width: 100%;
 }

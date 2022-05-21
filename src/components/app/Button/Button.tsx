@@ -7,8 +7,9 @@ import styles from './Button.module.css';
 interface PropsType {
   children: React.ReactNode,
   type?: "button" | "submit" | "reset"
-  transparent?: boolean
+  fullWidth?: boolean
   outline?: boolean
+  transparent?: boolean
   onClick?: () => void,
 }
 
@@ -16,11 +17,12 @@ interface PropsType {
 
 export const Button = (props: PropsType) => {
   const { 
-    type='button', 
+    children,
+    type='button',
+    fullWidth, 
     outline = false, 
     transparent = false,
     onClick,
-    children 
   } = props
 
   return (
@@ -30,7 +32,8 @@ export const Button = (props: PropsType) => {
       className={cn(
         styles.button,
         {[styles.outline]: outline},
-        {[styles.transparent]: transparent}
+        {[styles.transparent]: transparent},
+        {[styles.width]: fullWidth}
       )}
     >
       {children}

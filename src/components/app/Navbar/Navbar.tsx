@@ -18,11 +18,11 @@ export const Navbar = () => {
         <Feed />
       </LinkCustom>
 
-      <LinkCustom to='/Users' text='Users' >
+      <LinkCustom to='/users' text='My community' >
         <Users />
       </LinkCustom>
 
-      <LinkCustom to='/Messages' text='Messages' >
+      <LinkCustom to='/messages' text='Messages' >
         <Messages />
       </LinkCustom>
 
