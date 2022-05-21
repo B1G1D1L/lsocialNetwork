@@ -86,31 +86,33 @@ export const FriendsParty = () => {
   }, [value])
 
   return (
-    <aside className={styles.aside}>
-      <form onSubmit={onSearchFriends} >
-        <Field
-          onChange={handleChange}
-          maxWidth='100%'
-          placeholder="Search Friends!"
-        />
-      </form>
+    <div className={styles.aside}>
+      <aside className={styles.aside__wrapper}>
+        <form onSubmit={onSearchFriends} >
+          <Field
+            onChange={handleChange}
+            maxWidth='100%'
+            placeholder="Search Friends!"
+          />
+        </form>
 
-      <div className={styles.friends}>
-        <div className={styles.friends__header}>
-          <h4 className={styles.friends__title}>Friends</h4>
-          <DotButton />
-        </div>
+        <div className={styles.friends}>
+          <div className={styles.friends__header}>
+            <h4 className={styles.friends__title}>Friends</h4>
+            <DotButton />
+          </div>
 
-        <div className={cn(styles.friends__body, styles.body)}>
-          {fakeFriends.map(item => (
-            <Friend
-              key={item.id}
-              {...item}
-            />
-          ))}
+          <div className={cn(styles.friends__body, styles.body)}>
+            {fakeFriends.map(item => (
+              <Friend
+                key={item.id}
+                {...item}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </aside>
+      </aside>
+    </div>
   )
 }
 

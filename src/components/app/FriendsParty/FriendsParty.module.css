@@ -1,4 +1,11 @@
 .aside {
+  padding-left: 20px;
+  max-width: var(--size-container-side);
+  width: 100%;
+  background-color: white;
+}
+
+.aside__wrapper {
   display: flex;
   flex-direction: column;
 }
@@ -78,3 +85,4 @@
   color: #757575;
   font-size: 12px;
 }
+
