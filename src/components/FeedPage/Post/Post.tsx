@@ -18,6 +18,10 @@ export const Post = () => {
   const [comment, setComment] = React.useState<string>('')
   const [like, setLike] = React.useState(false)
 
+  const onClickLike = () => {
+    setLike(!like)
+  }
+
   const onSubmitComment = () => {
     console.log(comment)
     setComment('')
@@ -75,24 +79,9 @@ export const Post = () => {
       </div>
 
       <div className={cn(styles.post__actions, styles.actions)}>
-        <Button onClick={() => setLike(!like)} transparent>
-          <div className={cn(styles.actions__like, styles.actions__item)}>
-            {like ? <Like /> : <LikeNo />}
-            <span>Like</span>
-          </div>
-        </Button>
-        <Button onClick={onShowComments} transparent>
-          <div className={cn(styles.actions__comments, styles.actions__item)}>
-            <Comment />
-            <span>Comments</span>
-          </div>
-        </Button>
-        <Button onClick={onShare} transparent>
-          <div className={cn(styles.actions__share, styles.actions__item)}>
-            <Share />
-            <span>Share</span>
-          </div>
-        </Button>
+        <Button variant='text' onClick={onClickLike} startIcon={like ? <Like /> : <LikeNo />}  >Like</Button>
+        <Button variant='text' startIcon={<Comment />} >Comments</Button>
+        <Button variant='text' startIcon={<Share />} >Share</Button>
       </div>
 
       <div className={cn(styles.post__comment, styles.comment)}>
@@ -102,7 +91,7 @@ export const Post = () => {
           alt="avatar" 
         />
         <FieldPost onChange={setComment} placeholder='Wtire a comment...' value={comment} />
-        <button className={styles.comment__send} onClick={onSubmitComment}>
+        <button className={styles.comment__send} >
           <Send />
         </button>
       </div>

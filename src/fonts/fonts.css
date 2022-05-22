@@ -9,6 +9,15 @@
 
 @font-face {
   font-family: 'Roboto';
+  src: local('./Roboto-Medium.ttf'), local('Roboto-Medium'),
+    url('./Roboto-Medium.ttf'),
+    url('./Roboto-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
   src: local('./Roboto-Bold.ttf'), local('Roboto-Bold'),
     url('./Roboto-Bold.ttf'),
     url('./Roboto-Bold.woff') format('woff');

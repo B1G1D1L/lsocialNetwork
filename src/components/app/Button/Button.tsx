@@ -5,12 +5,14 @@ import styles from './Button.module.css';
 
 // Types
 interface PropsType {
-  children: React.ReactNode,
-  type?: "button" | "submit" | "reset"
-  fullWidth?: boolean
-  outline?: boolean
-  transparent?: boolean
-  onClick?: () => void,
+  children?: React.ReactNode,
+  variant?: 'text' | 'contained' | 'outlined'
+  type?: "button" | "submit"
+  disabled?: boolean 
+  size?: 'small' | 'medium' | 'large' | 'full'
+  startIcon?: JSX.Element
+  endIcon?: JSX.Element
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 
@@ -19,9 +21,11 @@ export const Button = (props: PropsType) => {
   const { 
     children,
     type='button',
-    fullWidth, 
-    outline = false, 
-    transparent = false,
+    variant='contained',
+    disabled=false,
+    size='medium',
+    startIcon,
+    endIcon,
     onClick,
   } = props
 
@@ -29,14 +33,17 @@ export const Button = (props: PropsType) => {
     <button 
       onClick={onClick}
       type={type}
+      disabled={disabled}
       className={cn(
         styles.button,
-        {[styles.outline]: outline},
-        {[styles.transparent]: transparent},
-        {[styles.width]: fullWidth}
+        {[styles[variant]]: variant},
+        {[styles[size]]: size},
+        {[styles.disabled]: disabled},
       )}
     >
+      {startIcon}
       {children}
+      {endIcon}
     </button>
   )
 }
