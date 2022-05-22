@@ -1,34 +1,30 @@
 import React from 'react'
 import cn from 'classnames'
 
-import { FriendsParty, Button } from '@components/app'
+import { FriendsParty } from '@components/app'
 
 import styles from './UsersPage.module.css'
+import { Categories, FollowUser } from '@components/index'
 
 
 
 export const UsersPage = () => {
+  const [category, setCategory] = React.useState('Followers')
 
+  // Выбор категории
   const onSelectCategory = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(e)
+    setCategory(e.currentTarget.innerHTML)
   }
 
   return (
     <>
       <div className='container_center--small'>
         <div className={styles.users}>
-          <div className={cn('item', styles.item, styles.users__header, styles.header)}>
-            <Button onClick={onSelectCategory} >hello</Button>
-            <Button onClick={onSelectCategory} >ПРИВЕТ</Button>
-            <Button onClick={onSelectCategory} >ПРИВЕТ</Button>
-          </div>
 
-          <div className={styles.body}>
-            <div className={cn('item', styles.item)}>hello2</div>
-            <div className={cn('item', styles.item)}>hello2</div>
-            <div className={cn('item', styles.item)}>hello2</div>
-            <div className={cn('item', styles.item)}>hello2</div>
-            <div className={cn('item', styles.item)}>hello2</div>
+          <Categories category={category} onSelectCategory={onSelectCategory} />
+
+          <div className={cn(styles.users__body, styles.body)}>
+            <FollowUser />
           </div>
         </div>
       </div>

@@ -1,11 +1,5 @@
-.header {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 15px;
-}
-
-.users__header {
-  margin-bottom: 15px;
+.users__body {
+  margin-top: 20px;
 }
 
 .body {

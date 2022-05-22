@@ -79,7 +79,9 @@ export const Post = () => {
       </div>
 
       <div className={cn(styles.post__actions, styles.actions)}>
-        <Button variant='text' onClick={onClickLike} startIcon={like ? <Like /> : <LikeNo />}  >Like</Button>
+        <Button onClick={onClickLike} variant='text' startIcon={like ? <Like /> : <LikeNo />} >
+          Like
+        </Button>
         <Button variant='text' startIcon={<Comment />} >Comments</Button>
         <Button variant='text' startIcon={<Share />} >Share</Button>
       </div>
