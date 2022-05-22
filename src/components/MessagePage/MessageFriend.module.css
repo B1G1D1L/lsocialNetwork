@@ -1,0 +1,38 @@
+.friend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+
+/* Body */
+.friend__body {
+  margin-left: 10px;
+}
+
+.friend__body h3 {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.friend__body p {
+  font-size: 12px;
+  color: var(--color-grey);
+}
+
+
+/* Info */
+.friend__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  align-self: stretch;
+}
+
+.friend__info span {
+  color: var(--color-grey);
+  font-size: 12px;
+}
+

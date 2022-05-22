@@ -5,6 +5,8 @@ import { Post } from "./FeedPage/Post/Post";
 import { Categories } from './UsersPage/Categories/Categories'
 import { FollowUser } from './UsersPage/FollowUser/FollowUser'
 
+import { MessageFriend } from './MessagePage/MessageFriend'
+
 
 export {
   FieldPost,
@@ -13,5 +15,7 @@ export {
 
   Categories,
   FollowUser,
+  
+  MessageFriend,
   
 }

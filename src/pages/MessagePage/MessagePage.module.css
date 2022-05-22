@@ -1,0 +1,9 @@
+.message {
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  gap: 20px;
+}
+
+.message__friends {
+  padding: 10px;
+}

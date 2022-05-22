@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 
 import styles from './App.module.css'
 import { Header, Navbar } from '@components/app';
-import { LoginPage, UsersPage, ProfilePage, ErrorPage, FeedPage } from './pages';
+import { LoginPage, UsersPage, ProfilePage, ErrorPage, FeedPage, MessagePage } from './pages';
 
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
                 <Route path='/' element={<Navigate replace to='feed' />} />
                 <Route path='users' element={<UsersPage />} />
                 <Route path='feed' element={<FeedPage />} />
+                <Route path='messages' element={<MessagePage />} />
                 <Route path='profile' element={<ProfilePage />}>
                   <Route path=':userId' element={<ProfilePage />} />
                 </Route>
