@@ -27,7 +27,11 @@
   color: var(--color-grey);
 }
 
-.header__network svg {
+.header__network a {
+  margin-right: 10px;
+} 
+
+.header__network a svg {
   width: 15px;
   height: 15px;
   fill: var(--color-main);
@@ -36,7 +40,7 @@
 
 /* Bottom */
 .bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
 }

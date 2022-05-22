@@ -24,13 +24,16 @@ export const FollowUser = () => {
           <span className={styles.header__subtitle}>Video Editor</span>
           <div className={styles.header__network}>
             <a href="https://www.google.com/" target='_blank'><World /></a>
+            <a href="https://www.google.com/" target='_blank'><Facebook /></a>
+            <a href="https://www.google.com/" target='_blank'><Twitter /></a>
+            <a href="https://www.google.com/" target='_blank'><Instagram /></a>
           </div>
         </div>
       </div>
 
       <div className={cn(styles.follow__bottom, styles.bottom)}>
-        <Button variant='outlined' >Ignore</Button>
-        <Button variant='contained' >Follow</Button>
+        <Button variant='outlined'>Ignore</Button>
+        <Button variant='contained'>Follow</Button>
       </div>
 
     </div>

@@ -25,6 +25,12 @@ export const UsersPage = () => {
 
           <div className={cn(styles.users__body, styles.body)}>
             <FollowUser />
+            <FollowUser />
+            <FollowUser />
+            <FollowUser />
+            <FollowUser />
+            <FollowUser />
+            <FollowUser />
           </div>
         </div>
       </div>
