@@ -3,7 +3,12 @@ import cn from 'classnames'
 
 import styles from './MessageFriend.module.css'
 
-export const MessageFriend = () => {
+
+interface PropsType {
+  
+}
+
+export const MessageFriend = (props: PropsType) => {
   return (
     <div className={styles.friend}>
       <img 
@@ -18,7 +23,7 @@ export const MessageFriend = () => {
 
       <div className={styles.friend__info}>
         <span>12:40</span>
-        <i>2</i>
+        <i>3</i>
       </div>
     </div>
   )

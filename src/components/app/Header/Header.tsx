@@ -30,7 +30,7 @@ export const Header = () => {
       <div className='container'>
         <div className={styles.header__wrap}>
 
-          <Link to='/feed' className={cn(styles.logo, 'container__side')}>
+          <Link to='/feed' className={cn(styles.logo, 'container__side', 'container__side--left')}>
             <span>
               <img src={logo} alt="logo" />
             </span>
@@ -46,7 +46,7 @@ export const Header = () => {
             </form>
           </div>
 
-          <div className={cn(styles.user, 'container__side')}>
+          <div className={cn(styles.user, 'container__side', 'container__side--right')}>
             <h3 className={styles.user__name}>Saleh Ahmed</h3>
             <span className={styles.user__avatar}>
               <img src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" alt="" />

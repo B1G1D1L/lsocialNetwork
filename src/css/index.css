@@ -16,6 +16,7 @@
   --color-super-light: #f6f6f6;
 
   --size-container: 1320px;
-  --size-container-side: 250px
+  --size-container-side-left: 200px;
+  --size-container-side-right: 250px;
 
 }

@@ -16,7 +16,7 @@ function App() {
         <div className="container">
           <div className={styles.body}>
 
-            <div className='container__side'>
+            <div className={cn('container__side', 'container__side--left')}>
               <Navbar />
             </div>
 

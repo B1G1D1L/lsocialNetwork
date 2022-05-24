@@ -56,11 +56,18 @@ a {
 }
 
 .container__side {
-  max-width: var(--size-container-side);
   width: 100%;
-  padding-right: 20px;
   padding-top: 15px;
   background-color: white;
+}
+
+.container__side--left {
+  max-width: var(--size-container-side-left);
+  padding-right: 20px;
+}
+
+.container__side--right {
+  max-width: var(--size-container-side-right);
 }
 
 .container__center {

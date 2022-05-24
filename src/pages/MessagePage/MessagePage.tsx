@@ -12,6 +12,9 @@ export const MessagePage = () => {
     <div className={cn('container_center--small', styles.message)}>
       <div className={cn(styles.message__friends, 'item')}>
         <MessageFriend />
+        <MessageFriend />
+        <MessageFriend />
+        <MessageFriend />
       </div>
       
       <div className={cn(styles.message__chat, 'item')}>chat</div>

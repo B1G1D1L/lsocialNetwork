@@ -1,9 +1,16 @@
 .message {
   display: grid;
-  grid-template-columns: 25% 1fr;
+  grid-template-columns: 28% 1fr;
   gap: 20px;
+  height: calc(100vh - 75px);
 }
+
 
 .message__friends {
   padding: 10px;
+  overflow: auto !important;
+}
+
+.message__friends::-webkit-scrollbar {
+  width: 0;
 }
