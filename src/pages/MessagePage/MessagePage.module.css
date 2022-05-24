@@ -1,6 +1,6 @@
 .message {
   display: grid;
-  grid-template-columns: 28% 1fr;
+  grid-template-columns: 1fr 28%;
   gap: 20px;
   height: calc(100vh - 75px);
 }

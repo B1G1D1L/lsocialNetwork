@@ -17,3 +17,17 @@
 .button span:nth-child(2) {
   margin: 3px;
 }
+
+.medium span {
+  width: 5px;
+  height: 5px;
+}
+
+.small span {
+  width: 4px;
+  height: 4px;
+}
+
+.small span:nth-child(2) {
+  margin: 2px;
+}

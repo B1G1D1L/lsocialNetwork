@@ -1,10 +1,16 @@
 import React from 'react'
+import cn from 'classnames';
 
 import styles from './DotButton.module.css';
 
-export const DotButton = () => {
+
+interface PropsType {
+  size?: 'small' | 'medium'
+}
+
+export const DotButton = ({ size='medium' }: PropsType) => {
   return (
-    <button className={styles.button}>
+    <button className={cn(styles.button, {[styles[size]]: size})}>
       <span></span>
       <span></span>
       <span></span>

@@ -11,8 +11,8 @@ import styles from './Header.module.css'
 export const Header = () => {
   const [value, setValue] = useState('')
 
-  const handleChange = (value: string) => {
-    setValue(value)
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value)
   }
 
   const onSubmitSearch = (event: FormEvent<HTMLFormElement>) => {
@@ -40,8 +40,9 @@ export const Header = () => {
           <div className="container--small">
             <form onSubmit={onSubmitSearch} className={styles.header__form}>
               <Field
-                placeholder='Search for something here...'
+                value={value}
                 onChange={handleChange}
+                placeholder='Search for something here...'
               />
             </form>
           </div>

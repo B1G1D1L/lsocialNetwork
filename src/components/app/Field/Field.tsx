@@ -1,29 +1,20 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React from 'react'
 import cn from 'classnames'
 
 import styles from './Field.module.css'
 
 
 interface PropsType {
+  value: string
   placeholder?: string,
   maxWidth?: string,
   classNames?: string[],
-  onChange: (value: string) => void,
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
 
 export const Field = (props: PropsType) => {
-  const { onChange, placeholder, maxWidth, classNames } = props
-  const [value, setValue] = useState('')
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value.trim())
-  }
-
-  useEffect(() => {
-    onChange(value)
-  }, [value, onChange])
-  
+  const { onChange, value, placeholder, maxWidth, classNames } = props
 
   return (
     <div 
@@ -36,7 +27,7 @@ export const Field = (props: PropsType) => {
           type="text"
           placeholder={placeholder}
           value={value}
-          onChange={handleChange}
+          onChange={onChange}
           className={cn(styles.form__input)}
         />
       </div>

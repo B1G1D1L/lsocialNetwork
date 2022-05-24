@@ -1,8 +1,7 @@
 import React, { FormEvent, useState } from 'react'
 import cn from 'classnames'
 
-import { Field } from '@components/app'
-import { DotButton } from '@components/app'
+import { Field, DotButton } from '@components/app'
 
 import styles from './FriendsParty.module.css'
 
@@ -71,8 +70,8 @@ const fakeFriends = [
 export const FriendsParty = () => {
   const [value, setValue] = useState('')
 
-  const handleChange = (val: string) => {
-    setValue(val)
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value)
   }
 
   const onSearchFriends = (event: FormEvent<HTMLFormElement>) => {
@@ -91,6 +90,7 @@ export const FriendsParty = () => {
         <form onSubmit={onSearchFriends} >
           <Field
             onChange={handleChange}
+            value={value}
             maxWidth='100%'
             placeholder="Search Friends!"
           />
