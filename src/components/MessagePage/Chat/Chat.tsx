@@ -1,13 +1,21 @@
 import React from 'react'
 import cn from 'classnames'
 
-import { ReactComponent as Info } from '@assets/image/info.svg' 
-import { ReactComponent as Send } from '@assets/image/send.svg' 
+import { db } from './../../../firebase'
+
+import { collection, addDoc } from "firebase/firestore"
+
+import { ReactComponent as Info } from '@assets/image/info.svg'
+import { ReactComponent as Send } from '@assets/image/send.svg'
 import { DotButton } from '@components/app'
 
-import styles from './MessageChat.module.css'
+import styles from './Chat.module.css'
 
-export const MessageChat = () => {
+
+
+export const Chat = () => {
+  console.log(db)
+
   const [ valueNewMsg, setValueNewMsg ] = React.useState('')
 
   const onChangeNewMsg = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,9 +24,7 @@ export const MessageChat = () => {
 
   const onSubmitMsg = (e:  React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    console.log(valueNewMsg)
-    setValueNewMsg('')
+    
   }
 
   return (

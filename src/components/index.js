@@ -4,15 +4,15 @@ import { Post } from "./FeedPage/Post/Post";
 import { Categories } from './UsersPage/Categories/Categories'
 import { FollowUser } from './UsersPage/FollowUser/FollowUser'
 import { MessageFriend } from './MessagePage/MessageFriend/MessageFriend'
-import { MessageChat } from './MessagePage/MessageChat/MessageChat'
+import { Chat } from './MessagePage/Chat/Chat'
 
 
 export {
-  FieldPost,
+  FieldPost, 
   NewPost,
   Post,
   Categories,
   FollowUser,
   MessageFriend,
-  MessageChat,
+  Chat,
 }

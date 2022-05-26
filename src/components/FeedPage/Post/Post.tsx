@@ -15,7 +15,9 @@ import styles from './Post.module.css'
 
 export const Post = () => {
 
-  const [comment, setComment] = React.useState<string>('')
+  console.log(process.env.REACT_APP_API)
+
+  const [comment, setComment] = React.useState('')
   const [like, setLike] = React.useState(false)
 
   const onClickLike = () => {
