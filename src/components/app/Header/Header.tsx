@@ -1,7 +1,8 @@
-import React, { FormEvent, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
 
+import { useAppDispatch, useAppSelector } from 'hook/hooks'
 import logo from '@assets/image/logo.svg'
 import { Field } from '@components/app'
 
@@ -9,13 +10,13 @@ import styles from './Header.module.css'
 
 
 export const Header = () => {
-  const [value, setValue] = useState('')
+  const [value, setValue] = React.useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
   }
 
-  const onSubmitSearch = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmitSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     console.log(value)
   }
@@ -47,12 +48,15 @@ export const Header = () => {
             </form>
           </div>
 
-          <div className={cn(styles.user, 'container__side', 'container__side--right')}>
+          <Link 
+            to='/profile' 
+            className={cn(styles.user, 'container__side', 'container__side--right')}
+          >
             <h3 className={styles.user__name}>Saleh Ahmed</h3>
             <span className={styles.user__avatar}>
               <img src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" alt="" />
             </span>
-          </div>
+          </Link>
 
         </div>
       </div>

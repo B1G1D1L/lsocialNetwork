@@ -81,7 +81,11 @@ export const Post = () => {
       </div>
 
       <div className={cn(styles.post__actions, styles.actions)}>
-        <Button onClick={onClickLike} variant='text' startIcon={like ? <Like /> : <LikeNo />} >
+        <Button 
+          onClick={onClickLike} 
+          variant='text' 
+          startIcon={like ? <Like /> : <LikeNo />}
+        >
           Like
         </Button>
         <Button variant='text' startIcon={<Comment />} >Comments</Button>
