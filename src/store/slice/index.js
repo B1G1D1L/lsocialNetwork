@@ -1,5 +1,7 @@
-import authorizationSlice  from "./authorization";
+import auth  from "./auth";
+import messages from "./messages";
 
 export {
-  authorizationSlice
+  auth,
+  messages
 }

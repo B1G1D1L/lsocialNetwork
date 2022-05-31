@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-interface authorizationState {
+interface authState {
   data: { id: number, email: string, login: string } | {}
   messages: string[]
   resultCode: number | null
@@ -8,14 +8,14 @@ interface authorizationState {
 }
 
 
-let initialState: authorizationState = {
+let initialState: authState = {
   data: {},
   messages: ['hello', '1123'],
   resultCode: null,
   fieldsErrors: null,
 }
 
-export const authorizationSlice = createSlice({
+export const auth = createSlice({
   name: 'authName',
   initialState,
   reducers: {
@@ -25,6 +25,6 @@ export const authorizationSlice = createSlice({
   }
 })
 
-export const { getAuthDataOwner } = authorizationSlice.actions
+export const { getAuthDataOwner } = auth.actions
 
-export default authorizationSlice.reducer
+export default auth.reducer
