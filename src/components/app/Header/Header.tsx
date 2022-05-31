@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
 
-import { useAppDispatch, useAppSelector } from 'hook/hooks'
 import logo from '@assets/image/logo.svg'
 import { Field } from '@components/app'
 

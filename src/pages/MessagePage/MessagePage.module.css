@@ -1,7 +1,5 @@
 .message {
-  display: grid;
-  grid-template-columns: 1fr 28%;
-  gap: 20px;
+  display: flex;
   height: calc(100vh - 75px);
 }
 
@@ -13,4 +11,17 @@
 
 .message__friends::-webkit-scrollbar {
   width: 0;
+}
+
+
+/* Media */
+@media screen and (max-width: 576px) {
+  .message {
+    grid-template-columns: 1fr
+  }
+
+  .message__friends {
+    display: none;
+    gap: 0;
+  }
 }

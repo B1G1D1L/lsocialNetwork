@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  height: calc(100vh - var(--header-height) - 40px);
 }
 
 .chat__header {
@@ -51,14 +51,17 @@
 
 /* ==== Body */
 .body {
+  overflow-y: auto;
+}
+
+.body__wrapper{
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  overflow: auto;
 }
 
-/* .body::-webkit-scrollbar {
+.body::-webkit-scrollbar {
   width: 0;
 }
 .body {
@@ -66,7 +69,7 @@
 }
 .body {
   overflow: -moz-scrollbars-none;
-} */
+}
 
 
 /* ==== Footer */

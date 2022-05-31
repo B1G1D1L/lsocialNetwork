@@ -61,3 +61,30 @@
   height: 100%;
   object-fit: cover;
 }
+
+
+/* Media */
+@media screen and (max-width: 576px) {
+  .header {
+    padding: 0 10px;
+  }
+  .header__wrap {
+    flex-direction: row-reverse;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .user {
+    width: auto;
+    margin-right: 20px;
+  }
+  .user h3 {
+    display: none;
+  }
+  .user span {
+    margin-left: 0;
+  }
+
+}

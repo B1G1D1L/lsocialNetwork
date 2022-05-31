@@ -38,3 +38,19 @@
 .active svg {
   fill: white;
 }
+
+
+/* Media */
+@media screen and (max-width: 576px) {
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav__body svg {
+    margin-right: 0; 
+  } 
+  .nav__body h3 {
+    display: none;
+  }
+}

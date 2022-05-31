@@ -129,3 +129,30 @@ a {
   height: 60px;
 }
 
+@media screen and (max-width: 576px) {
+  .container {
+    padding: 0;
+  }
+
+  .container__side {
+    width: auto;
+    padding-top: 0;
+  }
+
+  .container__side--left {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .container_center--small {
+    padding: 10px;
+    padding-bottom: 55px;
+  }
+
+  
+}
+
