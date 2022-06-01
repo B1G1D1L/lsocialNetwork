@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface MessagesStateType {
   user: string
-  online: boolean
   lastMessage: string
   countMessage: number
 }
@@ -11,7 +10,6 @@ interface MessagesStateType {
 const initialState: MessagesStateType[] = [
   {
     user: 'nhfkzkzk',
-    online: false,
     lastMessage: 'Привет чувак',
     countMessage: 3
   },

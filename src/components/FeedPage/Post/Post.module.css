@@ -149,3 +149,11 @@
   fill: var(--color-blue-light);
   width: 70%;
 }
+
+
+/* Media */
+@media screen and (max-width: 576px) {
+  button {
+    color: red;
+  }
+}
