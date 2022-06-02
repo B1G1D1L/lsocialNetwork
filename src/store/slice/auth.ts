@@ -1,30 +1,32 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface authState {
-  data: { id: number, email: string, login: string } | {}
-  messages: string[]
-  resultCode: number | null
-  fieldsErrors: string[] | null
+  isAuth: boolean
+  id: number | null,
+  email: string,
+  login: string
 }
 
 
 let initialState: authState = {
-  data: {},
-  messages: ['hello', '1123'],
-  resultCode: null,
-  fieldsErrors: null,
+  isAuth: false,
+  id: null,
+  email: '',
+  login: ''
 }
 
 export const auth = createSlice({
   name: 'authName',
   initialState,
   reducers: {
-    getAuthDataOwner: (state, action: PayloadAction<string>) => {
-      state.messages.push(action.payload)
+    authorization: (state, action: PayloadAction<authState>) => {
+      state.id = action.payload.id
+      state.email = action.payload.email
+      state.login = action.payload.login
     }
   }
 })
 
-export const { getAuthDataOwner } = auth.actions
+export const { authorization } = auth.actions
 
 export default auth.reducer
