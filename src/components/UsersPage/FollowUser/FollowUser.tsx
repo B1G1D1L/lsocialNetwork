@@ -11,7 +11,7 @@ import { Button } from '@components/app'
 
 export const FollowUser = () => {
   return (
-    <div className={cn('item', styles.follow)}>
+    <div className={cn('body__item', styles.follow)}>
 
       <div className={cn(styles.follow__header, styles.header)}>
         <img 

@@ -16,7 +16,7 @@ export const Categories = (props: CategoriesProps) => {
   const { category, onSelectCategory } = props
 
   return (
-    <div className={cn('item', styles.categories)}>
+    <div className={cn('body__item', styles.categories)}>
       <Button
         variant={category === 'Followers' ? 'contained' : 'outlined'}
         onClick={onSelectCategory}

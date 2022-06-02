@@ -20,7 +20,7 @@ export const NewPost = () => {
   }
 
   return ( 
-    <div className={cn(stylesPost.post, 'item')}>
+    <div className={cn(stylesPost.post, 'body__item')}>
 
       <form onSubmit={onSubmitNewPost}>
         <div className={styles.field__input}>

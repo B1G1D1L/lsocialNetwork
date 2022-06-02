@@ -17,25 +17,21 @@ export const UsersPage = () => {
   }
 
   return (
-    <>
-      <div className='container_center--small'>
-        <div className={styles.users}>
-
-          <Categories category={category} onSelectCategory={onSelectCategory} />
-
-          <div className={cn(styles.users__body, styles.body)}>
-            <FollowUser />
-            <FollowUser />
-            <FollowUser />
-            <FollowUser />
-            <FollowUser />
-            <FollowUser />
-            <FollowUser />
-          </div>
+    <div className='container__wrapper'>
+      <div className={cn(styles.users__wrapper, 'container__body')}>
+        <Categories category={category} onSelectCategory={onSelectCategory} />
+        <div className={cn(styles.users__body, styles.body)}>
+          <FollowUser />
+          <FollowUser />
+          <FollowUser />
+          <FollowUser />
+          <FollowUser />
+          <FollowUser />
+          <FollowUser />
         </div>
       </div>
 
       <FriendsParty />
-    </>
+    </div>
   )
 }

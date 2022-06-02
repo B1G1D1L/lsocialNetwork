@@ -28,36 +28,34 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <div className='container'>
-        <div className={styles.header__wrap}>
 
-          <Link to='/feed' className={cn(styles.logo, 'container__side', 'container__side--left')}>
-            <span>
-              <img src={logo} alt="logo" />
-            </span>
-            <h2>BceTi</h2>
-          </Link>
+        <Link to='/feed' className={cn(styles.logo)}>
+          <span>
+            <img src={logo} alt="logo" />
+          </span>
+          <h2>BceTi</h2>
+        </Link>
 
-          <div className="container--small">
-            <form onSubmit={onSubmitSearch} className={styles.header__form}>
-              <Field
-                value={value}
-                onChange={handleChange}
-                placeholder='Search for something here...'
-              />
-            </form>
-          </div>
-
-          <Link 
-            to='/profile' 
-            className={cn(styles.user, 'container__side', 'container__side--right')}
+        <div className={styles.header_body}>
+          <form onSubmit={onSubmitSearch} className={styles.header__form}>
+            <Field
+              value={value}
+              onChange={handleChange}
+              placeholder='Search for something here...'
+            />
+          </form>
+          <Link
+            to='/profile'
+            className={styles.user}
           >
             <h3 className={styles.user__name}>Saleh Ahmed</h3>
             <span className={styles.user__avatar}>
               <img src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" alt="" />
             </span>
           </Link>
-
         </div>
+
+
       </div>
     </header>
   )

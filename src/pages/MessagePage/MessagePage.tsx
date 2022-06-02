@@ -13,25 +13,22 @@ import { Outlet, useParams } from 'react-router-dom'
 export const MessagePage = () => {
   const params = useParams()
 
-  if(params.userId) {
+  if (params.userId) {
     return (
       <Outlet />
     )
   }
 
   return (
-    <>
-      <div className={cn('container_center--small', styles.message)}>
-
-        <div className={cn(styles.message__friends, 'item')}>
-          <MessageFriend />
-          <MessageFriend />
-          <MessageFriend />
-          <MessageFriend />
-        </div>
+    <div className='container__wrapper'>
+      <div className={cn(styles.message__friends, 'container__body')}>
+        <MessageFriend />
+        <MessageFriend />
+        <MessageFriend />
+        <MessageFriend />
       </div>
 
       <FriendsParty />
-    </>
+    </div>
   )
 }

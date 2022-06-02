@@ -1,10 +1,10 @@
-.users__body {
-  margin-top: 20px;
+.users__wrapper {
+  margin-bottom: 20px;
 }
 
-.body {
+.users__body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 15px;
+  margin-top: 20px;
 }
-

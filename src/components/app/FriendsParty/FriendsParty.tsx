@@ -85,7 +85,7 @@ export const FriendsParty = () => {
   }, [value])
 
   return (
-    <div className={cn('container__side', 'container__side--right', styles.aside)}>
+    <div className={styles.aside}>
       <aside className={styles.aside__wrapper}>
         <form onSubmit={onSearchFriends} >
           <Field

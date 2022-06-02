@@ -13,32 +13,24 @@ function App() {
   return (
     <>
       <Header />
-      <div>
-        <div className="container">
-          <div className={styles.body}>
+      <div className='container'>
 
-            <div className={cn('container__side', 'container__side--left')}>
-              <Navbar />
-            </div>
+        <Navbar />
 
-            <div className={cn("container--small", 'container__center')}>
-              <Routes>
-                <Route path='/' element={<Navigate replace to='feed' />} />
-                <Route path='users' element={<UsersPage />} />
-                <Route path='feed' element={<FeedPage />} />
-                <Route path='messages' element={<MessagePage />} >
-                  <Route path=':userId' element={<Chat />} />
-                </Route>
-                <Route path='profile' element={<ProfilePage />}>
-                  <Route path=':userId' element={<ProfilePage />} />
-                </Route>
-                <Route path='logout' element={<LoginPage />} />
-                <Route path='*' element={<ErrorPage />} />
-              </Routes>
-            </div>
+        <Routes>
+          <Route path='/' element={<Navigate replace to='feed' />} />
+          <Route path='users' element={<UsersPage />} />
+          <Route path='feed' element={<FeedPage />} />
+          <Route path='messages' element={<MessagePage />} >
+            <Route path=':userId' element={<Chat />} />
+          </Route>
+          <Route path='profile' element={<ProfilePage />}>
+            <Route path=':userId' element={<ProfilePage />} />
+          </Route>
+          <Route path='logout' element={<LoginPage />} />
+          <Route path='*' element={<ErrorPage />} />
+        </Routes>
 
-          </div>
-        </div>
       </div>
     </>
   );
