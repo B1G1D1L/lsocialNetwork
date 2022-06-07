@@ -1,17 +1,12 @@
 .active {
+  grid-area: navbar;
   color: rgb(100, 138, 241) !important;
   font-weight: bold;
 }
 
-.aside {
-  padding-right: 10px;
-}
-
 .nav {
-  grid-area: n;
   display: flex;
   flex-direction: column;
-  min-width: 150px;
   border: 1px solid #ede9e9;
   background-color: #fff;
   padding: 10px 10px;

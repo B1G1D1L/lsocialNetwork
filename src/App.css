@@ -4,19 +4,24 @@
 
 .content {
   display: grid;
-  grid-template-columns: 1fr 6fr;
-  grid-template-rows: (1fr, 1fr);
+  grid-template-columns: 150px auto;
+  grid-template-rows: 75px 1fr;
   grid-template-areas: 
-  'h h'
-  'n m'
+  'header header'
+  'navbar main'
   ;
-  width: 1200px; 
+  grid-gap: 5px;
+  grid-template-columns: 150px minmax(200px, 1fr);
+  grid-auto-flow: dense;
+
+  max-width: 1200px; 
   margin: 0 auto;
+  padding: 0 10px;
 }
 
 .content__wrapper {
-  grid-area: m;
+  grid-area: main;
+  min-height: 88vh;
   background-color: #fff;
   border: 1px solid #ede9e9;
-  min-height: 88vh;
 }

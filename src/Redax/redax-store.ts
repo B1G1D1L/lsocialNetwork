@@ -8,6 +8,7 @@ import profileReduce from "./reducers/profile-reducer";
 import usersReduce from "./reducers/users-reducer";
 import appReduce from "./reducers/app-reducer";
 import { ConnectedProps } from "react-redux";
+import chatReducer from "./reducers/chat-reducer";
 
 // Root Reducer
 let rootReducer = combineReducers({
@@ -17,6 +18,7 @@ let rootReducer = combineReducers({
   auth: authReduce,
   app: appReduce,
   form: formReducer,
+  chat: chatReducer
 })
 
 

@@ -3,8 +3,6 @@ import React from 'react';
 import s from './Profile.module.css';
 import User from './User/User';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
-import { ProfileType } from '../../types/types';
-import { Nullable } from '../../Redax/redax-store';
 
 
 const Profile: React.FC<ProfileProps> = (props) => {

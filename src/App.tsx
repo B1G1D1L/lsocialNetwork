@@ -19,6 +19,7 @@ import { AppStateType } from './Redax/redax-store';
 
 const UsersAPIComponent = React.lazy(() => import('./components/Users/UsersContainer'));
 const Setting = React.lazy(() => import('./components/Setting/Setting'));
+const ChatPage = React.lazy(() => import('./pages/Chat/ChatPage'));
 
 
 class App extends React.Component<PropsType> {
@@ -50,6 +51,7 @@ class App extends React.Component<PropsType> {
                 <section>
                   <Route path='/users'   render={ () => <UsersAPIComponent />}/>
                   <Route path='/setting' render={ () => <Setting />}/>
+                  <Route path='/chat' render={ () => <ChatPage />}/>
                 </section>
               </Suspense >
             </Switch>

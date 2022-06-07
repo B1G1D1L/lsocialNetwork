@@ -11,7 +11,6 @@ import { getCurrentPage, getFilter, getFollowingProgress, getIsFetching, getPage
 import { follow, requestUsers, unfollow } from '../../Redax/reducers/users-reducer';
 import Paginator from '../common/Paginator/Paginator';
 import { useHistory } from 'react-router';
-import { ContactlessOutlined } from '@mui/icons-material';
 const queryString = require('query-string');
 
 
