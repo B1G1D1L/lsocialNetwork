@@ -3,7 +3,7 @@ let subscrubers = {
   'status-changed': [] as statusChargetSubscrubeType[]
 } 
 
-let ws: WebSocket
+let ws: WebSocket | null = null
 
 const closeHandler = (e: Event) => {
   console.log('CLOSE WS')
@@ -47,10 +47,22 @@ const createChannel = () => {
 
 
 export const chatAPI = {
-
   start() {
     createChannel()
   },
+
+  stop() {
+    //@ts-ignore
+    subscrubers = []
+    ws?.close()
+    ws?.removeEventListener('close', closeHandler)
+    ws?.removeEventListener('message', messageHandler)
+  },
+  //@ts-ignore
+  start() {
+    createChannel()
+  },
+  //@ts-ignore
   stop() {
     cleanUp()
     subscrubers['messages-reseived'] = []
@@ -66,8 +78,14 @@ export const chatAPI = {
     subscrubers[eventName].filter( s => s !== callback )
   },
   sendMessage(message: string) {
+    //@ts-ignore
     ws.send(message)
-  }
+  },
+  //@ts-ignore
+  unsubscribe(callback: subscribe) {
+    //@ts-ignore
+    subscrubers = subscrubers.filter(s => s !== callback)
+  },
 
 }
 
