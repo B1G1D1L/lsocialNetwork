@@ -2,7 +2,7 @@ import React from 'react'
 import { useFormik } from 'formik';
 import cn from 'classnames';
 
-import { Button, Field } from '@components/app';
+import { Button } from '@components/app';
 import styles from './LoginPage.module.css'
 
 interface formValues {
@@ -81,7 +81,7 @@ export const LoginPage = () => {
 
 
 
-const validate = (values: any) => {
+const validate = (values: formValues) => {
   const errors = {} as formValues
 
   if (!values.email) {

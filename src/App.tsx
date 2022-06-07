@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 
 import styles from './App.module.css'
 import { Header, Navbar } from '@components/app';
-import { LoginPage, UsersPage, ProfilePage, ErrorPage, FeedPage, MessagePage } from './pages';
+import { LoginPage, UsersPage, ProfilePage, ErrorPage, FeedPage, MessagePage, RegistrationPage } from './pages';
 import { Chat } from './components';
 
 
@@ -28,6 +28,7 @@ function App() {
             <Route path=':userId' element={<ProfilePage />} />
           </Route>
           <Route path='logout' element={<LoginPage />} />
+          <Route path='registration' element={<RegistrationPage />} />
           <Route path='*' element={<ErrorPage />} />
         </Routes>
 
