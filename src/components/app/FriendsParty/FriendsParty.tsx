@@ -98,7 +98,7 @@ export const FriendsParty = () => {
 
         <div className={styles.friends}>
           <div className={styles.friends__header}>
-            <h4 className={styles.friends__title}>Friends</h4>
+            <h3 className={styles.friends__title}>Friends</h3>
             <DotButton />
           </div>
 

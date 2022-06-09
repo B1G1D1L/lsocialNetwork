@@ -12,8 +12,6 @@ interface formValues {
 
 
 
-
-
 export const LoginPage = () => {
 
   const onSubmitFrom = (form: { email: string, password: string }) => {

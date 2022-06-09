@@ -40,7 +40,7 @@ export const Post = () => {
   return (
     <div className='body__item'>
 
-      <div className={cn(styles.post__header, styles.header)}>
+      <div className={styles.header}>
         <div className={styles.header__avatar}>
           <img
             className={cn('avatar', 'avatar_large')}
@@ -49,7 +49,7 @@ export const Post = () => {
           />
         </div>
         <div className={styles.header__name}>
-          <strong>Kiril Pushkin</strong>
+          <h3>Kiril Pushkin</h3>
           <span>15h. Public</span>
         </div>
         <DotButton />
@@ -57,13 +57,13 @@ export const Post = () => {
 
       <p className={styles.description}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo libero quae obcaecati, assumenda similique amet optio voluptas adipisci fugiat laborum culpa vero debitis ipsum sapiente rem maiores mollitia, facere esse!</p>
 
-      <div className={cn(styles.post__content, styles.content)}>
+      <div className={styles.content}>
         <div className={styles.content__picture}>
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Eagle_Owl_IMG_9203.JPG/1280px-Eagle_Owl_IMG_9203.JPG" alt="" />
         </div>
       </div>
 
-      <div className={cn(styles.post__info, styles.info)}>
+      <div className={styles.info}>
         <div className={styles.info__people_likes}>
           <img 
             className={styles.info__people_item}
@@ -80,7 +80,7 @@ export const Post = () => {
         </div>
       </div>
 
-      <div className={cn(styles.post__actions, styles.actions)}>
+      <div className={styles.actions}>
         <Button 
           onClick={onClickLike} 
           variant='text' 
@@ -92,7 +92,7 @@ export const Post = () => {
         <Button variant='text' startIcon={<Share />} >Share</Button>
       </div>
 
-      <div className={cn(styles.post__comment, styles.comment)}>
+      <div className={styles.comment}>
         <img 
           className={cn('avatar', 'avatar_small')} 
           src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" 

@@ -17,10 +17,9 @@
   justify-content: space-between;
   margin-left: 20px;
 }
-.header__name strong {
-  font-size: 16px;
+.header__name h3 {
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .header__name span {
   color: var(--color-grey);
@@ -70,8 +69,8 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 
   background-color: var(--color-main);
   border: 1px solid white;
@@ -93,6 +92,7 @@
 
 .info__reaction span {
   color: var(--color-grey);
+  font-size: 14px;
 }
 
 .info__reaction span:first-child {
@@ -105,7 +105,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 5px 0;
   border: 1px solid var(--color-light);
   border-left: none;
   border-right: none;

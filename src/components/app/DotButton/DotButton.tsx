@@ -3,14 +3,9 @@ import cn from 'classnames';
 
 import styles from './DotButton.module.css';
 
-
-interface PropsType {
-  size?: 'small' | 'medium'
-}
-
-export const DotButton = ({ size='medium' }: PropsType) => {
+export const DotButton = () => {
   return (
-    <button className={cn(styles.button, {[styles[size]]: size})}>
+    <button className={styles.button}>
       <span></span>
       <span></span>
       <span></span>

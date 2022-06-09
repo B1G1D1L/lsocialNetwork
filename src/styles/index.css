@@ -1,8 +1,8 @@
-@import '../fonts/fonts.css';
+@import './fonts/fonts.css';
 @import './main.css';
 
 :root {
-  --header-height: 75px; 
+  --header-height: 70px; 
   --container-height: calc(100vh - var(--header-height)); 
   --container-background: rgba(200, 200, 200, 0.1);
   --svg-fill: #4d577b;
@@ -15,8 +15,7 @@
   --color-light: rgb(213 213 213);
   --color-super-light: #f6f6f6;
 
-  --size-container: 1320px;
+  --size-container: 1220px;
   --size-container-side-left: 200px;
   --size-container-side-right: 250px;
-
 }

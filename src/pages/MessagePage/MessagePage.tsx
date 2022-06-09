@@ -1,13 +1,11 @@
 import React from 'react'
+import { Outlet, useParams } from 'react-router-dom'
 import cn from 'classnames'
 
-import { MessageFriend } from '@components/index'
-import { Chat } from '@components/index'
+import { MessageFriend,  } from '@components/index'
+import { FriendsParty } from '@components/app'
 
 import styles from './MessagePage.module.css'
-import { FriendsParty } from '@components/app'
-import { Outlet, useParams } from 'react-router-dom'
-
 
 
 export const MessagePage = () => {
