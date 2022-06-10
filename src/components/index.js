@@ -1,4 +1,3 @@
-import { FieldPost } from "./FeedPage/FieldPost/FieldPost";
 import { NewPost } from "./FeedPage/NewPost/NewPost";
 import { Post } from "./FeedPage/Post/Post";
 import { Categories } from './UsersPage/Categories/Categories'
@@ -8,7 +7,6 @@ import { Chat } from './MessagePage/Chat/Chat'
 
 
 export {
-  FieldPost, 
   NewPost,
   Post,
   Categories,
