@@ -28,7 +28,7 @@ function App() {
             <Route path=':userId' element={<ProfilePage />} />
           </Route>
           <Route path='logout' element={<LoginPage />} />
-          <Route path='registration' element={<RegistrationPage />} />
+          <Route path='signup' element={<RegistrationPage />} />
           <Route path='*' element={<ErrorPage />} />
         </Routes>
 

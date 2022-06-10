@@ -1,21 +1,25 @@
 import React from 'react'
-import { useFormik } from 'formik';
-import cn from 'classnames';
+import { useFormik } from 'formik'
+import cn from 'classnames'
 
-import { Button } from '@components/app';
+import { Button } from '@components/app'
 import styles from './LoginPage.module.css'
+import { useNavigate } from 'react-router-dom'
 
 interface formValues {
-  email: string,
-  password: string,
+  email: string
+  password: string
 }
 
-
-
 export const LoginPage = () => {
+  const navigate = useNavigate()
 
-  const onSubmitFrom = (form: { email: string, password: string }) => {
+  const onSubmitFrom = (form: { email: string; password: string }) => {
     console.log(form)
+  }
+
+  const onRoute = () => {
+    navigate('/signup')
   }
 
   const formik = useFormik({
@@ -32,52 +36,56 @@ export const LoginPage = () => {
           <div className={styles.form__item}>
             <label htmlFor="emailLogin">Email</label>
             <input
-              id='emailLogin'
+              id="emailLogin"
               type="email"
-              name='email'
-              placeholder='Email'
+              name="email"
+              placeholder="Email"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
-              className={cn(
-                {[styles.inputError]: formik.errors.email && formik.touched.email}
-              )}
+              className={cn({
+                [styles.inputError]:
+                  formik.errors.email && formik.touched.email,
+              })}
             />
-            {formik.errors.email && formik.touched.email
-              ? <div className={styles.error}>{formik.errors.email}</div>
-              : null
-            }
+            {formik.errors.email && formik.touched.email ? (
+              <div className={styles.error}>{formik.errors.email}</div>
+            ) : null}
           </div>
 
           <div className={styles.form__item}>
             <label htmlFor="passwordLogin">Email</label>
             <input
-              id='passwordLogin'
+              id="passwordLogin"
               type="password"
-              name='password'
-              placeholder='Password'
+              name="password"
+              placeholder="Password"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.password}
-              className={cn(
-                {[styles.inputError]: formik.errors.password && formik.touched.password}
-              )}
+              className={cn({
+                [styles.inputError]:
+                  formik.errors.password && formik.touched.password,
+              })}
             />
-            {formik.errors.password && formik.touched.password
-              ? <div className={styles.error}>{formik.errors.password}</div>
-              : null
-            }
+            {formik.errors.password && formik.touched.password ? (
+              <div className={styles.error}>{formik.errors.password}</div>
+            ) : null}
           </div>
 
-          <Button size='large' type='submit'>Логин</Button>
+          <Button size="large" type="submit">
+            Логин
+          </Button>
+
+          <p className={styles.singUp}>
+            Don't have an account?{' '}
+            <span onClick={() => navigate('/signup')}>Sing Up!</span>
+          </p>
         </form>
       </div>
     </div>
   )
 }
-
-
-
 
 const validate = (values: formValues) => {
   const errors = {} as formValues
