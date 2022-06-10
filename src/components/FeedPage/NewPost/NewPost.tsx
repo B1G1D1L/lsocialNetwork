@@ -2,8 +2,7 @@ import React, { FormEvent } from 'react'
 import cn from 'classnames';
 
 import { ReactComponent as Photo } from '@assets/image/photo.svg';
-import { FieldPost } from '@components/index';
-import { Button } from '@components/app';
+import { Button, Field } from '@components/app';
 
 import styles from './NewPost.module.css';
 import stylesPost from './../Post/Post.module.css';
@@ -12,6 +11,10 @@ import stylesPost from './../Post/Post.module.css';
 
 export const NewPost = () => {
   const [value, setValue] = React.useState('')
+
+  const handleChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value)
+  }
 
   const onSubmitNewPost = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -29,10 +32,11 @@ export const NewPost = () => {
             src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" 
             alt="ava"
           />
-          <FieldPost 
+          <Field 
             value={value}
-            onChange={setValue} 
+            onChange={handleChangeText} 
             placeholder="What's happening?"
+            darkTheme
           />
         </div>
 

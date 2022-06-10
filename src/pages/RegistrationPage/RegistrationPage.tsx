@@ -19,8 +19,13 @@ export const RegistrationPage = () => {
           <div className={styles.step}>
             <h4 className={styles.stepTitle}>Name and surname</h4>
             <div className={styles.stepWrapper}>
-              <Field onChange={onChange} placeholder='Name' id='name' require />
-              <Field onChange={onChange} placeholder='Surname' id='surname' require />
+              <Field onChange={onChange} placeholder="Name" id="name" require />
+              <Field
+                onChange={onChange}
+                placeholder="Surname"
+                id="surname"
+                require
+              />
             </div>
           </div>
         </div>

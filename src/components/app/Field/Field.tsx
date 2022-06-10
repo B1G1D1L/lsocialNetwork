@@ -3,32 +3,35 @@ import cn from 'classnames'
 
 import styles from './Field.module.css'
 
-
 interface PropsType {
+  type?: string
   value: string
-  placeholder?: string,
-  maxWidth?: string,
-  classNames?: string[],
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  startButtom?: boolean
+  placeholder?: string
+  darkTheme?: boolean
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-
 export const Field = (props: PropsType) => {
-  const { onChange, value, placeholder, maxWidth, classNames } = props
+  const {
+    type = 'string',
+    onChange,
+    value,
+    placeholder,
+    startButtom = false,
+    darkTheme = false,
+  } = props
 
   return (
-    <div 
-      className={styles.wrapper} 
-      style={{maxWidth: maxWidth }}
-    >
-      <div className={cn(styles.form, (classNames && [...classNames]))}>
-        <button type='submit' className={styles.form__btn} />
-        <input 
-          type="text"
+    <div className={cn(styles.wrapper, { [styles['darkTheme']]: darkTheme })}>
+      <div className={styles.form}>
+        {startButtom && <button type="submit" className={styles.form__btn} />}
+        <input
+          type={type}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
-          className={cn(styles.form__input)}
+          className={styles.form__input}
         />
       </div>
     </div>

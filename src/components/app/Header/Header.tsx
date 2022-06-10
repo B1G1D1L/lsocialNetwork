@@ -42,6 +42,7 @@ export const Header = () => {
               value={value}
               onChange={handleChange}
               placeholder='Search for something here...'
+              startButtom
             />
           </form>
           <Link
