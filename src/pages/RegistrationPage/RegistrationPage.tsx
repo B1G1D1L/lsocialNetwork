@@ -25,14 +25,13 @@ export const RegistrationPage = () => {
 
   return (
     <div className={'container__body'}>
-      <Formik
-        initialValues={{ name: '', surname: '', phone: 0 }}
-        onSubmit={onSubmitForm}
-        validate={validate}
-      >
-        <div className={'body__item'}>
-          <h2 className={styles.title}>Registration</h2>
-
+      <div className={'body__item'}>
+        <h2 className={styles.title}>Registration</h2>
+        <Formik
+          initialValues={{ name: '', surname: '', phone: 0 }}
+          onSubmit={onSubmitForm}
+          validate={validate}
+        >
           <Form className={styles.steps}>
             <div className={styles.step}>
               <h4 className={styles.stepTitle}>Name and surname</h4>
@@ -48,9 +47,11 @@ export const RegistrationPage = () => {
                 <FieldPage name="phone" placeholder="Phone" type="number" />
               </div>
             </div>
+
+            <Button type="submit">Submit</Button>
           </Form>
-        </div>
-      </Formik>
+        </Formik>
+      </div>
     </div>
   )
 }
@@ -107,7 +108,9 @@ const validate = (values: Values) => {
 
   if (
     values.phone &&
-    !/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i.test(String(values.phone))
+    !/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i.test(
+      String(values.phone)
+    )
   ) {
     errors.phone = 'Invalid number'
   }
