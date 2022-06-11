@@ -1,4 +1,44 @@
 /* common */
+.title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+
+/* Step */
+.step + .step {
+  margin-top: 50px;
+}
+
+.stepWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.stepTitle {
+  border-bottom: 1px solid var(--color-light);
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: var(--color-grey);
+}
+
+/* Form */
+.imputWrapper {
+  position: relative;
+}
+
+.errorMessage {
+  position: absolute;
+  bottom: -15px;
+  right: 0;
+  font-size: 14px;
+  color: tomato;
+}
+
+.imputWrapper + .imputWrapper {
+  margin-left: 20px;
+}
+
 .input {
   font-size: 15px;
   width: 300px;
@@ -7,23 +47,21 @@
   border: 1px solid #dadbdf;
 }
 
-.input + .input {
-  margin-left: 20px;
-}
-
 .inputRequire {
-  color: red;
+  position: relative;
 }
 
-/* Steps */
-.title {
-  text-align: center;
-  margin-bottom: 50px;
+.inputRequire::after {
+  content: '*';
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  display: block;
+  width: 5px;
+  height: 5px;
+  color: tomato;
 }
 
-.stepTitle {
-  border-bottom: 1px solid var(--color-light);
-  margin-bottom: 20px;
-  color: var(--color-grey);
-  font-size: 14px;
+.inputError {
+  border: 1px solid tomato;
 }

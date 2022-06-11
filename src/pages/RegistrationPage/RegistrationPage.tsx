@@ -1,57 +1,116 @@
 import React, { ChangeEvent } from 'react'
 import cn from 'classnames'
-import { useFormik } from 'formik'
+import {
+  FormikHelpers,
+  useFormik,
+  useField,
+  Form,
+  Formik,
+  ErrorMessage,
+} from 'formik'
 
 import styles from './RegistrationPage.module.css'
 import { Button } from '@components/app'
 
+interface Values {
+  name: string
+  surname: string
+  phone: number
+}
+
 export const RegistrationPage = () => {
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.id)
+  const onSubmitForm = () => {
+    console.log(3333)
   }
 
   return (
     <div className={'container__body'}>
-      <div className={'body__item'}>
-        <h2 className={styles.title}>Registration</h2>
+      <Formik
+        initialValues={{ name: '', surname: '', phone: 0 }}
+        onSubmit={onSubmitForm}
+        validate={validate}
+      >
+        <div className={'body__item'}>
+          <h2 className={styles.title}>Registration</h2>
 
-        <div className={styles.steps}>
-          <div className={styles.step}>
-            <h4 className={styles.stepTitle}>Name and surname</h4>
-            <div className={styles.stepWrapper}>
-              <Field onChange={onChange} placeholder="Name" id="name" require />
-              <Field
-                onChange={onChange}
-                placeholder="Surname"
-                id="surname"
-                require
-              />
+          <Form className={styles.steps}>
+            <div className={styles.step}>
+              <h4 className={styles.stepTitle}>Name and surname</h4>
+              <div className={styles.stepWrapper}>
+                <FieldPage name="name" placeholder="Name" require />
+                <FieldPage name="surname" placeholder="Surname" require />
+              </div>
             </div>
-          </div>
+
+            <div className={styles.step}>
+              <h4 className={styles.stepTitle}>contacts</h4>
+              <div className={styles.stepWrapper}>
+                <FieldPage name="phone" placeholder="Phone" type="number" />
+              </div>
+            </div>
+          </Form>
         </div>
-      </div>
+      </Formik>
     </div>
   )
 }
 
+// Field
 interface PropsField {
+  name: string
   type?: string
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
-  id: string
+  require?: boolean
   placeholder: string
-  require: boolean
 }
 
-const Field = (props: PropsField) => {
-  const { type = 'string', onChange, placeholder, require, id } = props
+const FieldPage = (props: PropsField) => {
+  const { name, type = 'string', placeholder, require } = props
+  const [field, meta] = useField(props)
 
   return (
-    <input
-      type={type}
-      onChange={onChange}
-      id={id}
-      placeholder={placeholder}
-      className={cn(styles.input, { [styles['inputRequire']]: require })}
-    />
+    <div
+      className={cn(styles.imputWrapper, { [styles['inputRequire']]: require })}
+    >
+      <input
+        {...field}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        className={cn(styles.input, {
+          [styles['inputError']]: meta.error && meta.touched,
+        })}
+      />
+      <ErrorMessage name={name}>
+        {(msg) => <div className={styles.errorMessage}>{msg}</div>}
+      </ErrorMessage>
+    </div>
   )
+}
+
+// Validate
+interface ErrorValue {
+  name: string
+  surname: string
+  phone: string
+}
+
+const validate = (values: Values) => {
+  const errors = {} as ErrorValue
+
+  if (!values.name) {
+    errors.name = 'Require!'
+  }
+
+  if (!values.surname) {
+    errors.surname = 'Require'
+  }
+
+  if (
+    values.phone &&
+    !/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i.test(String(values.phone))
+  ) {
+    errors.phone = 'Invalid number'
+  }
+
+  return errors
 }
