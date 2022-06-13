@@ -1,0 +1,23 @@
+/* Containers */
+.container {
+  display: grid;
+  grid-template-columns: 15% 1fr;
+  gap: 20px;
+  max-width: var(--size-container);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.container__wrapper {
+  display: grid;
+  grid-template-columns: 1fr 23%;
+  gap: 20px;
+}
+
+.container__body {
+  padding: 20px;
+  border-radius: 20px 20px 0 0;
+  background-color: var(--container-background);
+  min-height: calc(100vh - var(--header-height));
+}
