@@ -1,13 +1,17 @@
 import React from 'react'
+
 import { WithProviders } from './providers'
 import { Routing } from 'pages2'
+import { Header } from 'widgets/header/ui'
 
 import './index.css'
 
-
 function App() {
   return (
-    <Routing />
+    <div className='app'>
+      <Header />
+      <Routing />
+    </div>
   )
 }
 

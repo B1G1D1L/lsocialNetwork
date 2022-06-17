@@ -10,6 +10,7 @@ interface PropsType {
   placeholder?: string
   darkTheme?: boolean
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export const Field = (props: PropsType) => {
@@ -20,12 +21,13 @@ export const Field = (props: PropsType) => {
     placeholder,
     startButtom = false,
     darkTheme = false,
+    onClick: onClicl
   } = props
 
   return (
     <div className={cn(styles.wrapper, { [styles['darkTheme']]: darkTheme })}>
       <div className={styles.form}>
-        {startButtom && <button type="submit" className={styles.form__btn} />}
+        {startButtom && <button type="submit" onClick={onClicl} className={styles.form__btn} />}
         <input
           type={type}
           placeholder={placeholder}
