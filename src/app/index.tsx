@@ -3,14 +3,18 @@ import React from 'react'
 import { WithProviders } from './providers'
 import { Routing } from 'pages2'
 import { Header } from 'widgets/header/ui'
+import { Navbar } from 'entities/navbar/ui'
 
 import './index.css'
 
 function App() {
   return (
-    <div className='app'>
+    <div className="app">
       <Header />
-      <Routing />
+      <div className="container">
+        <Navbar />
+        <Routing />
+      </div>
     </div>
   )
 }

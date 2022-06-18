@@ -1,0 +1,86 @@
+.nav .body {
+  margin-bottom: 5px;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background 0.2s ease-in;
+}
+.body:hover {
+  background-color: #dadbdf;
+}
+
+.text {
+  transition: color 0.2s ease-in;
+}
+
+.body svg {
+  width: 17px;
+  height: 17px;
+  fill: var(--svg-fill);
+  margin-right: 10px;
+  transition: fill 0.3s ease-in;
+}
+
+/* Active Link */
+.active .body {
+  background: #4d577b;
+}
+
+.active .text {
+  color: white;
+}
+
+.active svg {
+  fill: white;
+}
+
+/* Media */
+@media screen and (max-width: 576px) {
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+  }
+  .nav a:nth-child(5),
+  .nav a:nth-child(7) {
+    display: none;
+    background-color: red;
+  }
+  .nav a {
+    max-width: 50px;
+    width: 100%;
+  }
+  .nav .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+  .body svg {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+  .body h3 {
+    display: none;
+  }
+
+  .active .body {
+    background: transparent;
+  }
+  .active .text {
+    color: var(--color-fill);
+  }
+  .active svg {
+    fill: var(--color-fill);
+  }
+  .active .body {
+    border-bottom: 2px solid;
+    border-color: var(--color-fill);
+  }
+}
