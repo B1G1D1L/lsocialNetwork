@@ -6,7 +6,7 @@ import styles from './styles.module.css'
 
 interface PropsType {
   name: string
-  type?: 'text' | 'number'
+  type?: 'text' | 'number' | 'password'
   placeholder: string
 }
 
@@ -21,7 +21,7 @@ export const FieldValidate = (props: PropsType) => {
         className={cn({ [styles['errInput']]: meta.error && meta.touched })}
       />
       <ErrorMessage name={props.name}>
-        {(msg) => <div className={styles.errMsg}>{msg}</div>}
+        {(msg) => <span>{msg}</span>}
       </ErrorMessage>
     </div>
   )

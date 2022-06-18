@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { WithProviders } from './providers'
-import { Routing } from 'pages2'
+import { Routing } from 'pages'
 import { Header } from 'widgets/header/ui'
 import { Navbar } from 'entities/navbar/ui'
 

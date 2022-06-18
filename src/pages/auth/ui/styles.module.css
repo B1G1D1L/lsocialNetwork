@@ -1,0 +1,19 @@
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.wrapper {
+  width: 350px;
+}
+
+.wrapper h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.form button {
+  margin: 0 auto;
+}
