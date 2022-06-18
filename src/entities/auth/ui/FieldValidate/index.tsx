@@ -6,15 +6,16 @@ import styles from './styles.module.css'
 
 interface PropsType {
   name: string
-  type?: 'text' | 'number' | 'password'
+  type?: 'text' | 'number' | 'password' | 'email'
   placeholder: string
+  className?: string
 }
 
 export const FieldValidate = (props: PropsType) => {
   const [field, meta] = useField(props)
 
   return (
-    <div className={styles.wrapper}>
+    <div className={cn(props.className, styles.wrapper)}>
       <input
         {...props}
         {...field}

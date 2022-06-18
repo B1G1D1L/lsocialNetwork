@@ -13,7 +13,7 @@ const initialValues: valuesSingIn = {
   password: '',
 }
 
-const AuthPage = () => {
+const SignIn = () => {
   const onSubmit = (e: any) => {
     console.log(e)
   }
@@ -21,7 +21,7 @@ const AuthPage = () => {
   return (
     <Layout>
       <div className={styles.page}>
-        <div className={styles.wrapper}>
+        <div className={styles.container}>
           <Element>
             <h2>Sing in</h2>
             <Formik
@@ -29,7 +29,7 @@ const AuthPage = () => {
               onSubmit={onSubmit}
               validate={AuthLib.validateSingIn}
             >
-              <Form className={styles.form}>
+              <Form>
                 <FieldValidate name="email" placeholder="Email" />
                 <FieldValidate
                   name="password"
@@ -46,4 +46,4 @@ const AuthPage = () => {
   )
 }
 
-export default AuthPage
+export default SignIn
