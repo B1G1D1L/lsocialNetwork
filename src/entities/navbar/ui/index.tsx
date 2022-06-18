@@ -8,31 +8,17 @@ import styles from './styles.module.css'
 export const Navbar = () => {
   return (
     <nav className={styles.nav}>
-      {navigation.map((link) => (
-        <LinkCustom {...link} />
+      {navigation.map(({ to, text, Icon }) => (
+        <NavLink
+          to={to}
+          className={({isActive}) => (isActive ? styles.active : undefined)}
+        >
+          <div className={styles.body}>
+            <Icon />
+            <h3>{text}</h3>
+          </div>
+        </NavLink>
       ))}
     </nav>
-  )
-}
-
-interface PropsLink {
-  to: string
-  text: string
-  Icon: any
-}
-
-const LinkCustom = ({ to, text, Icon }: PropsLink) => {
-  return (
-    <NavLink
-      to={to}
-      className={({ isActive }) => {
-        return isActive ? styles.active : ''
-      }}
-    >
-      <div className={styles.body}>
-        <Icon />
-        <h3 className={styles.text}>{text}</h3>
-      </div>
-    </NavLink>
   )
 }
