@@ -1,0 +1,11 @@
+.wrapper {
+  position: relative;
+}
+
+.errMsg {
+  position: absolute;
+  bottom: -15px;
+  right: 0;
+  font-size: 14px;
+  color: tomato;
+}
