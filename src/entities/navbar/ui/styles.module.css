@@ -13,10 +13,6 @@
   background-color: #dadbdf;
 }
 
-.text {
-  transition: color 0.2s ease-in;
-}
-
 .body svg {
   width: 17px;
   height: 17px;
@@ -25,17 +21,21 @@
   transition: fill 0.3s ease-in;
 }
 
+.body h3 {
+  transition: color 0.2s ease-in;
+}
+
 /* Active Link */
 .active .body {
   background: #4d577b;
 }
 
-.active .text {
-  color: white;
+.active .body svg {
+  fill: white;
 }
 
-.active svg {
-  fill: white;
+.active .body h3 {
+  color: white;
 }
 
 /* Media */
@@ -70,17 +70,16 @@
     display: none;
   }
 
+  /* Active Link */
   .active .body {
     background: transparent;
+    border-bottom: 2px solid;
+    border-color: var(--color-fill);
   }
-  .active .text {
+  .active .body h3 {
     color: var(--color-fill);
   }
   .active svg {
     fill: var(--color-fill);
-  }
-  .active .body {
-    border-bottom: 2px solid;
-    border-color: var(--color-fill);
   }
 }
