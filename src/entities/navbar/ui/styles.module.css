@@ -22,6 +22,7 @@
 }
 
 .body h3 {
+  flex: 1;
   transition: color 0.2s ease-in;
 }
 
@@ -36,6 +37,21 @@
 
 .active .body h3 {
   color: white;
+}
+
+/* Notificaton count */
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  width: 20px;
+  height: 20px;
+  background-color: tomato;
+  color: var(--color-white);
+  border-radius: 50%;
+  overflow: hidden;
+  ;
 }
 
 /* Media */

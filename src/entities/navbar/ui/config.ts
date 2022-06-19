@@ -11,30 +11,36 @@ export const navigation = [
     to: 'feed',
     text: 'Feed',
     Icon: Feed,
+    withNotice: false
   },
   {
     to: 'users',
     text: 'Users',
     Icon: Users,
+    withNotice: false
   },
   {
     to: 'messages',
     text: 'Messages',
     Icon: Messages,
+    withNotice: true
   },
   {
     to: 'notification',
     text: 'Notification',
     Icon: Notification,
+    withNotice: true
   },
   {
     to: 'profile',
     text: 'Profile',
     Icon: Profile,
+    withNotice: false
   },
   {
     to: 'setting',
     text: 'Setting',
     Icon: Setting,
+    withNotice: false
   },
 ]
