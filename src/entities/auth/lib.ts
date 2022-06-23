@@ -1,7 +1,16 @@
-import { valuesSingIn, valuesSingUp } from 'shared/models'
+export type SingupParams = {
+  email: string
+  password: string
+}
 
-export const validateSingIn = (values: valuesSingIn) => {
-  const errors = {} as valuesSingIn
+export type SigninParams = {
+  email: string
+  password: string
+}
+
+
+export const validateSingIn = (values: SigninParams) => {
+  const errors = {} as SigninParams
 
   if (!values.email) {
     errors.email = 'Require'
@@ -18,12 +27,8 @@ export const validateSingIn = (values: valuesSingIn) => {
   return errors
 }
 
-export const validateSingUp = (values: valuesSingUp) => {
-  const errors = {} as valuesSingUp
-
-  if(!values.name) {
-    errors.name = 'Reuire'
-  }
+export const validateSingUp = (values: SingupParams) => {
+  const errors = {} as SingupParams
 
   if(!values.email) {
     errors.email = 'Invalid email'

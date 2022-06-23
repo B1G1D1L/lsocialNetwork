@@ -77,7 +77,7 @@ export const LoginPage = () => {
             Логин
           </Button>
 
-          <p className={styles.singUp}>
+          <p className={styles.signUp}>
             Don't have an account?{' '}
             <span onClick={() => navigate('/signup')}>Sing Up!</span>
           </p>
