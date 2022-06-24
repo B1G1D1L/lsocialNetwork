@@ -1,12 +1,14 @@
 import { createStore, createEffect } from 'effector/compat'
 import { typicodeApi } from 'shared/api'
 
-export const CreateAccountFx = createEffect(
+export const createAccountFx = createEffect(
   typicodeApi.auth.createAccount
 )
 
-CreateAccountFx.done.watch((response) => {
+createAccountFx.doneData.watch((response) => {
   console.log(response)
 })
+
+const $createIsLoading = createAccountFx.pending
 
 

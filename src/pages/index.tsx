@@ -10,6 +10,6 @@ export const Routing = () => (
     <Route path="/" element={<Navigate replace to="feed" />} />
     <Route path="feed" element={<FeedPage />} />
     <Route path="messages" element={<MessagePage />} />
-    <Route path="signop" element={<SignUp />} />
+    <Route path="signup" element={<SignUp />} />
   </Routes>
 )
