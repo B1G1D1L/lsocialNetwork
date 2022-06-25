@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Formik, Form } from 'formik'
 
 import styles from './styles.module.css'
 import { Field } from 'shared/ui'
@@ -28,14 +29,14 @@ export const Header = () => {
         <Logo />
 
         <div className={styles.header_body}>
-          <form onSubmit={onSubmitSearch} className={styles.header__form}>
-            <Field
-              value={value}
-              onChange={handleChange}
-              placeholder="Search for something here..."
-              startButtom
-            />
-          </form>
+          <Formik
+            initialValues={{ search: '' }}
+            onSubmit={() => console.log('hello header seatch')}
+          >
+            <Form>
+              <Field name="search" placeholder="Search for something here..." />
+            </Form>
+          </Formik>
           <Link to="/profile" className={styles.profile}>
             <h3>Saleh Ahmed</h3>
             <span className={styles.profileAvatar}>

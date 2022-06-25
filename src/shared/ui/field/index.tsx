@@ -1,41 +1,29 @@
 import React from 'react'
 import cn from 'classnames'
+import { ErrorMessage, useField } from 'formik'
 
-import styles from './field.module.css'
+import styles from './styles.module.css'
 
 interface PropsType {
-  type?: string
-  value: string
-  startButtom?: boolean
-  placeholder?: string
-  darkTheme?: boolean
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  name: string
+  type?: 'text' | 'number' | 'password' | 'email'
+  placeholder: string
+  className?: string
 }
 
 export const Field = (props: PropsType) => {
-  const {
-    type = 'string',
-    onChange,
-    value,
-    placeholder,
-    startButtom = false,
-    darkTheme = false,
-    onClick: onClicl
-  } = props
+  const [field, meta] = useField(props)
 
   return (
-    <div className={cn(styles.wrapper, { [styles['darkTheme']]: darkTheme })}>
-      <div className={styles.form}>
-        {startButtom && <button type="submit" onClick={onClicl} className={styles.form__btn} />}
-        <input
-          type={type}
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          className={styles.form__input}
-        />
-      </div>
+    <div className={cn(props.className, styles.wrapper)}>
+      <input
+        {...props}
+        {...field}
+        className={cn({ [styles['errInput']]: meta.error && meta.touched })}
+      />
+      <ErrorMessage name={props.name}>
+        {(msg) => <span>{msg}</span>}
+      </ErrorMessage>
     </div>
   )
 }
