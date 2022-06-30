@@ -1,13 +1,9 @@
-export type SingupParams = {
-  email: string
-  password: string
-}
+import { SignUp } from 'shared/api'
 
 export type SigninParams = {
   email: string
   password: string
 }
-
 
 export const validateSingIn = (values: SigninParams) => {
   const errors = {} as SigninParams
@@ -19,7 +15,7 @@ export const validateSingIn = (values: SigninParams) => {
   }
 
   if (!values.password) {
-    errors.password = 'Require'
+    errors.password = 'password is Require'
   } else if (values.password.length <= 5) {
     errors.password = 'Password at least 6 characters'
   }
@@ -27,17 +23,26 @@ export const validateSingIn = (values: SigninParams) => {
   return errors
 }
 
-export const validateSingUp = (values: SingupParams) => {
-  const errors = {} as SingupParams
+export const validateSingUp = (values: SignUp) => {
+  const errors = {} as SignUp
 
-  if(!values.email) {
+  // Name
+  if (!values.name) {
+    errors.name = 'Name is Require'
+  } else if (!/^[a-zа-яё]+$/i.test(values.name)) {
+    errors.name = 'Invalid Name'
+  }
+
+  // Email
+  if (!values.email) {
     errors.email = 'Invalid email'
-  } else if(!/^\S+@\S+\.\S+$/.test(values.email)) {
+  } else if (!/^\S+@\S+\.\S+$/.test(values.email)) {
     errors.email = 'Invalid email'
   }
 
+  //
   if (!values.password) {
-    errors.password = 'Require'
+    errors.password = 'Email is Require'
   } else if (values.password.length <= 5) {
     errors.password = 'Password at least 6 characters'
   }
