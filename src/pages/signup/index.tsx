@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Element, Layout } from 'shared/ui'
-import { SignupForm } from 'features/auth'
+import { SignupForm } from 'features/auth/signup-form'
 import styles from './styles.module.css'
 
 const SignUp = () => {

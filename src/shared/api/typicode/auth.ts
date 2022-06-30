@@ -5,6 +5,7 @@ import { typicodeApi, SignUp } from 'shared/api'
 import { db } from './base'
 
 export const createAccount = async (params: SignUp) => {
+  debugger
   try {
     const userData: any = await createUserWithEmailAndPassword(
       typicodeApi.base.auth,
