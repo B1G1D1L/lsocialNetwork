@@ -7,5 +7,4 @@ export type SignUp = {
 export type user = {
   name: string
   email: string
-  token: any
 }

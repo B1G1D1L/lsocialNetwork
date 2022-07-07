@@ -3,7 +3,7 @@ import { Form, Formik } from 'formik'
 
 import type { SignUp } from 'shared/api'
 import { Button, Field } from 'shared/ui'
-import { AuthLib } from 'entities/auth'
+import { userLib } from 'entities/user'
 import { signupModel } from 'features/auth/signup-form'
 
 import styles from './styles.module.css'
@@ -19,7 +19,7 @@ export const SignupForm = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={signupModel.createAccountFx}
-      validate={AuthLib.validateSingUp}
+      validate={userLib.validateSingUp}
     >
       <Form className={styles.form}>
         <Field name="name" placeholder="Name" />

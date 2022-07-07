@@ -1,27 +1,32 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc, doc, onSnapshot } from 'firebase/firestore'
 
 import { typicodeApi, SignUp } from 'shared/api'
 import { db } from './base'
 
-export const createAccount = async (params: SignUp) => {
-  debugger
+interface CreateAccountParams extends SignUp {
+  updateUser: any
+}
+
+export const createAccountApi = async (params: any, updateUser: any) => {
   try {
-    const userData: any = await createUserWithEmailAndPassword(
+    await createUserWithEmailAndPassword(
       typicodeApi.base.auth,
       params.email,
       params.password
     )
-    const userInfoData = await addDoc(collection(db, 'users'), {
+
+    const addUserInfo = await addDoc(collection(db, 'users'), {
       email: params.email,
       name: params.name,
     })
 
-    console.log(userData.user)
-    // return {
-    //   token: userData.user.accessToken
-    // }
+    onSnapshot(doc(db, 'users'), { includeMetadataChanges: true }, (doc) => {
+      console.log(doc)
+    })
+
+    console.log(addUserInfo)
   } catch (e) {
-    throw e
+    console.log(e)
   }
 }

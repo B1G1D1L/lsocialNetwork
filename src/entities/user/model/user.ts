@@ -1,13 +1,9 @@
-import { createStore, createEvent } from 'effector/compat'
-import type { user } from 'shared/api'
-
-export const initialUserStore: user = {
-  email: '',
-  name: '',
-  token: '',
-}
+import { createEvent, createStore } from 'effector/compat'
+import { user } from 'shared/api'
 
 export const updateUser = createEvent<user>()
 
-// Store
-export const $user = createStore(initialUserStore)
+export const $user = createStore<user>({ email: '', name: '' })
+export const $isAuth = $user.watch((store) => !!store.name)
+
+$user.on(updateUser, (_, updates) => updates)

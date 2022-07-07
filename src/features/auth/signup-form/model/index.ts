@@ -1,8 +1,8 @@
-import { createEffect } from 'effector/compat'
-import { typicodeApi } from 'shared/api'
+import {userModal} from 'entities/user'
+import { SignUp, typicodeApi } from 'shared/api'
 
-export const createAccountFx = createEffect(typicodeApi.auth.createAccount)
-createAccountFx.doneData.watch((response) => {
-  console.log(response)
-})
-createAccountFx.use((params) => console.log(params))
+// export const createAccountFx = createEffect(typicodeApi.auth.createAccount)
+
+export const createAccountFx = async (data: SignUp) => {
+  await typicodeApi.auth.createAccountApi(data, userModal.updateUser)
+}
