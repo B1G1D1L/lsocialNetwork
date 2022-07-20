@@ -6,7 +6,7 @@ import { $isAuth } from 'entities/user/model'
 
 const FeedPage = React.lazy(() => import('./feed/ui'))
 const MessagePage = React.lazy(() => import('./message/ui'))
-const SignUp = React.lazy(() => import('./signup'))
+const SignUpPage = React.lazy(() => import('./signup'))
 
 export const Routing = () => {
   const isAuth = useStore($isAuth)
@@ -14,16 +14,12 @@ export const Routing = () => {
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={<PrivateRoute component={<Navigate replace to="feed" />} />}
-      />
-      <Route path="feed" element={<PrivateRoute component={<FeedPage />} />} />
-      <Route
-        path="messages"
-        element={<PrivateRoute component={<MessagePage />} />}
-      />
-      <Route path="signup" element={<SignUp />} />
+      <Route path="signup" element={<SignUpPage />} />
+      <Route path="/" element={<Navigate to="feed" />} />
+      <Route path="/*" element={<PrivateRoute />}>
+        <Route path="feed" element={<FeedPage />} />
+        <Route path="messages" element={<MessagePage />} />
+      </Route>
     </Routes>
   )
 }

@@ -1,18 +1,10 @@
-import { useStore } from 'effector-react/compat'
-import { $isAuth } from 'entities/user/model'
 import React from 'react'
-import { Navigate, Route } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
+import { useStore } from 'effector-react/compat'
 
-interface IRouteProps {
-  caseSensitive?: boolean
-  children?: React.ReactNode
-  element?: React.ReactNode | null
-  index?: boolean
-  path?: string
-}
+import { $isAuth } from 'entities/user/model'
 
-export const PrivateRoute = ({ component }: any) => {
+export const PrivateRoute = () => {
   const isAuth = useStore($isAuth)
-
-  return <>{isAuth ? component : <Navigate to="/signup" />}</>
+  return <>{isAuth ? <Outlet /> : <Navigate to="/signup" />}</>
 }

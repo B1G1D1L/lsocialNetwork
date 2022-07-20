@@ -1,10 +1,23 @@
 import React from 'react'
+import { useStore } from 'effector-react/compat'
+import { useNavigate } from 'react-router-dom'
 
-import { Element, Layout } from 'shared/ui'
 import { SignupForm } from 'features/auth/signup-form'
+import { $isAuth } from 'entities/user/model'
+import { Element, Layout } from 'shared/ui'
+
 import styles from './styles.module.css'
 
 const SignUp = () => {
+  const isAuth = useStore($isAuth)
+  const navigate = useNavigate()
+
+  React.useEffect(() => {
+    if (isAuth) {
+      navigate(-1)
+    }
+  }, [isAuth])
+
   return (
     <Layout>
       <div className={styles.page}>
