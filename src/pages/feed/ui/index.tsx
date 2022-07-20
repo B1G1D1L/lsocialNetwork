@@ -1,7 +1,5 @@
 import React from 'react'
 
-const FeedPage = () => {
+export const FeedPage = () => {
   return <div>hello feed</div>
 }
-
-export default FeedPage
