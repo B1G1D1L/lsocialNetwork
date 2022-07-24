@@ -19,8 +19,8 @@ createAccountFx.doneData.watch((result) =>
 
 export const $errorRegCode = createAccountFx.finally.watch((value) => {
   if (value.status === 'fail') {
-    // @ts-ignore
-    return errorsCode[`${value.error.code}`] || 'Unknown error'
+    const code = value.error.code
+    return errorsCode[code as keyof typeof errorsCode] || 'Unknown error'
   }
 })
 

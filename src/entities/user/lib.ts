@@ -1,4 +1,4 @@
-import { SignUp } from 'shared/api'
+import { ISignUp } from 'shared/api'
 
 export type SigninParams = {
   email: string
@@ -23,8 +23,8 @@ export const validateSingIn = (values: SigninParams) => {
   return errors
 }
 
-export const validateSingUp = (values: SignUp) => {
-  const errors = {} as SignUp
+export const validateSingUp = (values: ISignUp) => {
+  const errors = {} as ISignUp
 
   // Name
   if (!values.name) {
