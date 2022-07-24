@@ -1,32 +1,24 @@
+import { FirebaseError } from 'firebase/app'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { collection, addDoc, doc, onSnapshot } from 'firebase/firestore'
+import { collection, addDoc } from 'firebase/firestore'
 
-import { typicodeApi, SignUp } from 'shared/api'
-import { db } from './base'
+import { typicodeApi, ISignUp } from 'shared/api'
 
-interface CreateAccountParams extends SignUp {
-  updateUser: any
-}
-
-export const createAccountApi = async (params: any, updateUser: any) => {
+export const createAccountApi = async ({ name, email, password }: ISignUp) => {
   try {
-    await createUserWithEmailAndPassword(
+    const userDataReg = await createUserWithEmailAndPassword(
       typicodeApi.base.auth,
-      params.email,
-      params.password
+      email,
+      password
     )
 
-    const addUserInfo = await addDoc(collection(db, 'users'), {
-      email: params.email,
-      name: params.name,
+    await addDoc(collection(typicodeApi.base.db, 'users'), {
+      email,
+      name,
     })
 
-    onSnapshot(doc(db, 'users'), { includeMetadataChanges: true }, (doc) => {
-      console.log(doc)
-    })
-
-    console.log(addUserInfo)
+    return { token: userDataReg.user.uid }
   } catch (e) {
-    console.log(e)
+    throw e
   }
 }

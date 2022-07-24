@@ -1,10 +1,11 @@
-export type SignUp = {
+export type ISignUp = {
   name: string
   email: string
   password: string
 }
 
-export type user = {
+export type IUser = {
+  token: string
   name: string
   email: string
 }

@@ -1,14 +1,14 @@
 import React from 'react'
 import { Form, Formik } from 'formik'
 
-import type { SignUp } from 'shared/api'
+import type { ISignUp } from 'shared/api'
 import { Button, Field } from 'shared/ui'
 import { userLib } from 'entities/user'
 import { signupModel } from 'features/auth/signup-form'
 
 import styles from './styles.module.css'
 
-const initialValues: SignUp = {
+const initialValues: ISignUp = {
   name: '',
   email: '',
   password: '',

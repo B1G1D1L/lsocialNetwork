@@ -2,7 +2,6 @@ import React from 'react'
 import cn from 'classnames'
 // import { useParams } from 'react-router-dom'
 
-// import { db } from './../../../firebase'
 // import { collection, addDoc } from "firebase/firestore"
 
 import { ReactComponent as Info } from '@assets/image/info.svg'
@@ -10,8 +9,6 @@ import { ReactComponent as Send } from '@assets/image/send.svg'
 import { DotButton, FriendsParty } from '@components/app'
 
 import styles from './Chat.module.css'
-
-
 
 export const Chat = () => {
   const [valueNewMsg, setValueNewMsg] = React.useState('')
@@ -27,7 +24,7 @@ export const Chat = () => {
 
   // Changing the height of the textarea
   React.useEffect(() => {
-    if(textareaRef.current) {
+    if (textareaRef.current) {
       textareaRef.current.style.height = '41px'
       const currentHeight = textareaRef.current.scrollHeight
       textareaRef.current.style.height = `${currentHeight + 2}px`
@@ -107,10 +104,7 @@ const MessageItem = (props: MessagePropsType) => {
 
   return (
     <div
-      className={cn(
-        styles.message, 
-        { [styles[`message__${owner}`]]: owner }
-      )}
+      className={cn(styles.message, { [styles[`message__${owner}`]]: owner })}
     >
       <img
         className={cn('avatar', 'avatar_extra-small')}
