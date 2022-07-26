@@ -1,10 +1,11 @@
 import React from 'react'
 import { Form, Formik } from 'formik'
+import { createEffect, sample } from 'effector/compat'
 
-import type { ISignUp } from 'shared/api'
-import { Button, Field } from 'shared/ui'
-import { userLib } from 'entities/user'
 import { signupModel } from 'features/auth/signup-form'
+import { Button, Field } from 'shared/ui'
+import type { ISignUp } from 'shared/api'
+import { errorsCode, SignupSchema } from '../lib'
 
 import styles from './styles.module.css'
 
@@ -15,11 +16,25 @@ const initialValues: ISignUp = {
 }
 
 export const SignupForm = () => {
+  const handleSubmit = (data: ISignUp, actions: any) => {
+    signupModel.createAccountFx(data)
+
+    const setErrors = createEffect((value: any) => {
+      const errorMsg = value.code
+      actions.setErrors(errorsCode[errorMsg as keyof typeof errorsCode])
+    })
+
+    sample({
+      clock: signupModel.createAccountFx.failData,
+      target: setErrors,
+    })
+  }
+
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={signupModel.createAccountFx}
-      validate={userLib.validateSingUp}
+      onSubmit={handleSubmit}
+      validationSchema={SignupSchema}
     >
       <Form className={styles.form}>
         <Field name="name" placeholder="Name" />

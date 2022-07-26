@@ -80,7 +80,6 @@ export const FriendsParty = () => {
 
   const onSearchFriends = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log(value)
   }
 
   // Заглушка

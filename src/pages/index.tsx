@@ -1,8 +1,8 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { useStore } from 'effector-react/compat'
+// import { useStore } from 'effector-react/compat'
 import { PrivateRoute } from 'shared/lib'
-import { $isAuth } from 'entities/user/model'
+// import { $isAuth } from 'entities/user/model'
 
 import { FeedPage } from './feed/ui'
 import { MessagePage } from './message/ui'
@@ -11,8 +11,7 @@ const SignUpPage = React.lazy(() => import('./signup'))
 const ErrorPage = React.lazy(() => import('./error'))
 
 export const Routing = () => {
-  const isAuth = useStore($isAuth)
-  console.log(isAuth)
+  // const isAuth = useStore($isAuth)
 
   return (
     <Routes>
@@ -25,8 +24,4 @@ export const Routing = () => {
       </Route>
     </Routes>
   )
-}
-
-const Face = () => {
-  return <h2>hello</h2>
 }

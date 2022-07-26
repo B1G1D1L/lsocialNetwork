@@ -1,4 +1,3 @@
-import { FirebaseError } from 'firebase/app'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { collection, addDoc } from 'firebase/firestore'
 

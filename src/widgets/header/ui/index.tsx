@@ -7,21 +7,20 @@ import { Field } from 'shared/ui'
 import { Logo } from 'shared/ui/logo'
 
 export const Header = () => {
-  const [value, setValue] = React.useState('')
+  // const [value, setValue] = React.useState('')
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value)
-  }
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setValue(e.target.value)
+  // }
 
-  const onSubmitSearch = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    console.log(value)
-  }
+  // const onSubmitSearch = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault()
+  // }
 
   // Заглушка
-  React.useEffect(() => {
-    console.log(value)
-  }, [value])
+  // React.useEffect(() => {
+  //   console.log(value)
+  // }, [value])
 
   return (
     <header className={styles.header}>

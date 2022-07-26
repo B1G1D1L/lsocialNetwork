@@ -7,7 +7,6 @@ import { Field } from '@components/app'
 
 import styles from './Header.module.css'
 
-
 export const Header = () => {
   const [value, setValue] = React.useState('')
 
@@ -17,19 +16,17 @@ export const Header = () => {
 
   const onSubmitSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log(value)
   }
 
   // Заглушка
-  React.useEffect(() => {
-    console.log(value)
-  }, [value])
+  // React.useEffect(() => {
+  //   console.log(value)
+  // }, [value])
 
   return (
     <header className={styles.header}>
-      <div className='container'>
-
-        <Link to='/feed' className={cn(styles.logo)}>
+      <div className="container">
+        <Link to="/feed" className={cn(styles.logo)}>
           <span>
             <img src={logo} alt="logo" />
           </span>
@@ -41,22 +38,20 @@ export const Header = () => {
             <Field
               value={value}
               onChange={handleChange}
-              placeholder='Search for something here...'
+              placeholder="Search for something here..."
               startButtom
             />
           </form>
-          <Link
-            to='/profile'
-            className={styles.user}
-          >
+          <Link to="/profile" className={styles.user}>
             <h3 className={styles.user__name}>Saleh Ahmed</h3>
             <span className={styles.user__avatar}>
-              <img src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" alt="" />
+              <img
+                src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg"
+                alt=""
+              />
             </span>
           </Link>
         </div>
-
-
       </div>
     </header>
   )

@@ -1,13 +1,11 @@
 import React, { FormEvent } from 'react'
-import cn from 'classnames';
+import cn from 'classnames'
 
-import { ReactComponent as Photo } from '@assets/image/photo.svg';
-import { Button, Field } from '@components/app';
+import { ReactComponent as Photo } from '@assets/image/photo.svg'
+import { Button, Field } from '@components/app'
 
-import styles from './NewPost.module.css';
-import stylesPost from './../Post/Post.module.css';
-
-
+import styles from './NewPost.module.css'
+import stylesPost from './../Post/Post.module.css'
 
 export const NewPost = () => {
   const [value, setValue] = React.useState('')
@@ -18,23 +16,21 @@ export const NewPost = () => {
 
   const onSubmitNewPost = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(value)
     setValue('')
   }
 
-  return ( 
+  return (
     <div className={cn(stylesPost.post, 'body__item')}>
-
       <form onSubmit={onSubmitNewPost}>
         <div className={styles.field__input}>
-          <img 
+          <img
             className={cn('avatar', 'avatar_small')}
-            src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg" 
+            src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg"
             alt="ava"
           />
-          <Field 
+          <Field
             value={value}
-            onChange={handleChangeText} 
+            onChange={handleChangeText}
             placeholder="What's happening?"
             darkTheme
           />
@@ -42,13 +38,13 @@ export const NewPost = () => {
 
         <div className={styles.field__send}>
           <label htmlFor="newPostFile">
-            <Photo />Photo
+            <Photo />
+            Photo
           </label>
-          <input type="file" id='newPostFile' />
-          <Button type='submit'>Post</Button>
+          <input type="file" id="newPostFile" />
+          <Button type="submit">Post</Button>
         </div>
       </form>
-        
     </div>
   )
 }

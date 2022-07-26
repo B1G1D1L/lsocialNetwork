@@ -1,6 +1,6 @@
 import React from 'react'
 import { useStore } from 'effector-react/compat'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 import { SignupForm } from 'features/auth/signup-form'
 import { $isAuth } from 'entities/user/model'

@@ -11,8 +11,6 @@ import { DotButton, Button, Field } from '@components/app'
 import styles from './Post.module.css'
 
 export const Post = () => {
-  console.log(process.env.REACT_APP_API)
-
   const [comment, setComment] = React.useState('')
   const [like, setLike] = React.useState(false)
 
@@ -20,7 +18,7 @@ export const Post = () => {
   const onClickLike = () => {
     setLike(!like)
   }
-  
+
   const onShare = () => {
     console.log('on share')
   }
