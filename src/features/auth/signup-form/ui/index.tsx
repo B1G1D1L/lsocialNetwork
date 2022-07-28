@@ -8,6 +8,8 @@ import type { ISignUp } from 'shared/api'
 import { errorsCode, SignupSchema } from '../lib'
 
 import styles from './styles.module.css'
+import { Link } from 'react-router-dom'
+import { FirebaseError } from 'firebase/app'
 
 const initialValues: ISignUp = {
   name: '',
@@ -19,9 +21,9 @@ export const SignupForm = () => {
   const handleSubmit = (data: ISignUp, actions: any) => {
     signupModel.createAccountFx(data)
 
-    const setErrors = createEffect((value: any) => {
-      const errorMsg = value.code
-      actions.setErrors(errorsCode[errorMsg as keyof typeof errorsCode])
+    const setErrors = createEffect((value: FirebaseError) => {
+      const errorCode = value.code
+      actions.setErrors(errorsCode[errorCode as keyof typeof errorsCode])
     })
 
     sample({
@@ -41,6 +43,7 @@ export const SignupForm = () => {
         <Field name="email" placeholder="Email" />
         <Field name="password" placeholder="Password" type="password" />
         <Button type="submit">Sign Up</Button>
+        <Link to="/signin">Authorization</Link>
       </Form>
     </Formik>
   )

@@ -8,7 +8,7 @@ import { Element, Layout } from 'shared/ui'
 
 import styles from './styles.module.css'
 
-const SignUp = () => {
+const SignupPage = () => {
   const isAuth = useStore($isAuth)
 
   if (isAuth) {
@@ -31,4 +31,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignupPage
