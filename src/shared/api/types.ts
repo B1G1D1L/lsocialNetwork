@@ -4,7 +4,12 @@ export type ISignUp = {
   password: string
 }
 
-export type IUser = {
+export type ISignIn = {
+  email: string
+  password: string
+}
+
+export type IUserData = {
   token: string
   name: string
   email: string

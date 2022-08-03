@@ -1,2 +1,2 @@
-export * as typicodeApi from './typicode'
-export * from './models'
+export * from './types'
+export * from './signup'

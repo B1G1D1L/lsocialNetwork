@@ -1,18 +1,7 @@
-import { combine, createEvent, createStore } from 'effector/compat'
-import { IUser } from 'shared/api'
+import { createStore } from 'effector/compat'
+import { IUserData } from 'shared/api'
 
-type IToken = Omit<IUser, 'email' | 'name'>
-type IUserData = Omit<IUser, 'token'>
+export const $user = createStore<IUserData>({ email: '', name: '', token: '' })
+export const $isAuth = $user.map((data) => !!data.token)
 
-const updateUserToken = createEvent<IToken>()
-const updateUserData = createEvent<IUserData>()
-
-export const $token = createStore('')
-export const $userData = createStore<IUserData>({ email: '', name: '' })
-export const $isAuth = $token.map((token) => !!token)
-
-$token.on(updateUserToken, (_, payload) => payload.token)
-$userData.on(updateUserData, (_, payload) => payload)
-
-export const $user = combine($token, $userData)
-export const events = { updateUserToken, updateUserData }
+$user.watch((state) => console.log(state))

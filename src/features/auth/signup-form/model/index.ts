@@ -1,19 +1,18 @@
 import { FirebaseError } from 'firebase/app'
-import { createEffect } from 'effector/compat'
+import { createEffect, sample } from 'effector/compat'
 
 import { userModal } from 'entities/user'
-import { ISignUp, typicodeApi } from 'shared/api'
+import { createAccountApi } from 'shared/api'
+import type { ISignUp, IUserData } from 'shared/api'
 
-export const createAccountFx = createEffect<
-  ISignUp,
-  { token: string },
-  FirebaseError
->(async (data) => {
-  return await typicodeApi.auth.createAccountApi(data)
-})
-
-createAccountFx.doneData.watch((result) =>
-  userModal.events.updateUserToken(result)
+export const createAccountFx = createEffect<ISignUp, IUserData, FirebaseError>(
+  async (data) => {
+    return await createAccountApi(data)
+  }
 )
 
-export const $isLoadingReg = createAccountFx.pending
+export const $isLoadReg = createAccountFx.pending
+sample({
+  clock: createAccountFx.doneData,
+  target: userModal.$user,
+})
