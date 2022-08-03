@@ -5,22 +5,11 @@ import { Formik, Form } from 'formik'
 import styles from './styles.module.css'
 import { Field } from 'shared/ui'
 import { Logo } from 'shared/ui/logo'
+import { useStore } from 'effector-react/compat'
+import { $userName } from 'entities/user/model'
 
 export const Header = () => {
-  // const [value, setValue] = React.useState('')
-
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setValue(e.target.value)
-  // }
-
-  // const onSubmitSearch = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault()
-  // }
-
-  // Заглушка
-  // React.useEffect(() => {
-  //   console.log(value)
-  // }, [value])
+  const userName = useStore($userName)
 
   return (
     <header className={styles.header}>
@@ -37,7 +26,7 @@ export const Header = () => {
             </Form>
           </Formik>
           <Link to="/profile" className={styles.profile}>
-            <h3>Saleh Ahmed</h3>
+            <h3>{userName}</h3>
             <span className={styles.profileAvatar}>
               <img
                 src="https://otkritkis.ru/wp-content/uploads/2021/10/ava-180.jpg"

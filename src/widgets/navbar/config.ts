@@ -1,3 +1,4 @@
+import React from 'react'
 import { ReactComponent as Feed } from './ui/icons/feed.svg'
 import { ReactComponent as Users } from './ui/icons/users.svg'
 import { ReactComponent as Messages } from './ui/icons/messages.svg'
@@ -6,7 +7,13 @@ import { ReactComponent as Profile } from './ui/icons/profile.svg'
 import { ReactComponent as Setting } from './ui/icons/setting.svg'
 // import { ReactComponent as Logout } from './ui/icons/logout.svg'
 
-export const navigationList = [
+export type InavigationList = {
+  to: string
+  text: string
+  Icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+}
+
+export const navigationList: InavigationList[] = [
   {
     to: 'feed',
     text: 'Feed',
@@ -21,13 +28,11 @@ export const navigationList = [
     to: 'messages',
     text: 'Messages',
     Icon: Messages,
-    notification: 22
   },
   {
     to: 'notification',
     text: 'Notification',
     Icon: Notification,
-    notification: 10
   },
   {
     to: 'profile',

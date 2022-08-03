@@ -14,3 +14,8 @@ export type IUserData = {
   name: string
   email: string
 }
+
+export type INotifications = {
+  messages?: number
+  notification?: number
+}
