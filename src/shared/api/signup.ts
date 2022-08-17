@@ -16,13 +16,13 @@ export const createAccountApi = async ({
       password
     )
 
-    await addDoc(collection(db, 'users'), {
+    await addDoc(collection(db, 'users', userDataReg.user.uid), {
       id: userDataReg.user.uid,
       email,
       name,
     })
 
-    return { id: userDataReg.user.uid, email, name }
+    return { id: userDataReg.user.uid, email, name, online: true }
   } catch (e) {
     throw e
   }

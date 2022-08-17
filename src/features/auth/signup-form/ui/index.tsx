@@ -24,12 +24,10 @@ export const SignupForm = () => {
 
   const handleSubmit = (data: ISignUp, actions: any) => {
     signupModel.createAccountFx(data)
-
     const setErrors = createEffect((value: FirebaseError) => {
       const errorCode = value.code
       actions.setErrors(errorsCode[errorCode as keyof typeof errorsCode])
     })
-
     sample({
       clock: signupModel.createAccountFx.failData,
       target: setErrors,

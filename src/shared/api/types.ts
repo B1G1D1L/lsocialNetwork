@@ -13,6 +13,7 @@ export type IUserData = {
   id: string
   name: string
   email: string
+  online: boolean
 }
 
 export type INotifications = {
