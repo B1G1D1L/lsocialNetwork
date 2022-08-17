@@ -10,7 +10,7 @@ import './index.css'
 
 function App() {
   React.useEffect(() => {
-    processAuth.pageMounted()
+    processAuth.dataInitialization()
   }, [])
 
   return (

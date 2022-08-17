@@ -1,17 +1,37 @@
-import { createEvent, sample } from 'effector/compat'
-import { $user } from 'entities/user/model'
-import { IUserData } from 'shared/api'
-import { sessionLoadFx } from 'shared/api'
+import { createEffect, createEvent, sample } from 'effector/compat'
+import { $loadingProfileData, $user } from 'entities/user/model'
+import { onAuthStateChanged } from 'firebase/auth'
+import { fetchUser, IUserData } from 'shared/api'
+import { auth } from 'shared/config'
 
 // Events
-export const pageMounted = createEvent()
-const updateUser = createEvent<IUserData>()
+export const updateUserId = createEvent<string>('')
+const getUserFx = createEffect(fetchUser)
+const loadProfile = getUserFx.pending
 
 export const dataInitialization = () => {
-  sessionLoadFx()
+  onAuthStateChanged(auth, (user) => {
+    if (user?.uid) {
+      updateUserId(user.uid)
+    }
+  })
 }
 
-// sample({
-//   clock: sessionLoadFx.doneData,
-//   target: $user,
-// })
+sample({
+  clock: updateUserId,
+  target: getUserFx,
+})
+
+// Save data user
+sample({
+  //@ts-ignore
+  clock: getUserFx.doneData,
+  filter: (data: IUserData | null) => !!data,
+  target: $user,
+})
+
+// Process loading
+sample({
+  clock: loadProfile,
+  target: $loadingProfileData,
+})
