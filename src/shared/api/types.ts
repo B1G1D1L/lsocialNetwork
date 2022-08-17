@@ -10,7 +10,7 @@ export type ISignIn = {
 }
 
 export type IUserData = {
-  token: string
+  id: string
   name: string
   email: string
 }

@@ -17,11 +17,12 @@ export const createAccountApi = async ({
     )
 
     await addDoc(collection(db, 'users'), {
+      id: userDataReg.user.uid,
       email,
       name,
     })
 
-    return { token: userDataReg.user.uid, email, name }
+    return { id: userDataReg.user.uid, email, name }
   } catch (e) {
     throw e
   }
