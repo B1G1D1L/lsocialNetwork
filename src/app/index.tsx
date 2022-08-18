@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {processAuth} from 'processes/auth'
+import { processAuth } from 'processes/auth'
 import { WithProviders } from './providers'
 import { Routing } from 'pages'
 import { Header } from 'widgets/header/ui'
@@ -10,7 +10,7 @@ import './index.css'
 
 function App() {
   React.useEffect(() => {
-    processAuth.dataInitialization()
+    processAuth.pageMounted()
   }, [])
 
   return (
@@ -25,4 +25,3 @@ function App() {
 }
 
 export default WithProviders(App)
-

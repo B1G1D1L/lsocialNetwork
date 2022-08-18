@@ -1,37 +1,43 @@
 import { createEffect, createEvent, sample } from 'effector/compat'
-import { $loadingProfileData, $user } from 'entities/user/model'
 import { onAuthStateChanged } from 'firebase/auth'
-import { fetchUser, IUserData } from 'shared/api'
+import { $loadingAuthentication, $user } from 'entities/user/model'
+import { userApi, IUserData } from 'shared/api'
 import { auth } from 'shared/config'
 
 // Events
+export const pageMounted = createEvent()
 export const updateUserId = createEvent<string>('')
-const getUserFx = createEffect(fetchUser)
-const loadProfile = getUserFx.pending
 
-export const dataInitialization = () => {
+// Getting my session
+const loadSessionFx = createEffect(() => {
   onAuthStateChanged(auth, (user) => {
     if (user?.uid) {
       updateUserId(user.uid)
     }
   })
-}
+})
 
 sample({
+  clock: pageMounted,
+  target: loadSessionFx,
+})
+
+// Getting my data
+sample({
   clock: updateUserId,
-  target: getUserFx,
+  target: userApi.fetchUserFx,
 })
 
 // Save data user
 sample({
   //@ts-ignore
-  clock: getUserFx.doneData,
-  filter: (data: IUserData | null) => !!data,
+  clock: userApi.fetchUserFx.doneData,
+  filter: (data: IUserData | null) => data !== null,
   target: $user,
 })
 
 // Process loading
 sample({
-  clock: loadProfile,
-  target: $loadingProfileData,
+  clock: userApi.fetchUserFx.pending,
+  target: $loadingAuthentication,
 })

@@ -1,3 +1,3 @@
 export * from './types'
-export * from './signup'
-export * from './fetchUser'
+export * as authApi from './authApi'
+export * as userApi from './userApi'

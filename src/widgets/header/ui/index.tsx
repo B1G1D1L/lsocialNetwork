@@ -8,6 +8,8 @@ import { Logo } from 'shared/ui/logo'
 import { useStore } from 'effector-react/compat'
 import { $userName } from 'entities/user/model'
 
+import { SignOutBtn } from 'features/auth/signOut/ui'
+
 export const Header = () => {
   const userName = useStore($userName)
 
@@ -34,6 +36,7 @@ export const Header = () => {
               />
             </span>
           </Link>
+          <SignOutBtn />
         </div>
       </div>
     </header>

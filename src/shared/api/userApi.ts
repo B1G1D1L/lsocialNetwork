@@ -1,8 +1,9 @@
+import { createEffect } from 'effector/compat'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'shared/config'
 
-export const fetchUser = async (id: string) => {
-  const userRef = doc(db, 'users', 'Dm7j3oJ73F9NClsVvThz')
+export const fetchUserFx = createEffect(async (id: string) => {
+  const userRef = doc(db, 'users', id)
   const docSnap = await getDoc(userRef)
 
   if (docSnap.exists()) {
@@ -16,4 +17,4 @@ export const fetchUser = async (id: string) => {
   }
 
   return null
-}
+})

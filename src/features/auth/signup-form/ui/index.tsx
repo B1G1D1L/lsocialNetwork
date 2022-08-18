@@ -1,13 +1,13 @@
 import React from 'react'
-import { Form, Formik } from 'formik'
-import { FirebaseError } from 'firebase/app'
+import { Link, Navigate } from 'react-router-dom'
 import { createEffect, sample } from 'effector/compat'
 import { useStore } from 'effector-react/compat'
-import { Link, Navigate } from 'react-router-dom'
+import { Form, Formik } from 'formik'
+import { FirebaseError } from 'firebase/app'
 
-import { signupModel } from 'features/auth/signup-form'
 import { $isAuth } from 'entities/user/model'
 import { Button, Field } from 'shared/ui'
+import { authApi } from 'shared/api'
 import type { ISignUp } from 'shared/api'
 import { errorsCode, SignupSchema } from '../lib'
 
@@ -21,15 +21,16 @@ const initialValues: ISignUp = {
 
 export const SignupForm = () => {
   const isAuth = useStore($isAuth)
+  const isPending = useStore(authApi.createAccountFx.pending)
 
   const handleSubmit = (data: ISignUp, actions: any) => {
-    signupModel.createAccountFx(data)
+    authApi.createAccountFx(data)
     const setErrors = createEffect((value: FirebaseError) => {
       const errorCode = value.code
       actions.setErrors(errorsCode[errorCode as keyof typeof errorsCode])
     })
     sample({
-      clock: signupModel.createAccountFx.failData,
+      clock: authApi.createAccountFx.failData,
       target: setErrors,
     })
   }
@@ -48,7 +49,9 @@ export const SignupForm = () => {
         <Field name="name" placeholder="Name" />
         <Field name="email" placeholder="Email" />
         <Field name="password" placeholder="Password" type="password" />
-        <Button type="submit">Sign Up</Button>
+        <Button type="submit" disabled={isPending}>
+          Sign Up
+        </Button>
         <Link to="/signin" className={styles.link}>
           Authorization
         </Link>
