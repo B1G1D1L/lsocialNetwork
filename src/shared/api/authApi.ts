@@ -1,9 +1,13 @@
 import { createEffect } from 'effector/compat'
 import { FirebaseError } from 'firebase/app'
-import { createUserWithEmailAndPassword, signOut } from 'firebase/auth'
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth'
 import { setDoc, doc } from 'firebase/firestore'
 import { auth, db } from 'shared/config'
-import type { ISignUp } from 'shared/api'
+import type { ISignUp, ISignIn } from 'shared/api'
 
 // Create new accound
 export const createAccountFx = createEffect<
@@ -24,6 +28,18 @@ export const createAccountFx = createEffect<
   })
   return { id: userDataReg.user.uid }
 })
+
+// Sign in
+export const signInFx = createEffect<ISignIn, { id: string }, FirebaseError>(
+  async ({ email, password }) => {
+    const userDataSignIn = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    )
+    return { id: userDataSignIn.user.uid }
+  }
+)
 
 // Sign out
 export const signOutFx = createEffect(async () => {
