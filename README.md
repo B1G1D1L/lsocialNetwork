@@ -1,5 +1,4 @@
-BceTi - Social netword.
-
+# BceTi - Social netword.
 ---
 ##### This template repo is built with Feature-Sliced ​​Design architecture.
 
