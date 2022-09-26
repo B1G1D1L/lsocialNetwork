@@ -6,6 +6,7 @@ import { authApi } from 'shared/api'
 import type { ISignIn } from 'shared/api'
 import styles from 'styles.module.css'
 import { useStore } from 'effector-react/compat'
+import { SigninSchema } from '../lib'
 
 const initialValues: ISignIn = {
   email: '',
@@ -21,7 +22,7 @@ export const SigninForm = () => {
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      validationSchema={SignupSchema}
+      validationSchema={SigninSchema}
     >
       <Form className={styles.form}>
         <Field name="email" placeholder="Email" />
